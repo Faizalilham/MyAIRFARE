@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/second_gray"
+    android:orientation="vertical"
+    tools:context=".ui.activities.SearchTicketActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3.5"
+        android:orientation="vertical"
+        android:background="@drawable/background_search_ticket">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pilih_tiket"
+            android:textSize="@dimen/sp20"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:fontFamily="@font/poppins_regular"/>
+
+        <LinearLayout
+            android:id="@+id/ilLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ilKeberangkatan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp5"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etKeberangkatan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ke"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@drawable/background_edit_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="@dimen/dp10"
+                android:src="@drawable/ic_black_plane"
+                android:layout_weight="1.5"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ilTiba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp5"
+                android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTiba"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ke"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@drawable/background_edit_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dp10"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list_item_home"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

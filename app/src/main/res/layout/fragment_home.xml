@@ -1,14 +1,280 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/second_gray"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_collapseMode="pin"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/TransparentText"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                app:layout_collapseMode="parallax">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="600dp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@color/primary">
+
+                        <TextView
+                            android:id="@+id/tvHallo"
+                            android:layout_width="0dp"
+                            android:text="Hallo Name"
+                            android:textSize="@dimen/sp20"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginStart="@dimen/dp20"
+                            app:layout_constraintTop_toBottomOf="@id/imageCart"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp18"
+                            android:layout_marginStart="@dimen/dp20"
+                            android:textStyle="bold"
+                            android:text="@string/mau_kemana_kamu_hari_ini"
+                            android:fontFamily="@font/poppins_regular"
+                            app:layout_constraintTop_toBottomOf="@id/tvHallo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageCart"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_cart"
+                            android:layout_margin="@dimen/dp20"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="@dimen/dp15"
+                    app:cardCornerRadius="@dimen/dp15"
+                    android:layout_margin="@dimen/dp20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="@dimen/dp20">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/ilDari"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp15"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:boxBackgroundMode="outline"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etDari"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/dari"
+                                android:fontFamily="@font/poppins_regular"
+                                android:background="@drawable/background_edit_text"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/ilKe"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp20"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ilDari"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etKe"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/ke"
+                                android:fontFamily="@font/poppins_regular"
+                                android:background="@drawable/background_edit_text"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/ilLinear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/dp20"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ilKe">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/ilKeberangkatan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dp5"
+                                android:layout_weight="1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/ilDari"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etKeberangkatan"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ke"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:background="@drawable/background_edit_text"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_margin="@dimen/dp10"
+                                android:src="@drawable/ic_black_plane"
+                                android:layout_weight="1.5"/>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/ilTiba"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/dp5"
+                                android:layout_weight="1"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/ilDari"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etTiba"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/ke"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:background="@drawable/background_edit_text"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp20"
+                            android:backgroundTint="@color/secondary"
+                            android:fontFamily="@font/poppins_regular"
+                            android:padding="@dimen/dp15"
+                            android:text="@string/cari"
+                            android:textAllCaps="false"
+                            android:layout_marginBottom="@dimen/dp15"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/ilLinear" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginStart="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp5"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvPenerbangan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/penerbangan_yang_akan_datang"
+            android:textSize="@dimen/sp18"
+            android:textColor="@color/primary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp10"
+            app:layout_constraintTop_toBottomOf="@id/tvPenerbangan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:listitem="@layout/list_item_home"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
