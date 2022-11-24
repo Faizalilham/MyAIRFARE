@@ -15,4 +15,14 @@
         android:name="binar.finalproject.MyAirFare.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="binar.finalproject.MyAirFare.ui.fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="binar.finalproject.MyAirFare.ui.fragments.TicketFragment"
+        android:label="fragment_ticket"
+        tools:layout="@layout/fragment_ticket" />
 </navigation>

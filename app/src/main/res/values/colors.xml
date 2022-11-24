@@ -11,6 +11,8 @@
     <color name="second_gray">#F3F3F3</color>
     <color name="primary">#4991FF</color>
     <color name="secondary">#3A74CC</color>
-    <color name="Tertiary">#00426F</color>
+    <color name="tertiary">#00426F</color>
+    <color name="red">#FF3434</color>
+
 
 </resources>
