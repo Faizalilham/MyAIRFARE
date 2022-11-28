@@ -6,7 +6,9 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import binar.finalproject.MyAirFare.databinding.ActivitySplashScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashScreen : AppCompatActivity() {
     private var _binding : ActivitySplashScreenBinding? = null
     private val binding  get() = _binding!!
@@ -14,14 +16,6 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSplashScreen()
-    }
-
-    private fun setSplashScreen(){
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            startActivity(Intent(this,MainActivity::class.java).also{finish()})
-        },1500)
     }
 
 

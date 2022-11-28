@@ -62,8 +62,8 @@ dependencies {
 
     // DataStore, viewmodel, live data
     implementation "androidx.datastore:datastore-preferences:1.0.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0"
 
     // Consume API
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -75,4 +75,7 @@ dependencies {
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:31.0.1')
     implementation platform('com.google.firebase:firebase-bom:30.5.0')
+
+    //Lottie Animations
+    implementation 'com.airbnb.android:lottie:5.2.0'
 }

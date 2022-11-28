@@ -1,5 +1,6 @@
 package binar.finalproject.MyAirFare.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import binar.finalproject.MyAirFare.databinding.ActivityLoginBinding
@@ -11,6 +12,13 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        doRegister()
+    }
+
+    private fun doRegister(){
+        binding.tvRegister.setOnClickListener {
+            startActivity(Intent(this,RegisterActivity::class.java))
+        }
     }
 
     override fun onDestroy() {

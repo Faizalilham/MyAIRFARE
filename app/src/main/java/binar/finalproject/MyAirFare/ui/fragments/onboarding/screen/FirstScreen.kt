@@ -1,37 +1,33 @@
-package binar.finalproject.MyAirFare.ui.fragments
+package binar.finalproject.MyAirFare.ui.fragments.onboarding.screen
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import binar.finalproject.MyAirFare.databinding.FragmentProfileBinding
-import binar.finalproject.MyAirFare.ui.activities.LoginActivity
+import androidx.viewpager2.widget.ViewPager2
+import binar.finalproject.MyAirFare.R
+import binar.finalproject.MyAirFare.databinding.FragmentFirstScreenBinding
 
 
-class ProfileFragment : Fragment() {
+class FirstScreen : Fragment() {
 
 
-    private var _binding : FragmentProfileBinding? = null
+    private var _binding : FragmentFirstScreenBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(layoutInflater)
+        _binding = FragmentFirstScreenBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        doLogin()
-
-    }
-
-    private fun doLogin(){
-        binding.btnLogin.setOnClickListener {
-            startActivity(Intent(activity,LoginActivity::class.java))
+        val viewPager =  activity?.findViewById<ViewPager2>(R.id.viewPager)
+        binding.next.setOnClickListener {
+            viewPager?.currentItem = 1
         }
     }
 

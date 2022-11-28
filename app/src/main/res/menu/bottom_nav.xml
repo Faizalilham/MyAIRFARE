@@ -17,9 +17,9 @@
         android:icon="@drawable/ic_ticket"/>
 
     <item
-        android:id="@+id/notificationFragment"
+        android:id="@+id/notificationFragment2"
         android:title="@string/notifikasi"
-        android:icon="@drawable/ic_ticket"/>
+        android:icon="@drawable/ic_notification"/>
 
     <item
         android:id="@+id/profileFragment"

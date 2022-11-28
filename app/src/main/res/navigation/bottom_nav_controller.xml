@@ -25,4 +25,9 @@
         android:name="binar.finalproject.MyAirFare.ui.fragments.TicketFragment"
         android:label="fragment_ticket"
         tools:layout="@layout/fragment_ticket" />
+    <fragment
+        android:id="@+id/notificationFragment2"
+        android:name="binar.finalproject.MyAirFare.ui.fragments.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" />
 </navigation>

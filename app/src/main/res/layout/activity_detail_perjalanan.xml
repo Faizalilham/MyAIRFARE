@@ -400,6 +400,19 @@
     </androidx.cardview.widget.CardView>
 
 
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondary"
+        android:fontFamily="@font/poppins_regular"
+        android:padding="@dimen/dp15"
+        android:layout_margin="@dimen/dp30"
+        android:text="@string/booking"
+        app:cornerRadius="@dimen/dp10"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 

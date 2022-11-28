@@ -95,6 +95,19 @@
                     android:fontFamily="@font/poppins_regular"
                     android:textStyle="bold"/>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_pesanan"
+                    android:textColor="@color/white"
+                    android:background="@drawable/background_edit_text"
+                    android:backgroundTint="@color/green"
+                    android:layout_weight="1"
+                    android:padding="1dp"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"/>
+
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -168,6 +181,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCheckin"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp15"
@@ -183,6 +197,45 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ilLinear" />
+
+            <LinearLayout
+                android:id="@+id/linearAfterCheckin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:backgroundTint="@color/secondary"
+                    android:fontFamily="@font/poppins_regular"
+                    android:padding="@dimen/dp15"
+                    app:cornerRadius="@dimen/dp10"
+                    android:layout_margin="@dimen/dp10"
+                    android:layout_gravity="center"
+                    android:text="@string/simpan"
+                    android:textAllCaps="false"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShare"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:backgroundTint="@color/secondary"
+                    android:fontFamily="@font/poppins_regular"
+                    android:padding="@dimen/dp15"
+                    app:cornerRadius="@dimen/dp10"
+                    android:layout_margin="@dimen/dp10"
+                    android:layout_gravity="center"
+                    android:text="@string/bagikan"
+                    android:textAllCaps="false"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

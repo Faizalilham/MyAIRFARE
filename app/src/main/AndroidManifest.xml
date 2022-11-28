@@ -4,6 +4,7 @@
     package="binar.finalproject.MyAirFare">
 
     <application
+        android:name=".hilt.BaseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,31 +15,31 @@
         android:theme="@style/Theme.MyAirFare"
         tools:targetApi="31">
         <activity
-            android:name=".DetailPerjalanan"
+            android:name=".ui.activities.DetailPerjalanan"
             android:exported="false" />
         <activity
-            android:name=".CheckinActivity"
+            android:name=".ui.activities.CheckinActivity"
             android:exported="false" />
         <activity
-            android:name=".SettingActivity"
+            android:name=".ui.activities.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".ui.activities.EditProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".PaymentDetailsActivity"
+            android:name=".ui.activities.PaymentDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgetPasswordActivity"
+            android:name=".ui.activities.ForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchTicketActivity"
+            android:name=".ui.activities.SearchTicketActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifikasiActivity"
+            android:name=".ui.activities.VerificationActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".ui.activities.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.LoginActivity"

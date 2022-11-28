@@ -86,4 +86,12 @@
     <string name="garuda_indonesia">Garuda Indonesia</string>
     <string name="_1_0">1.0</string>
     <string name="notifikasi">Notifikasi</string>
+    <string name="booking">Booking</string>
+    <string name="pesan">Pesan</string>
+    <string name="notifications">Notifications</string>
+    <string name="lets_fly_higher">Lets Fly Higher</string>
+    <string name="save">Save</string>
+    <string name="bagikan">Bagikan</string>
+    <string name="selanjutnya">Selanjutnya</string>
+    <string name="selesai">Selesai</string>
 </resources>
