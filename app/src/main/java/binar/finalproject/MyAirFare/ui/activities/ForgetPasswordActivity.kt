@@ -20,6 +20,11 @@ class ForgetPasswordActivity : AppCompatActivity() {
         resetPasswordViewModel = ViewModelProvider(this)[ResetPasswordViewModel::class.java]
         setContentView(binding.root)
         resetPassword()
+        back()
+    }
+
+    private fun back(){
+        binding.toolbar.setOnClickListener { finish() }
     }
 
     private fun resetPassword(){
@@ -37,7 +42,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
             resetPasswordViewModel.doResetPasswordObserver().observe(this){
                 if(it != null){
                     if(it.success == "Email reset password telah dikirim ke email yang dituju"){
-                        startActivity(Intent(this,VerificationActivity::class.java))
+                        startActivity(Intent(this,VerificationActivity::class.java).also{ its->
+                            its.putExtra("email",email)
+                        })
                     }else{
                         Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
                     }

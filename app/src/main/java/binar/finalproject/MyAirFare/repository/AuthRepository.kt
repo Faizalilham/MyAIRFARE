@@ -21,6 +21,10 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
     private val doLogin : MutableLiveData<UserLoginResponse?> = MutableLiveData()
     fun doLoginObserver():LiveData<UserLoginResponse?> = doLogin
 
+    private val message : MutableLiveData<String> = MutableLiveData()
+    fun messageObserver(): LiveData<String> = message
+
+
 
    fun doRegister(
         username :String,l_name : String,
@@ -40,16 +44,19 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
                         Log.d("Success","$body")
                     }else{
                         doRegister.postValue(null)
+                        message.postValue(response.message())
                         Log.d("Response Error","Response Error => ${response.message()}")
                     }
                 }else{
                     doRegister.postValue(null)
+                    message.postValue(response.message())
                     Log.d("Response Error ygy","Response Error => ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<UserRegisterResponse>, t: Throwable) {
                 doRegister.postValue(null)
+                message.postValue(t.message)
                 Log.d("Response Error","Response Error => ${t.message}")
             }
 
@@ -69,11 +76,13 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
                        Log.d("success","$body")
                    }else{
                        doLogin.postValue(null)
+                       message.postValue(response.message())
                        Log.d("Response Error","Response Error => ${response.message()}")
                        Log.d("Response Body Pertama","Response Error => ${response.body()}")
                    }
                }else{
                    doLogin.postValue(null)
+                   message.postValue(response.message())
                    Log.d("Response Errorr","Response Error => ${response.code()}")
                    Log.d("Response Body Kedua","Response Error => ${response.body()}")
                }
@@ -81,6 +90,7 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
 
             override fun onFailure(call: Call<UserLoginResponse>, t: Throwable) {
                 doLogin.postValue(null)
+                message.postValue(t.message)
                 Log.d("Response Errorrr","Response Error => ${t.message}")
             }
 

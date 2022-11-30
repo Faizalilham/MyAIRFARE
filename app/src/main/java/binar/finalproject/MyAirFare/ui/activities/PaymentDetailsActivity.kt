@@ -11,7 +11,12 @@ class PaymentDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityPaymentDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        back()
 
+    }
+
+    private fun back(){
+        binding.toolbar.setOnClickListener { finish() }
     }
 
     override fun onDestroy() {

@@ -18,4 +18,6 @@ class AuthViewModel @Inject constructor(private val authRepository : AuthReposit
     fun doLoginObserver() = authRepository.doLoginObserver()
     fun doRegisterObserver() = authRepository.doRegisterObserver()
 
+    fun messageObserver() = authRepository.messageObserver()
+
 }

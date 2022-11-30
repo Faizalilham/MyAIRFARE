@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.databinding.FragmentProfileBinding
+import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.ui.activities.EditProfileActivity
 import binar.finalproject.MyAirFare.ui.activities.LoginActivity
 import binar.finalproject.MyAirFare.ui.activities.SettingActivity
@@ -64,21 +65,28 @@ class ProfileFragment : Fragment() {
         currentUserViewModel.currentUserObserver().observe(requireActivity()){
             Log.d("CurrentUser",it.toString())
             if(it != null){
-
                 setupView(
-                    it.username,
-                    it.email,
-                    it.photo
+                    it.user.username,
+                    it.user.email,
+                    it.user.photo
                 )
+                goToDetail(it)
+
+            }else{
+                currentUserViewModel.messageObserver().observe(requireActivity()){ message ->
+                    if(message != null){
+                        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
         }
-        goToDetail(token)
+
     }
 
-    private fun goToDetail(token : String){
+    private fun goToDetail(user : CurrentUser){
         binding.cardDetailProfile.setOnClickListener {
             startActivity(Intent(requireActivity(),EditProfileActivity::class.java).also {
-                it.putExtra("token",token)
+                it.putExtra("user",user)
             })
         }
     }

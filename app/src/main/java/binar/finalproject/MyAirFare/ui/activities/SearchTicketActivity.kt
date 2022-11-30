@@ -11,8 +11,6 @@ class SearchTicketActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySearchTicketBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
     }
 
     override fun onDestroy() {

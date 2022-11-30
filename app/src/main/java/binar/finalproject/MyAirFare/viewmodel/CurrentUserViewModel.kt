@@ -12,4 +12,5 @@ class CurrentUserViewModel @Inject constructor(
 
         fun currentUser(token : String) = currentUserRepository.currentUser(token)
         fun currentUserObserver() = currentUserRepository.currentUserObserver()
+        fun messageObserver() = currentUserRepository.messageObserver()
 }

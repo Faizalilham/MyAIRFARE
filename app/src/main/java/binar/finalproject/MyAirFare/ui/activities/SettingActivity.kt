@@ -11,6 +11,11 @@ class SettingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        back()
+    }
+
+    private fun back(){
+        binding.toolbar.setOnClickListener { finish() }
     }
 
 

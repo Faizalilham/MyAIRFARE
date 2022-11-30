@@ -16,19 +16,23 @@ class VerificationActivity : AppCompatActivity() {
         _binding = ActivityVerifikasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
         goToEmail()
+        getEmailName()
     }
 
+    private fun getEmailName(){
+        val intent = intent.getStringExtra("email")
+        if(intent != null){
+           binding.tvEmail.text = intent
+        }
+    }
 
-    @SuppressLint("QueryPermissionsNeeded")
     private fun goToEmail(){
         binding.btnEmail.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW)
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.addCategory(Intent.CATEGORY_APP_EMAIL)
             intent.data = Uri.parse("mailto :")
-            if (intent.resolveActivity(packageManager) != null) {
-                startActivity(intent)
-            }else{
-                Toast.makeText(this, "Aplikasi email belum terinstall", Toast.LENGTH_SHORT).show()
-            }
+            startActivity(intent)
+
         }
     }
 

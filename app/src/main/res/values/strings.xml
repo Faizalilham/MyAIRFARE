@@ -97,6 +97,9 @@
     <string name="nama_panggilan">Nama Panggilan</string>
     <string name="kembali">Kembali</string>
     <string name="lewati">Lewati</string>
+    <string name="kamera">Kamera</string>
+    <string name="gallery">Gallery</string>
+    <string name="foto_profile">Foto Profile</string>
 
     <string-array name="tittle_item">
         <item>Tuan</item>

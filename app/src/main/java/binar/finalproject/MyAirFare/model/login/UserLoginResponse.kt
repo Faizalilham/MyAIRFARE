@@ -1,5 +1,8 @@
 package binar.finalproject.MyAirFare.model.login
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 
 data class UserLoginResponse(
     val token : String,
@@ -23,6 +26,7 @@ data class UserLogin(
     val carts : MutableList<Carts>
 )
 
+@Parcelize
 data class Carts(
     val id : String,
     val user_id : String,
@@ -31,4 +35,4 @@ data class Carts(
     val deleted : Boolean,
     val createdAt : String,
     val updatedAt : String
-)
+):Parcelable

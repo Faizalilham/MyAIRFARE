@@ -66,9 +66,15 @@ class RegisterActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                authViewModel.doRegisterObserver().observe(this){
                    if(it != null){
                        Toast.makeText(this, "Berhasil Daftar", Toast.LENGTH_SHORT).show()
-                       startActivity(Intent(this,VerificationActivity::class.java))
+                       startActivity(Intent(this,VerificationActivity::class.java).also{its->
+                           its.putExtra("email",email)
+                       })
                    }else{
-                       Toast.makeText(this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show()
+                       authViewModel.messageObserver().observe(this){ message ->
+                           if(message != null){
+                               Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                           }
+                       }
                    }
                }
             }else{
