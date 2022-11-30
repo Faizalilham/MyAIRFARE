@@ -25,6 +25,7 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:layout_marginBottom="150dp"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -40,10 +41,6 @@
             app:tabGravity="center"
             app:tabIndicatorHeight="0dp" />
 
-
     </RelativeLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

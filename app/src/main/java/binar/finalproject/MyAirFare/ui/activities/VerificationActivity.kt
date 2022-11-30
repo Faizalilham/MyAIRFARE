@@ -1,7 +1,11 @@
 package binar.finalproject.MyAirFare.ui.activities
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import binar.finalproject.MyAirFare.databinding.ActivityVerifikasiBinding
 
 class VerificationActivity : AppCompatActivity() {
@@ -11,6 +15,21 @@ class VerificationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityVerifikasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        goToEmail()
+    }
+
+
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun goToEmail(){
+        binding.btnEmail.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("mailto :")
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            }else{
+                Toast.makeText(this, "Aplikasi email belum terinstall", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 

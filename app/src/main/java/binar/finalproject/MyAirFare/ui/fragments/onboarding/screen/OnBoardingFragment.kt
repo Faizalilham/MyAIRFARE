@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.FragmentOnBoardingBinding
-import com.example.githubapi.adapter.ViewPagerAdapter
+import binar.finalproject.MyAirFare.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 

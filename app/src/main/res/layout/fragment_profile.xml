@@ -32,7 +32,7 @@
             android:src="@drawable/ic_google"/>
 
         <TextView
-            android:id="@+id/tvNamaLengkap"
+            android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/profile"
@@ -212,6 +212,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/tvBeforeLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/masuk_daftar"

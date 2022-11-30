@@ -94,4 +94,12 @@
     <string name="bagikan">Bagikan</string>
     <string name="selanjutnya">Selanjutnya</string>
     <string name="selesai">Selesai</string>
+    <string name="nama_panggilan">Nama Panggilan</string>
+    <string name="kembali">Kembali</string>
+    <string name="lewati">Lewati</string>
+
+    <string-array name="tittle_item">
+        <item>Tuan</item>
+        <item>Nyonya</item>
+    </string-array>
 </resources>

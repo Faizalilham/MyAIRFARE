@@ -1,4 +1,4 @@
-package com.example.githubapi.adapter
+package binar.finalproject.MyAirFare.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

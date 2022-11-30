@@ -129,6 +129,7 @@
            </com.google.android.material.textfield.TextInputLayout>
 
            <TextView
+               android:id="@+id/tvForgetPassword"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="@string/lupa_kata_sandi"
@@ -141,6 +142,7 @@
                android:textAlignment="textEnd"/>
 
            <com.google.android.material.button.MaterialButton
+               android:id="@+id/btnLogin"
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:backgroundTint="@color/secondary"
@@ -173,6 +175,7 @@
                android:gravity="center">
 
                <androidx.cardview.widget.CardView
+                   android:id="@+id/cardGoogle"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    app:cardCornerRadius="@dimen/dp10"

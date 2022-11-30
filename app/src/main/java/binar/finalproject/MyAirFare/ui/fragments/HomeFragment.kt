@@ -16,9 +16,25 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupView()
+    }
+    private fun setupView(){
+        binding.switchPulangPergi.setOnCheckedChangeListener { _, isChecked ->
+            if(isChecked){
+                binding.ilTiba.visibility = View.VISIBLE
+            }else{
+                binding.ilTiba.visibility = View.GONE
+            }
+            binding.switchPulangPergi.isChecked = isChecked
+        }
+
     }
 
     override fun onDestroy() {

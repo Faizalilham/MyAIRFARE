@@ -1,12 +1,10 @@
 package binar.finalproject.MyAirFare.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import binar.finalproject.MyAirFare.R
-import binar.finalproject.MyAirFare.databinding.FragmentCartBinding
+import androidx.fragment.app.Fragment
 import binar.finalproject.MyAirFare.databinding.FragmentInActiveTicketBinding
 
 

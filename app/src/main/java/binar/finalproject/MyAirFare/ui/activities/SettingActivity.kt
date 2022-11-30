@@ -1,8 +1,7 @@
 package binar.finalproject.MyAirFare.ui.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import binar.finalproject.MyAirFare.databinding.ActivityMainBinding
+import androidx.appcompat.app.AppCompatActivity
 import binar.finalproject.MyAirFare.databinding.ActivitySettingBinding
 
 class SettingActivity : AppCompatActivity() {

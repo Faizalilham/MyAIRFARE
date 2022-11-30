@@ -116,12 +116,12 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etNamaDepan"
+                        android:id="@+id/etUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/background_edit_text"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/nama_depan"
+                        android:hint="@string/nama_panggilan"
                         android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -129,25 +129,6 @@
 
             </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp5"
-                android:layout_marginTop="@dimen/dp15"
-                android:layout_marginEnd="@dimen/dp5"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNamaBelakang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_edit_text"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/nama_belakang"
-                    android:inputType="text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -165,12 +146,12 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etKebangsaan"
+                        android:id="@+id/etFirstname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/background_edit_text"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/kebangsaan"
+                        android:hint="@string/nama_depan"
                         android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -186,39 +167,18 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etTanggal"
+                        android:id="@+id/etLastname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/background_edit_text"
                         android:fontFamily="@font/poppins_regular"
-                        android:hint="@string/dd_mm_yy"
-                        android:inputType="date" />
+                        android:hint="@string/nama_belakang"
+                        android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
             </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp5"
-                android:layout_marginTop="@dimen/dp15"
-                android:layout_marginEnd="@dimen/dp5"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNoHandphone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/background_edit_text"
-                    android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/nomor_handphone"
-                    android:inputType="number" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -255,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edit_text"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/password"
+                    android:hint="@string/kata_sandi"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -275,12 +235,13 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/background_edit_text"
                     android:fontFamily="@font/poppins_regular"
-                    android:hint="@string/password"
+                    android:hint="@string/ulangi_kata_sandi"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp20"
