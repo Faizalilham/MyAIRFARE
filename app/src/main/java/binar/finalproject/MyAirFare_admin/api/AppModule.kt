@@ -1,4 +1,5 @@
-package binar.finalproject.MyAirFare_admin.api
+package binar.finalproject.MyAirFare.api
+
 
 import dagger.Module
 import dagger.Provides
@@ -14,13 +15,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-    private  const val  BASE_URL = "https://binarstudpenfinalprojectbe-production.up.railway.app/"
+
+    private const val BASE_URL = "https://binarstudpenfinalprojectbe-production.up.railway.app/"
 
     @Provides
     @Singleton
-    fun okHttpClient(): OkHttpClient {
+    fun okHttpClient():OkHttpClient{
         return OkHttpClient.Builder()
-            .connectTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30,TimeUnit.SECONDS)
             .readTimeout(30,TimeUnit.SECONDS)
             .writeTimeout(30,TimeUnit.SECONDS)
             .build()
@@ -28,7 +30,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun setupRetrofitGithub(okHttp : OkHttpClient): Retrofit {
+    fun setupRetrofitGithub(okHttp : OkHttpClient):Retrofit{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttp)
@@ -42,6 +44,5 @@ object AppModule {
 
     @Provides
     fun authEndPoint(retrofit : Retrofit): AuthEndPoint = retrofit.create(AuthEndPoint::class.java)
-
 
 }

@@ -110,4 +110,17 @@
     <string name="detail_pengguna">Detail Pengguna</string>
     <string name="detail_admin">Detail Admin</string>
     <string name="kelas_pesawat">Kelas Pesawat</string>
+    <string name="lets_fly_higher">Lets Fly Higher</string>
+    <string name="tanggal_penerbangan">Tanggal Penerbangan</string>
+    <string name="type_ticket">Tipe Tiket</string>
+    <string name="kelas">Kelas</string>
+    <string name="estimasi_sampai">Estimasi Sampai</string>
+    <string name="foto_tiket">Foto Tiket</string>
+    <string name="kamera">Kamera</string>
+    <string name="gallery">Gallery</string>
+
+    <string-array name="type">
+        <item>Dewasa</item>
+        <item>Anak-Anak</item>
+    </string-array>
 </resources>

@@ -36,6 +36,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="@dimen/dp30"
+            android:src="@drawable/ic_google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTittle" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabImagePick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="145dp"
+            android:src="@drawable/ic_camera"
+            app:tint="@android:color/white"
+            android:backgroundTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -44,25 +67,8 @@
             android:padding="@dimen/dp10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvTittle">
+            app:layout_constraintTop_toBottomOf="@id/fabImagePick">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                app:boxBackgroundMode="outline"
-                app:endIconMode="dropdown_menu"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etClassPlane"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/kelas_pesawat"
-                    android:fontFamily="@font/poppins_regular"
-                    android:background="@drawable/background_edit_text"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -81,6 +87,54 @@
                     android:background="@drawable/background_edit_text"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:boxBackgroundMode="outline"
+                    app:endIconMode="clear_text"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/dp5"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etFrom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/asal"
+                        android:fontFamily="@font/poppins_regular"
+                        android:background="@drawable/background_edit_text"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:boxBackgroundMode="outline"
+                    app:endIconMode="clear_text"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp5"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etDestination"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/tujuan"
+                        android:fontFamily="@font/poppins_regular"
+                        android:background="@drawable/background_edit_text"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,44 +144,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etFrom"
+                    android:id="@+id/etDateFlight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/asal"
-                    android:fontFamily="@font/poppins_regular"
-                    android:background="@drawable/background_edit_text"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                app:boxBackgroundMode="outline"
-                app:endIconMode="clear_text"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etDestination"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/tujuan"
-                    android:fontFamily="@font/poppins_regular"
-                    android:background="@drawable/background_edit_text"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp10"
-                app:boxBackgroundMode="outline"
-                app:endIconMode="clear_text"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etNameFlight"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/nama_penerbangan"
+                    android:hint="@string/tanggal_penerbangan"
+                    android:inputType="date"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 
@@ -151,7 +172,112 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:boxBackgroundMode="outline"
+                    app:endIconMode="clear_text"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/dp5"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNoChair"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/nomor_kursi"
+                        android:fontFamily="@font/poppins_regular"
+                        android:background="@drawable/background_edit_text"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    app:boxBackgroundMode="outline"
+                    app:endIconMode="dropdown_menu"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/dp5"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/tvTypeTicket"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/type_ticket"
+                        android:padding="@dimen/dp15"
+                        android:fontFamily="@font/poppins_regular"
+                        android:background="@drawable/background_edit_text"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFlightNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nomor_penerbangan"
+                    android:inputType="text"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@drawable/background_edit_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etclass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/kelas"
+                    android:inputType="number"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@drawable/background_edit_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                app:boxBackgroundMode="outline"
+                app:endIconMode="clear_text"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEstimated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/estimasi_sampai"
+                    android:inputType="number"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@drawable/background_edit_text"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <Button
+                android:id="@+id/btnPost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp15"
@@ -165,5 +291,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </ScrollView>
