@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.FragmentProfileBinding
 import binar.finalproject.MyAirFare.model.user.CurrentUser
@@ -28,7 +30,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private lateinit var binding : FragmentProfileBinding
-//    private val binding get() = _binding!!
     private lateinit var currentUserViewModel: CurrentUserViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     override fun onCreateView(
@@ -60,9 +61,10 @@ class ProfileFragment : Fragment() {
     }
 
 
+    @SuppressLint("ResourceAsColor")
     private fun setupCurrentUser(token : String){
         currentUserViewModel.currentUser(token)
-//        binding.profileLinear.setBackgroundColor(R.color.transparents)
+        binding.profileLinear.setBackgroundColor(R.color.black_transparent)
         showLoading(true)
         currentUserViewModel.currentUserObserver().observe(requireActivity()){
             Log.d("CurrentUser",it.toString())
@@ -77,6 +79,7 @@ class ProfileFragment : Fragment() {
 
             }else{
                 showLoading(false)
+                binding.profileLinear.background = null
             }
         }
 
@@ -108,8 +111,9 @@ class ProfileFragment : Fragment() {
                tvBeforeLogin.visibility = View.VISIBLE
                btnLogin.visibility = View.VISIBLE
            }
-            val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
-            ft.detach(this).attach(this).commit()
+//            val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
+//            ft.detach(this).attach(this).commit()
+             Navigation.findNavController(binding.root).navigate(R.id.profileFragment)
         }
     }
 
@@ -138,11 +142,5 @@ class ProfileFragment : Fragment() {
             startActivity(Intent(activity,LoginActivity::class.java))
         }
     }
-
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        _binding = null
-//    }
-
 
 }
