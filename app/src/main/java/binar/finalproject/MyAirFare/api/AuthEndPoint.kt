@@ -2,6 +2,7 @@ package binar.finalproject.MyAirFare.api
 
 
 
+import binar.finalproject.MyAirFare.model.login.LoginGoogle
 import binar.finalproject.MyAirFare.model.login.UserLoginRequest
 import binar.finalproject.MyAirFare.model.login.UserLoginResponse
 import binar.finalproject.MyAirFare.model.register.UserRegisterRequest
@@ -45,12 +46,17 @@ interface AuthEndPoint {
         @Part("username") username : RequestBody,
         @Part("f_name") f_name : RequestBody,
         @Part("l_name") l_name : RequestBody,
+        @Part("email") email : RequestBody,
         @Part("password") password : RequestBody,
         @Part("re_type_pass") re_type_pass : RequestBody,
         @Part("title") title : RequestBody,
         @Part image : MultipartBody.Part
     ): Call<UserCurrentUpdate>
 
+    @POST("api/v1/loginRegGoogle")
+    fun doLoginWithGoole(
+        @Body loginGoogle : LoginGoogle
+    ):Call<UserRegisterResponse>
 
 
 }

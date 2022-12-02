@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.FragmentSplashScreenBinding
 import binar.finalproject.MyAirFare.ui.activities.MainActivity
+import binar.finalproject.MyAirFare.ui.activities.SplashScreen
 import binar.finalproject.MyAirFare.viewmodel.OnBoardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,9 +39,10 @@ class SplashScreenFragment : Fragment() {
             if(it != null){
                 Handler().postDelayed({
                     if(it){
-                        startActivity(Intent(requireActivity(),MainActivity::class.java).also { activity?.finish() })
+                        startActivity(Intent(activity,MainActivity::class.java).also { activity?.finish() })
                     }else{
                         findNavController().navigate(R.id.action_splashScreenFragment_to_onBoardingFragment)
+//                        startActivity(Intent(activity, SplashScreen::class.java).also { activity?.finish() })
                     }
                 },2000)
             }

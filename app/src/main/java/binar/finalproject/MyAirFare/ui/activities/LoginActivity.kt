@@ -88,6 +88,24 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, credentials.toString(), Toast.LENGTH_SHORT).show()
         auth.signInWithCredential(credentials).addOnCompleteListener {
             if(it.isSuccessful){
+                if(account.idToken != null){
+                    authViewModel.doLoginWithGoogle(account.idToken!!)
+                    authViewModel.doLoginWithGoogleObserver().observe(this){ loginGoogle ->
+                        if(loginGoogle != null){
+                            startActivity(Intent(this,MainActivity::class.java).also { _ ->
+                                Log.d("touken",loginGoogle.token)
+                                Toast.makeText(this, "Login success, hallo ${loginGoogle.user.username}", Toast.LENGTH_SHORT).show()
+                                authPreferences.setToken(loginGoogle.token)
+                                finish()
+
+                            })
+                        }else{
+                            authViewModel.messageObserver().observe(this){ message ->
+                                Toast.makeText(this,message , Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
                 Toast.makeText(this, account.idToken, Toast.LENGTH_SHORT).show()
                 Log.d("ID_google",account.id.toString())
             }
@@ -108,7 +126,7 @@ class LoginActivity : AppCompatActivity() {
                 authViewModel.doLogin(email,password)
                 authViewModel.doLoginObserver().observe(this){
                     if(it != null){
-                        startActivity(Intent(this,MainActivity::class.java).also { its ->
+                        startActivity(Intent(this,MainActivity::class.java).also { _ ->
                             Log.d("touken",it.token)
                             Toast.makeText(this, "Login success, hallo ${it.user.username}", Toast.LENGTH_SHORT).show()
                             authPreferences.setToken(it.token)

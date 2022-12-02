@@ -15,6 +15,10 @@ class AuthViewModel @Inject constructor(private val authRepository : AuthReposit
                    title :String) = authRepository.doRegister(username,f_name,l_name,email,password,
                                                               confirm_password, title)
 
+
+    fun doLoginWithGoogle(credendtial : String) = authRepository.doLoginWithGoogle(credendtial)
+    fun doLoginWithGoogleObserver() = authRepository.doLoginWithGoogleObserver()
+
     fun doLoginObserver() = authRepository.doLoginObserver()
     fun doRegisterObserver() = authRepository.doRegisterObserver()
 

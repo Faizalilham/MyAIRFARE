@@ -45,8 +45,8 @@ class SecondFragment : Fragment() {
 
     private fun back(){
         val viewPager =  activity?.findViewById<ViewPager2>(R.id.viewPager)
-        binding.next.setOnClickListener {
-            viewPager?.currentItem = 1
+        binding.back.setOnClickListener {
+            viewPager?.currentItem = 0
         }
     }
 

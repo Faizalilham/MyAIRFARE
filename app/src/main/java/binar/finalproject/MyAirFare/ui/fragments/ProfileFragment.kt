@@ -1,5 +1,6 @@
 package binar.finalproject.MyAirFare.ui.fragments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.FragmentProfileBinding
 import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.ui.activities.EditProfileActivity
@@ -25,16 +27,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
-
-    private var _binding : FragmentProfileBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentProfileBinding
+//    private val binding get() = _binding!!
     private lateinit var currentUserViewModel: CurrentUserViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentProfileBinding.inflate(layoutInflater)
+        binding = FragmentProfileBinding.inflate(layoutInflater)
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         currentUserViewModel = ViewModelProvider(this)[CurrentUserViewModel::class.java]
         return binding.root
@@ -54,14 +55,15 @@ class ProfileFragment : Fragment() {
             Log.d("token", it)
             if(it != null){
                 setupCurrentUser(it)
-            }else{
-                Toast.makeText(requireActivity(), "null", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+
     private fun setupCurrentUser(token : String){
         currentUserViewModel.currentUser(token)
+//        binding.profileLinear.setBackgroundColor(R.color.transparents)
+        showLoading(true)
         currentUserViewModel.currentUserObserver().observe(requireActivity()){
             Log.d("CurrentUser",it.toString())
             if(it != null){
@@ -70,14 +72,11 @@ class ProfileFragment : Fragment() {
                     it.user.email,
                     it.user.photo
                 )
+                Log.d("CEKK CURRENT IMAGE",it.user.photo)
                 goToDetail(it)
 
             }else{
-                currentUserViewModel.messageObserver().observe(requireActivity()){ message ->
-                    if(message != null){
-                        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
-                    }
-                }
+                showLoading(false)
             }
         }
 
@@ -110,18 +109,17 @@ class ProfileFragment : Fragment() {
                btnLogin.visibility = View.VISIBLE
            }
             val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
-            if (Build.VERSION.SDK_INT >= 26) {
-                ft.setReorderingAllowed(false)
-            }
             ft.detach(this).attach(this).commit()
-
         }
     }
 
-
+    private fun showLoading(show : Boolean){
+        if(show) binding.loading.visibility = View.VISIBLE else  binding.loading.visibility = View.GONE
+    }
 
     private fun setupView(username : String,email : String,image : String){
         binding.apply {
+            showLoading(false)
             tvUsername.visibility = View.VISIBLE
             tvEmail.visibility = View.VISIBLE
             cardDetailProfile.visibility = View.VISIBLE
@@ -131,7 +129,7 @@ class ProfileFragment : Fragment() {
             btnLogin.visibility = View.GONE
             tvUsername.text = username
             tvEmail.text = email
-            Glide.with(requireActivity()).load(image).into(imageProfile)
+            activity?.let { Glide.with(it).load("https://binarstudpenfinalprojectbe-production.up.railway.app$image").into(imageProfile) }
         }
     }
 
@@ -141,10 +139,10 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        _binding = null
+//    }
 
 
 }

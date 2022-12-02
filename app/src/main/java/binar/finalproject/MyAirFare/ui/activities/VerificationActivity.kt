@@ -28,9 +28,9 @@ class VerificationActivity : AppCompatActivity() {
 
     private fun goToEmail(){
         binding.btnEmail.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SEND)
+            val intent = Intent(Intent.ACTION_MAIN)
             intent.addCategory(Intent.CATEGORY_APP_EMAIL)
-            intent.data = Uri.parse("mailto :")
+//            intent.data = Uri.parse("mailto :")
             startActivity(intent)
 
         }

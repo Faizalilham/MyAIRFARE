@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
+import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.FragmentThirdScreenBinding
 import binar.finalproject.MyAirFare.ui.activities.MainActivity
 import binar.finalproject.MyAirFare.viewmodel.OnBoardingViewModel
@@ -32,6 +34,14 @@ class ThirdScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         finish()
+        back()
+    }
+
+    private fun back(){
+        val viewPager =  activity?.findViewById<ViewPager2>(R.id.viewPager)
+        binding.back.setOnClickListener {
+            viewPager?.currentItem = 1
+        }
     }
 
     private fun finish(){

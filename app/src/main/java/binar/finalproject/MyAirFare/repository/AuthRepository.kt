@@ -7,6 +7,7 @@ import binar.finalproject.MyAirFare.model.login.UserLoginResponse
 import binar.finalproject.MyAirFare.model.register.UserRegisterRequest
 import binar.finalproject.MyAirFare.model.register.UserRegisterResponse
 import binar.finalproject.MyAirFare.api.AuthEndPoint
+import binar.finalproject.MyAirFare.model.login.LoginGoogle
 import binar.finalproject.MyAirFare.model.login.UserLoginRequest
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,6 +21,9 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
 
     private val doLogin : MutableLiveData<UserLoginResponse?> = MutableLiveData()
     fun doLoginObserver():LiveData<UserLoginResponse?> = doLogin
+
+    private val doLoginWithGoogle : MutableLiveData<UserRegisterResponse?> = MutableLiveData()
+    fun doLoginWithGoogleObserver():LiveData<UserRegisterResponse?> = doLoginWithGoogle
 
     private val message : MutableLiveData<String> = MutableLiveData()
     fun messageObserver(): LiveData<String> = message
@@ -92,6 +96,38 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
                 doLogin.postValue(null)
                 message.postValue(t.message)
                 Log.d("Response Errorrr","Response Error => ${t.message}")
+            }
+
+        })
+    }
+
+    fun doLoginWithGoogle(credential : String){
+        api.doLoginWithGoole(LoginGoogle(credential)).enqueue(object : Callback<UserRegisterResponse>{
+            override fun onResponse(
+                call: Call<UserRegisterResponse>,
+                response: Response<UserRegisterResponse>
+            ) {
+                if(response.isSuccessful){
+                    val body = response.body()
+                    if(body != null){
+                        doLoginWithGoogle.postValue(body)
+                        Log.d("Success","$body")
+                    }else{
+                        message.postValue(response.message())
+                        doLoginWithGoogle.postValue(null)
+                        Log.d("Response Error","Response Error => ${response.message()}")
+                    }
+                }else{
+                    doLoginWithGoogle.postValue(null)
+                    message.postValue(response.body().toString())
+                    Log.d("Response Error ygy","Response Error => ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<UserRegisterResponse>, t: Throwable) {
+                message.postValue(t.message)
+                doLoginWithGoogle.postValue(null)
+                Log.d("Response Error","Response Error => ${t.message}")
             }
 
         })
