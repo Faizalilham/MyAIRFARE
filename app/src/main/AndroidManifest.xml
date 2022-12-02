@@ -4,6 +4,7 @@
     package="binar.finalproject.MyAirFare_admin">
 
     <application
+        android:name=".hilt.BaseApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,25 +15,25 @@
         android:theme="@style/Theme.MyAirFareadmin"
         tools:targetApi="31">
         <activity
-            android:name=".AddTicketActivity"
+            android:name=".ui.activities.AddTicketActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileAdminActivity"
+            android:name=".ui.activities.EditProfileAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".DeleteUserActivity"
+            android:name=".ui.activities.DeleteUserActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileUserActivity"
+            android:name=".ui.activities.EditProfileUserActivity"
             android:exported="false" />
         <activity
-            android:name=".SoldTicketActivity"
+            android:name=".ui.activities.SoldTicketActivity"
             android:exported="false" />
         <activity
-            android:name=".TicketAvailableActivity"
+            android:name=".ui.activities.TicketAvailableActivity"
             android:exported="false" />
         <activity
-            android:name=".UserActivity"
+            android:name=".ui.activities.UserActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.RegisterActivity"
