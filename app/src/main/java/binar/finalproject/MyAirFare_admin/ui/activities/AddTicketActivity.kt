@@ -4,6 +4,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -21,12 +22,14 @@ import binar.finalproject.MyAirFare_admin.utils.DatePicker
 import binar.finalproject.MyAirFare_admin.utils.PostTicketValidation
 import binar.finalproject.MyAirFare_admin.viewmodel.ticket.AddTicketViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
+@AndroidEntryPoint
 class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private var _binding : ActivityAddTicketBinding? = null
     private val binding get() = _binding!!
@@ -43,7 +46,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         addTicketViewModel = ViewModelProvider(this)[AddTicketViewModel::class.java]
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         setContentView(binding.root)
-        datePicker()
+        binding.etDateFlight.setText(DatePicker.getCurrentDate())
         dropDownMenu()
         bottomSheet()
         postTicket()
@@ -106,16 +109,6 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun datePicker(){
-        binding.apply {
-            etDateFlight.setText(DatePicker.getCurrentDate())
-            etDateFlight.setOnClickListener {
-                val dates = DatePicker.datePicker(this@AddTicketActivity)
-                etDateFlight.setText(dates)
-            }
-        }
-    }
 
     private fun upload(){
         if(getFile != null){
@@ -136,10 +129,11 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                     file.name,
                     currentImageFile
                 )
-
+                Log.d("ALL DATA","$airlane,$from,$dest,$dest_air,$price,$chair,$type,$imageMultipart,$flightNumber,$flightNumber,$kelas,$estimated")
                 val validation = PostTicketValidation.postTicketValidation(airlane,from,dest,dest_air,price.toInt(),chair.toInt(),type,flightNumber,estimated,kelas)
                 if(validation == "success"){
                     authPreferencesViewModel.getToken().observe(this@AddTicketActivity){
+                        Log.d("TOUKEN",it)
                         if(it != null && it != "undefined"){
                             addTicketViewModel.addTicket(
                                 it,
@@ -147,8 +141,8 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                                 from.toRequestBody("text/plain".toMediaTypeOrNull()),
                                 dest.toRequestBody("text/plain".toMediaTypeOrNull()),
                                 dest_air.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                price.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-                                chair.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+                                price.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                chair.toRequestBody("text/plain".toMediaTypeOrNull()),
                                 type.toRequestBody("text/plain".toMediaTypeOrNull()),
                                 imageMultipart,
                                 flightNumber.toRequestBody("text/plain".toMediaTypeOrNull()),
@@ -161,6 +155,10 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                         if(it != null){
                             Toast.makeText(this@AddTicketActivity, "Tambah Tiket Berhasil", Toast.LENGTH_SHORT).show()
                             finish()
+                        }else{
+                            addTicketViewModel.messageObserver().observe(this@AddTicketActivity){ message ->
+                                Toast.makeText(this@AddTicketActivity, message, Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }else{

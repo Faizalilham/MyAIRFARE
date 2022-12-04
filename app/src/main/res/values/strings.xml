@@ -118,6 +118,11 @@
     <string name="foto_tiket">Foto Tiket</string>
     <string name="kamera">Kamera</string>
     <string name="gallery">Gallery</string>
+    <string name="nama_panggilan">Nama Panggilan</string>
+    <string name="tidak">Tidak</string>
+    <string name="ya">Ya</string>
+    <string name="alert_text_logout">Sayang sekali, banyak keuntungan yang akan anda lewatkan : Booking,keranjang, history dan masih banyak lagi. Apakah anda yakin untuk keluar ?</string>
+    <string name="keluar_dari_akun">Keluar dari akun</string>
 
     <string-array name="type">
         <item>Dewasa</item>

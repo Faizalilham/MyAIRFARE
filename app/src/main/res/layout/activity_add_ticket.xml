@@ -192,6 +192,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/nomor_kursi"
+                        android:inputType="number"
                         android:fontFamily="@font/poppins_regular"
                         android:background="@drawable/background_edit_text"/>
 
@@ -251,7 +252,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/kelas"
-                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 
@@ -270,7 +270,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/estimasi_sampai"
-                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 

@@ -23,4 +23,6 @@ class AddTicketViewModel @Inject constructor(private val addTicketRepository: Ad
 
 
     fun addTicketObserver() = addTicketRepository.doAddTicketObserver()
+
+    fun messageObserver() = addTicketRepository.messageObserver()
 }

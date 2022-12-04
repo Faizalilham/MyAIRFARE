@@ -1,6 +1,12 @@
 package binar.finalproject.MyAirFare_admin.model.ticket
 
+
 data class PostTicketResponse(
+   val ticket : PostTicket
+)
+
+
+data class PostTicket(
     val id : String,
     val name : String,
     val from : String,
@@ -12,9 +18,10 @@ data class PostTicketResponse(
     val trip_type : String,
     val deleted : Boolean,
     val logo : String,
-    val flight_number : String,
-    val classes : String,
     val estimated_up_dest : String,
-    val createdAt : String,
-    val updatedAt : String
+    val flight_number : String,
+    val kelas : String,
+    val updatedAt : String,
+    val createdAt : String
+
 )

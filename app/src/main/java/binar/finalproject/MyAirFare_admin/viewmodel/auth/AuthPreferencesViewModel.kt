@@ -13,37 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthPreferencesViewModel @Inject constructor(@ApplicationContext context :Context) : ViewModel() {
-fun doLoginWithGoogle(credential : String){
-        api.doLoginWithGoole(LoginGoogle(credential)).enqueue(object : Callback<UserRegisterResponse>{
-            override fun onResponse(
-                call: Call<UserRegisterResponse>,
-                response: Response<UserRegisterResponse>
-            ) {
-                if(response.isSuccessful){
-                    val body = response.body()
-                    if(body != null){
-                        doLoginWithGoogle.postValue(body)
-                        Log.d("Success","$body")
-                    }else{
-                        message.postValue(response.message())
-                        doLoginWithGoogle.postValue(null)
-                        Log.d("Response Error","Response Error => ${response.message()}")
-                    }
-                }else{
-                    doLoginWithGoogle.postValue(null)
-                    message.postValue(response.body().toString())
-                    Log.d("Response Error ygy","Response Error => ${response.code()}")
-                }
-            }
 
-            override fun onFailure(call: Call<UserRegisterResponse>, t: Throwable) {
-                message.postValue(t.message)
-                doLoginWithGoogle.postValue(null)
-                Log.d("Response Error","Response Error => ${t.message}")
-            }
-
-        })
-    }
     private val authPreferences = AuthPreferences(context)
 
 

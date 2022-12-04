@@ -12,14 +12,15 @@ import retrofit2.http.*
 interface ApiEndPoint {
 
 
+    @Multipart
     @POST("api/v1/ticket")
     fun doAddTicket(
-        @Header("x-access-token")Description : String,
-        @Part("airlane") airlane : RequestBody,
+        @Header("x-access-token") Description : String,
+        @Part("airline") airline : RequestBody,
         @Part("from_city") from_city : RequestBody,
         @Part("destination") destination : RequestBody,
-        @Part("dest_air") dest_air : RequestBody,
-        @Part("price") price : RequestBody,
+        @Part("date_air") date_air : RequestBody,
+        @Part("price") price :RequestBody,
         @Part("no_chair") no_chair : RequestBody,
         @Part("type_ticket") type_ticket : RequestBody,
         @Part image : MultipartBody.Part,
@@ -29,14 +30,15 @@ interface ApiEndPoint {
     ): Call<PostTicketResponse>
 
 
+    @Multipart
     @PUT("api/v1/{id}/update")
     fun doUpdateTicket(
-        @Header("x-access-token")Description : String,
+        @Header("x-access-token") Description : String,
         @Path("id") id : String,
-        @Part("airlane") airlane : RequestBody,
+        @Part("airline") airline : RequestBody,
         @Part("from_city") from_city : RequestBody,
         @Part("destination") destination : RequestBody,
-        @Part("dest_air") dest_air : RequestBody,
+        @Part("date_air") date_air : RequestBody,
         @Part("price") price : RequestBody,
         @Part("no_chair") no_chair : RequestBody,
         @Part("type_ticket") type_ticket : RequestBody,

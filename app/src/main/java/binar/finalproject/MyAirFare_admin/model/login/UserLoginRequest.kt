@@ -5,6 +5,3 @@ data class UserLoginRequest(
     val password : String
 )
 
-data class LoginGoogle (
-    val credential : String
-        )

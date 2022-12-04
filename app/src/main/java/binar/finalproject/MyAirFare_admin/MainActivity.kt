@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             cardTambahTiket.setOnClickListener { intents(AddTicketActivity::class.java) }
             cardTiketTerjual.setOnClickListener { intents(SoldTicketActivity::class.java) }
             cardTiketTersedia.setOnClickListener { intents(TicketAvailableActivity::class.java) }
-            imageAdmin.setOnClickListener { intents(EditProfileAdminActivity::class.java) }
+            imageAdmin.setOnClickListener { intents(ProfileAdminActivity::class.java) }
         }
     }
 

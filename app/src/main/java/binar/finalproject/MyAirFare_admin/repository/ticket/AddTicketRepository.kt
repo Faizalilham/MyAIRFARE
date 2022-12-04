@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.MyAirFare.api.ApiEndPoint
 import binar.finalproject.MyAirFare_admin.model.ticket.PostTicketResponse
+import binar.finalproject.MyAirFare_admin.utils.ErrorValidation
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -16,6 +17,9 @@ class AddTicketRepository @Inject constructor(private val api : ApiEndPoint) {
 
     private val doAddTicket : MutableLiveData<PostTicketResponse?> = MutableLiveData()
     fun doAddTicketObserver() : LiveData<PostTicketResponse?> = doAddTicket
+
+    private val message : MutableLiveData<String> = MutableLiveData()
+    fun messageObserver(): LiveData<String> = message
 
     fun doAddTicket(token : String,
         airlane : RequestBody, from_city : RequestBody,destination : RequestBody,
@@ -35,19 +39,24 @@ class AddTicketRepository @Inject constructor(private val api : ApiEndPoint) {
                    val body = response.body()
                    if(body != null){
                        doAddTicket.postValue(body)
+                       Log.d("SUCCESS","$body")
                    }else{
+                       val error = ErrorValidation.errorAuthValidation(response.code())
                        doAddTicket.postValue(null)
-                       Log.d("Error body",response.code().toString())
+                       message.postValue(error)
+                       Log.d("ERROR",response.code().toString())
                    }
                }else{
+                   val error = ErrorValidation.errorAuthValidation(response.code())
                    doAddTicket.postValue(null)
-                   Log.d("failed",response.code().toString())
+                   message.postValue(error)
+                   Log.d("ERROR",response.code().toString())
                }
             }
 
             override fun onFailure(call: Call<PostTicketResponse>, t: Throwable) {
                 doAddTicket.postValue(null)
-                Log.d("throwable",t.message.toString())
+                message.postValue(t.message)
             }
 
         })

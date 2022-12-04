@@ -9,6 +9,7 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(private val authRepository : AuthRepository):ViewModel() {
 
     fun doLogin(email : String,password : String) = authRepository.doLogin(email,password)
+    fun doLoginObserver() = authRepository.doLoginObserver()
 
     fun messageObserver() = authRepository.messageObserver()
 

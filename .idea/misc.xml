@@ -3,35 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_add_ticket.xml" value="0.8800000000000001" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_delete_user.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_edit_profile_admin.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_search_ticket.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_ticket_available.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_user.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/activity_verifikasi.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/list_item_data_transfer.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/list_item_home.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/list_item_sold_ticket.xml" value="0.25" />
-        <entry key="..\:/KotlinApp/MyAirFare/app/src/main/res/layout/list_item_user.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/background_auth.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/bg_rounded_stroke.xml" value="0.1725" />
-        <entry key="app/src/main/res/layout/activity_add_ticket.xml" value="0.10723684210526316" />
-        <entry key="app/src/main/res/layout/activity_delete_user.xml" value="0.10723684210526316" />
+        <entry key="app/src/main/res/layout/activity_add_ticket.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_delete_user.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_edit_profile_admin.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/activity_edit_profile_user.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/activity_profile_admin.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/activity_sold_ticket.xml" value="0.16979166666666667" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/activity_ticket_available.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/activity_user.xml" value="0.16979166666666667" />
+        <entry key="app/src/main/res/layout/alert_logout.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/dropdown_type_ticket.xml" value="0.10723684210526316" />
+        <entry key="app/src/main/res/layout/image_bottom_sheet.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/list_item_available_ticket.xml" value="0.5" />
         <entry key="app/src/main/res/layout/list_item_data_transfer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_sold_ticket.xml" value="0.25" />

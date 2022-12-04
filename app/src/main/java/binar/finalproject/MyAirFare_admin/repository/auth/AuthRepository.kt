@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.MyAirFare.model.login.UserLoginResponse
 import binar.finalproject.MyAirFare.api.AuthEndPoint
-import binar.finalproject.MyAirFare.model.login.LoginGoogle
 import binar.finalproject.MyAirFare.model.login.UserLoginRequest
 import retrofit2.Call
 import retrofit2.Callback
