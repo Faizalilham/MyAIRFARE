@@ -9,12 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.MyAirFare.R
+import binar.finalproject.MyAirFare.databinding.AlertLogoutBinding
 import binar.finalproject.MyAirFare.databinding.FragmentProfileBinding
 import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.ui.activities.EditProfileActivity
@@ -64,7 +66,7 @@ class ProfileFragment : Fragment() {
     @SuppressLint("ResourceAsColor")
     private fun setupCurrentUser(token : String){
         currentUserViewModel.currentUser(token)
-        binding.profileLinear.setBackgroundColor(R.color.black_transparent)
+        binding.loadingBg.visibility = View.VISIBLE
         showLoading(true)
         currentUserViewModel.currentUserObserver().observe(requireActivity()){
             Log.d("CurrentUser",it.toString())
@@ -79,7 +81,7 @@ class ProfileFragment : Fragment() {
 
             }else{
                 showLoading(false)
-                binding.profileLinear.background = null
+                binding.loadingBg.visibility = View.GONE
             }
         }
 
@@ -101,19 +103,7 @@ class ProfileFragment : Fragment() {
 
     private fun doLogout(){
         binding.cardKeluar.setOnClickListener {
-           authPreferencesViewModel.deleteToken()
-           binding.apply {
-               tvUsername.visibility = View.GONE
-               tvEmail.visibility = View.GONE
-               cardDetailProfile.visibility = View.GONE
-               cardPengaturan.visibility = View.GONE
-               cardKeluar.visibility = View.GONE
-               tvBeforeLogin.visibility = View.VISIBLE
-               btnLogin.visibility = View.VISIBLE
-           }
-//            val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
-//            ft.detach(this).attach(this).commit()
-             Navigation.findNavController(binding.root).navigate(R.id.profileFragment)
+           alertLogout()
         }
     }
 
@@ -124,6 +114,7 @@ class ProfileFragment : Fragment() {
     private fun setupView(username : String,email : String,image : String){
         binding.apply {
             showLoading(false)
+            binding.loadingBg.visibility = View.GONE
             tvUsername.visibility = View.VISIBLE
             tvEmail.visibility = View.VISIBLE
             cardDetailProfile.visibility = View.VISIBLE
@@ -135,6 +126,33 @@ class ProfileFragment : Fragment() {
             tvEmail.text = email
             activity?.let { Glide.with(it).load("https://binarstudpenfinalprojectbe-production.up.railway.app$image").into(imageProfile) }
         }
+    }
+
+    private fun alertLogout(){
+        val alert = AlertDialog.Builder(requireContext()).create()
+        val view =  AlertLogoutBinding.inflate(layoutInflater)
+        alert.setView(view.root)
+        alert.window?.attributes?.windowAnimations = R.style.myDialogAnimation
+        view.apply {
+            btnLogout.setOnClickListener {
+                authPreferencesViewModel.deleteToken()
+                binding.apply {
+                    tvUsername.visibility = View.GONE
+                    tvEmail.visibility = View.GONE
+                    cardDetailProfile.visibility = View.GONE
+                    cardPengaturan.visibility = View.GONE
+                    cardKeluar.visibility = View.GONE
+                    tvBeforeLogin.visibility = View.VISIBLE
+                    btnLogin.visibility = View.VISIBLE
+                }
+                Navigation.findNavController(binding.root).navigate(R.id.profileFragment)
+                alert.dismiss()
+            }
+            btnCancel.setOnClickListener {
+                alert.dismiss()
+            }
+        }
+        alert.show()
     }
 
     private fun doLogin(){

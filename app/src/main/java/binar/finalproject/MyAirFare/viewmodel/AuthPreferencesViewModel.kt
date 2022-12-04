@@ -17,13 +17,14 @@ class AuthPreferencesViewModel @Inject constructor(@ApplicationContext context :
     private val authPreferences = AuthPreferences(context)
 
 
-    fun setToken(token : String){
+    fun setToken(token : String,name : String){
         viewModelScope.launch {
-            authPreferences.setToken(token)
+            authPreferences.setToken(token,name)
         }
     }
 
     fun getToken () = authPreferences.getToken().asLiveData()
+    fun getName() = authPreferences.getName().asLiveData()
 
     fun deleteToken(){
         viewModelScope.launch {

@@ -15,16 +15,24 @@ private val Context.token : DataStore<Preferences> by preferencesDataStore(name 
 class AuthPreferences(@ApplicationContext private val context: Context) {
 
     private val tokenKey = stringPreferencesKey("tokenKey")
+    private val nameKey = stringPreferencesKey("nameKey")
 
-    suspend fun setToken(token :String){
+    suspend fun setToken(token :String,name:String){
         context.token.edit {
             it[tokenKey] = token
+            it[nameKey] = name
         }
     }
 
     fun getToken(): Flow<String> {
         return context.token.data.map {
             it[tokenKey] ?: "undefined"
+        }
+    }
+
+    fun getName(): Flow<String> {
+        return context.token.data.map {
+            it[nameKey] ?: ""
         }
     }
 

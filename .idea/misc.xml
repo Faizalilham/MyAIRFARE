@@ -15,22 +15,24 @@
         <entry key="app/src/main/res/drawable/unselected_blue.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/view_pager_selector.xml" value="0.1725" />
         <entry key="app/src/main/res/layout/activity_checkin.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_detail_perjalanan.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/activity_detail_perjalanan.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_forget_password.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_payment_details.xml" value="0.13" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_search_ticket.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_search_ticket.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_verifikasi.xml" value="0.16979166666666667" />
+        <entry key="app/src/main/res/layout/alert_login.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/alert_logout.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/dropdown_tittle_item.xml" value="0.10657894736842105" />
         <entry key="app/src/main/res/layout/fragment_active_ticket.xml" value="0.10723684210526316" />
-        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.10723684210526316" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_first_screen.xml" value="0.10723684210526316" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.13" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_in_active_ticket.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_on_boarding.xml" value="0.10723684210526316" />

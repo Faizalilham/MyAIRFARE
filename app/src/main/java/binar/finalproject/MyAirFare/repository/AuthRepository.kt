@@ -9,6 +9,7 @@ import binar.finalproject.MyAirFare.model.register.UserRegisterResponse
 import binar.finalproject.MyAirFare.api.AuthEndPoint
 import binar.finalproject.MyAirFare.model.login.LoginGoogle
 import binar.finalproject.MyAirFare.model.login.UserLoginRequest
+import binar.finalproject.MyAirFare.utils.ErrorValidation
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +30,6 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
     fun messageObserver(): LiveData<String> = message
 
 
-
    fun doRegister(
         username :String,l_name : String,
         f_name : String,email : String,
@@ -48,12 +48,13 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
                         Log.d("Success","$body")
                     }else{
                         doRegister.postValue(null)
-                        message.postValue(response.message())
-                        Log.d("Response Error","Response Error => ${response.message()}")
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        message.postValue(error)
                     }
                 }else{
                     doRegister.postValue(null)
-                    message.postValue(response.message())
+                    val error = ErrorValidation.errorAuthValidation(response.code())
+                    message.postValue(error)
                     Log.d("Response Error ygy","Response Error => ${response.code()}")
                 }
             }
@@ -80,15 +81,15 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
                        Log.d("success","$body")
                    }else{
                        doLogin.postValue(null)
-                       message.postValue(response.message())
-                       Log.d("Response Error","Response Error => ${response.message()}")
+                       val error = ErrorValidation.errorAuthValidation(response.code())
+                       message.postValue(error)
                        Log.d("Response Body Pertama","Response Error => ${response.body()}")
                    }
                }else{
                    doLogin.postValue(null)
-                   message.postValue(response.message())
+                   val error = ErrorValidation.errorAuthValidation(response.code())
+                   message.postValue(error)
                    Log.d("Response Errorr","Response Error => ${response.code()}")
-                   Log.d("Response Body Kedua","Response Error => ${response.body()}")
                }
             }
 
@@ -113,21 +114,20 @@ class AuthRepository @Inject constructor(private val api : AuthEndPoint) {
                         doLoginWithGoogle.postValue(body)
                         Log.d("Success","$body")
                     }else{
-                        message.postValue(response.message())
                         doLoginWithGoogle.postValue(null)
-                        Log.d("Response Error","Response Error => ${response.message()}")
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        message.postValue(error)
                     }
                 }else{
                     doLoginWithGoogle.postValue(null)
-                    message.postValue(response.body().toString())
-                    Log.d("Response Error ygy","Response Error => ${response.code()}")
+                    val error = ErrorValidation.errorAuthValidation(response.code())
+                    message.postValue(error)
                 }
             }
 
             override fun onFailure(call: Call<UserRegisterResponse>, t: Throwable) {
-                message.postValue(t.message)
                 doLoginWithGoogle.postValue(null)
-                Log.d("Response Error","Response Error => ${t.message}")
+                message.postValue(t.message.toString())
             }
 
         })

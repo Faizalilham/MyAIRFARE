@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.api.AuthEndPoint
 import binar.finalproject.MyAirFare.model.user.UserCurrentUpdate
+import binar.finalproject.MyAirFare.utils.ErrorValidation
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -36,12 +37,14 @@ class CurrentUserRepository @Inject constructor(private val api : AuthEndPoint) 
                         Log.d("success","$body")
                     }else{
                         currentUser.postValue(null)
-                        message.postValue(response.message())
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        message.postValue(error)
                         Log.d("Response Error Body","Response Error => ${response.code()}")
                     }
                 }else{
                     currentUser.postValue(null)
-                    message.postValue(response.message())
+                    val error = ErrorValidation.errorAuthValidation(response.code())
+                    message.postValue(error)
                     Log.d("Response Error yg","Response Error => ${response.code()}")
                 }
             }
@@ -73,12 +76,14 @@ class CurrentUserRepository @Inject constructor(private val api : AuthEndPoint) 
                             Log.d("success","$body")
                         }else{
                             currentUserUpdate.postValue(null)
-                            message.postValue(response.message())
+                            val error = ErrorValidation.errorAuthValidation(response.code())
+                            message.postValue(error)
                             Log.d("Response Error Body","Response Error => ${response.code()}")
                         }
                     }else{
                         currentUserUpdate.postValue(null)
-                        message.postValue(response.message())
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        message.postValue(error)
                         Log.d("Response Error yg","Response Error => ${response.code()}")
                     }
                 }

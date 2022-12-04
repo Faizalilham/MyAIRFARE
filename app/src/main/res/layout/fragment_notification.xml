@@ -15,7 +15,8 @@
         android:text="@string/notifications"
         android:textAlignment="center"
         android:textStyle="bold"
-        android:textSize="@dimen/sp16"
+        android:textSize="@dimen/sp18"
+        android:layout_marginTop="@dimen/dp20"
         android:textColor="@color/black"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +33,75 @@
         app:layout_constraintTop_toBottomOf="@id/tvTittle"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/list_item_notifications"/>
+
+    <ImageView
+        android:id="@+id/imageNotFound"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_not_found"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.450"
+        />
+
+    <TextView
+        android:id="@+id/tvNotFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tidak_ada_notifikasi"
+        android:textSize="@dimen/sp16"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp15"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageNotFound" />
+
+    <ImageView
+        android:id="@+id/imageGuest"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ic_notif_ilus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.250" />
+
+    <TextView
+        android:id="@+id/tvGuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tvGuest_cart_one"
+        android:textSize="@dimen/sp16"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/dp15"
+        android:fontFamily="@font/poppins_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageGuest" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp20"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/poppins_regular"
+        android:padding="@dimen/dp15"
+        android:text="@string/daftar_atau_masuk"
+        app:cornerRadius="@dimen/dp10"
+        android:textAllCaps="false"
+        android:layout_marginBottom="@dimen/dp15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGuest"/>
 
 
 

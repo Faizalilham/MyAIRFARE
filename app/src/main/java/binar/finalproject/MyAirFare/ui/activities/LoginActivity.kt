@@ -95,7 +95,7 @@ class LoginActivity : AppCompatActivity() {
                             startActivity(Intent(this,MainActivity::class.java).also { _ ->
                                 Log.d("touken",loginGoogle.token)
                                 Toast.makeText(this, "Login success, hallo ${loginGoogle.user.username}", Toast.LENGTH_SHORT).show()
-                                authPreferences.setToken(loginGoogle.token)
+                                authPreferences.setToken(loginGoogle.token,loginGoogle.user.username)
                                 finish()
 
                             })
@@ -129,7 +129,7 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(Intent(this,MainActivity::class.java).also { _ ->
                             Log.d("touken",it.token)
                             Toast.makeText(this, "Login success, hallo ${it.user.username}", Toast.LENGTH_SHORT).show()
-                            authPreferences.setToken(it.token)
+                            authPreferences.setToken(it.token,it.user.username)
                             finish()
 
                         })

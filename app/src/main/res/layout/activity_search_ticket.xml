@@ -11,20 +11,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3.5"
+        android:layout_weight="4"
         android:orientation="vertical"
         android:background="@drawable/background_search_ticket">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/pilih_tiket"
-            android:textSize="@dimen/sp20"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginStart="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp15"
-            android:fontFamily="@font/poppins_regular"/>
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_rounded_stroke_transparent"
+                android:paddingStart="10dp"
+                android:paddingEnd="1dp"
+                android:layout_marginStart="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_back_white"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pilih_tiket"
+                android:textSize="@dimen/sp20"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginEnd="50dp"
+                android:layout_marginTop="@dimen/dp15"
+                android:fontFamily="@font/poppins_regular"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ilLinear"
@@ -32,7 +54,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp10">
+            android:layout_marginTop="@dimen/dp15">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ilKeberangkatan"
@@ -46,7 +68,9 @@
                     android:id="@+id/etKeberangkatan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/ke"
+                    android:hint="@string/dari"
+                    android:enabled="false"
+                    android:imeOptions="actionSearch"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 
@@ -61,7 +85,7 @@
                 android:layout_marginStart="@dimen/dp5"
                 android:background="@drawable/background_circle"
                 android:padding="@dimen/dp5"
-                android:layout_weight="1.5"/>
+                android:layout_weight="1.6"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/ilTiba"
@@ -76,6 +100,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/ke"
+                    android:enabled="false"
+                    android:imeOptions="actionSearch"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 
@@ -86,18 +112,46 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/dp10"
         android:layout_weight="1">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerSearch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/list_item_home"/>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/imageNotFound"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_not_found"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvNotFound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/pencarian_tidak_ditemukan_silahkan_masukkan_kata_kunci_yang_lain"
+            android:textSize="@dimen/sp16"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/dp15"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageNotFound" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

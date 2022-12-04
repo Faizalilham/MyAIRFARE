@@ -29,12 +29,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="630dp"
+                android:layout_height="500dp"
                 app:layout_collapseMode="parallax">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="630dp"
+                    android:layout_height="500dp"
                     android:layout_gravity="center"
                     android:background="@color/white"
                     android:gravity="center"
@@ -103,107 +103,43 @@
                         android:layout_height="match_parent"
                         android:padding="@dimen/dp20">
 
-                       <LinearLayout
-                           android:id="@+id/linearAsalTujuan"
-                           android:layout_width="match_parent"
-                           android:layout_height="wrap_content"
-                           app:layout_constraintStart_toStartOf="parent"
-                           app:layout_constraintEnd_toEndOf="parent"
-                           app:layout_constraintTop_toTopOf="parent"
-                           android:orientation="horizontal">
-
-                           <com.google.android.material.textfield.TextInputLayout
-                               android:id="@+id/ilDari"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:layout_marginTop="@dimen/dp10"
-                               android:layout_marginEnd="@dimen/dp10"
-                               android:layout_weight="1"
-                               app:layout_constraintEnd_toEndOf="parent"
-                               app:layout_constraintStart_toStartOf="parent"
-                               app:layout_constraintTop_toTopOf="parent"
-                               app:boxBackgroundMode="outline"
-                               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                               <com.google.android.material.textfield.TextInputEditText
-                                   android:id="@+id/etDari"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:hint="@string/dari"
-                                   android:fontFamily="@font/poppins_regular"
-                                   android:background="@drawable/background_edit_text"/>
-
-                           </com.google.android.material.textfield.TextInputLayout>
-
-                           <com.google.android.material.textfield.TextInputLayout
-                               android:id="@+id/ilKe"
-                               android:layout_width="match_parent"
-                               android:layout_height="wrap_content"
-                               android:layout_marginTop="@dimen/dp10"
-                               android:layout_marginStart="@dimen/dp10"
-                               android:layout_marginEnd="@dimen/dp10"
-                               android:layout_weight="1"
-                               app:layout_constraintStart_toStartOf="parent"
-                               app:layout_constraintTop_toBottomOf="@id/ilDari"
-                               style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                               <com.google.android.material.textfield.TextInputEditText
-                                   android:id="@+id/etKe"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:hint="@string/ke"
-                                   android:fontFamily="@font/poppins_regular"
-                                   android:background="@drawable/background_edit_text"/>
-
-                           </com.google.android.material.textfield.TextInputLayout>
-
-                       </LinearLayout>
-
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/ilKeberangkatan"
+                            android:id="@+id/ilAsal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp10"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/linearAsalTujuan"
+                            app:layout_constraintTop_toTopOf="parent"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etKeberangkatan"
+                                android:id="@+id/etFrom"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/keberangkatan"
+                                android:hint="@string/asal"
+                                android:textColor="@color/black"
                                 android:fontFamily="@font/poppins_regular"
                                 android:background="@drawable/background_edit_text"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/switchPulangPergi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/dp5"
-                            app:thumbTint="@color/primary"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/ilKeberangkatan"/>
-
                         <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/ilTiba"
+                            android:id="@+id/ilTujuan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp10"
-                            android:visibility="gone"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/switchPulangPergi"
+                            app:layout_constraintTop_toBottomOf="@id/ilAsal"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etTiba"
+                                android:id="@+id/etDestination"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/ke"
+                                android:hint="@string/tujuan"
+                                android:textColor="@color/black"
                                 android:fontFamily="@font/poppins_regular"
                                 android:background="@drawable/background_edit_text"/>
 
@@ -218,10 +154,10 @@
                             android:layout_marginTop="@dimen/dp10"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/ilTiba">
+                            app:layout_constraintTop_toBottomOf="@id/ilTujuan">
 
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/ilKelasBisnis"
+                                android:id="@+id/ilTanggal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/dp5"
@@ -229,10 +165,11 @@
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/etKelasBisnis"
+                                    android:id="@+id/etDate"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="@string/kelas_bisnis"
+                                    android:hint="@string/tanggal"
+                                    android:textColor="@color/black"
                                     android:fontFamily="@font/poppins_regular"
                                     android:background="@drawable/background_edit_text"/>
 
@@ -240,7 +177,7 @@
 
 
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/ilPenumpang"
+                                android:id="@+id/ilTime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="@dimen/dp5"
@@ -248,11 +185,11 @@
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                                 <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/etPenumpang"
+                                    android:id="@+id/etTime"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:hint="@string/penumpang"
-                                    android:inputType="number"
+                                    android:hint="@string/waktu"
+                                    android:textColor="@color/black"
                                     android:fontFamily="@font/poppins_regular"
                                     android:background="@drawable/background_edit_text"/>
 

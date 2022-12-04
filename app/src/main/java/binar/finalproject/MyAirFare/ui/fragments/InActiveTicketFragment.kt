@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import binar.finalproject.MyAirFare.databinding.FragmentInActiveTicketBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class InActiveTicketFragment : Fragment() {
 
 
@@ -20,6 +22,13 @@ class InActiveTicketFragment : Fragment() {
         _binding = FragmentInActiveTicketBinding.inflate(layoutInflater)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+
+
 
     override fun onDestroy() {
         super.onDestroy()

@@ -100,6 +100,23 @@
     <string name="kamera">Kamera</string>
     <string name="gallery">Gallery</string>
     <string name="foto_profile">Foto Profile</string>
+    <string name="pencarian_tidak_ditemukan_silahkan_masukkan_kata_kunci_yang_lain">Pencarian tidak ditemukan, silahkan masukkan kata kunci yang lain</string>
+    <string name="keranjang">Keranjang</string>
+    <string name="tidak_ada_notifikasi">Tidak ada notifikasi</string>
+    <string name="batal">Batal</string>
+    <string name="logout_alert">Mungkin beberapa fitur tidak dapat digunakan ketika keluar, Apakah anda yakin?</string>
+    <string name="alert_login">Upss, kamu tidak bisa menggunakan fitur ini, silahkan login terlebih dahulu</string>
+    <string name="asal">Asal</string>
+    <string name="tujuan">Tujuan</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="waktu">Waktu</string>
+    <string name="tidak">Tidak</string>
+    <string name="ya">Ya</string>
+    <string name="alert_text_logout">Sayang sekali, banyak keuntungan yang akan anda lewatkan : Booking,keranjang, history dan masih banyak lagi. Apakah anda yakin untuk keluar ?</string>
+    <string name="keluar_dari_akun">Keluar dari akun</string>
+    <string name="tvGuest_cart_one">Pantau Tiket anda melalui fitur keranjang</string>
+    <string name="tvGuest2">Tambah dan pesan tiket saat anda siap nanti</string>
+    <string name="masuk_akun">Masuk akun</string>
 
     <string-array name="tittle_item">
         <item>Tuan</item>

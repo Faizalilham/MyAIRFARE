@@ -1,11 +1,15 @@
 package binar.finalproject.MyAirFare.ui.activities
 
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.databinding.ActivityEditProfileBinding
@@ -32,6 +36,8 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var uri : Uri
     private var getFile: File? = null
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityEditProfileBinding.inflate(layoutInflater)
@@ -89,6 +95,7 @@ class EditProfileActivity : AppCompatActivity() {
         openCamera.launch(uri)
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     private fun bottomSheet(){
        binding.fabImagePick.setOnClickListener {
            val bottomSheet = BottomSheetDialog(this)
@@ -98,10 +105,10 @@ class EditProfileActivity : AppCompatActivity() {
                   setContentView(root)
                   show()
                   cardCamera.setOnClickListener {
-                      openCamera()
+                      if(checkPermission()){ openCamera() }
                   }
                   cardGallery.setOnClickListener {
-                      openGallery()
+                      if(checkPermission()){ openGallery() }
                   }
               }
            }
@@ -173,6 +180,57 @@ class EditProfileActivity : AppCompatActivity() {
     private fun updateProfile(){
         binding.btnUpdate.setOnClickListener {
             upload()
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun requestLocationPermission() {
+        requestPermissions(arrayOf(Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE), 201)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun checkPermission():Boolean{
+        val permissionCheck = checkSelfPermission(Manifest.permission.CAMERA)
+        val permissionCheck2 = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+        val permissionCheck3 = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        return if (permissionCheck == PackageManager.PERMISSION_GRANTED &&
+            permissionCheck2 == PackageManager.PERMISSION_GRANTED &&
+            permissionCheck3 == PackageManager.PERMISSION_GRANTED    ) {
+            Toast.makeText(this@EditProfileActivity, "Permission Location DIIZINKAN", Toast.LENGTH_LONG).show()
+            true
+        } else {
+            Toast.makeText(this@EditProfileActivity, "Permission Location DITOLAK", Toast.LENGTH_LONG).show()
+            requestLocationPermission()
+            false
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            201 -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    permissions[0] == Manifest.permission.CAMERA && grantResults[1] == PackageManager.PERMISSION_GRANTED &&
+                    permissions[1] == Manifest.permission.WRITE_EXTERNAL_STORAGE  &&
+                    grantResults[2] == PackageManager.PERMISSION_GRANTED &&
+                    permissions[2] == Manifest.permission.READ_EXTERNAL_STORAGE
+                ) {
+                    Toast.makeText(this, "Permissions Permitted", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    Toast.makeText(this, "Permissions Denied", Toast.LENGTH_LONG)
+                        .show()
+                }
+            }
+            else -> {
+                Toast.makeText(this, "The request code doesn't match", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
