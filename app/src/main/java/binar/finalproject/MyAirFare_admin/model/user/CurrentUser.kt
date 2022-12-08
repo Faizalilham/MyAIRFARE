@@ -17,14 +17,20 @@ data class CurrentUsers(
     val username : String,
     val email : String,
     val password : String,
-    val g_id : String,
+    val g_id : String?,
     val f_name : String,
     val l_name : String,
     val active : Boolean,
     val access_level : Int,
     val deleted : Boolean,
     val photo : String,
+    val visa_ID : String?,
     val createdAt : String,
     val updatedAt : String,
-    val carts : MutableList<Carts>
+    val trx : MutableList<Transaksi>
+):Parcelable
+
+@Parcelize
+data class Transaksi(
+    val id : String
 ):Parcelable

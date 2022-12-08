@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.utils.ImagePost
 import binar.finalproject.MyAirFare_admin.viewmodel.auth.AuthPreferencesViewModel
@@ -20,7 +21,8 @@ import binar.finalproject.MyAirFare_admin.databinding.ActivityAddTicketBinding
 import binar.finalproject.MyAirFare_admin.databinding.ImageBottomSheetBinding
 import binar.finalproject.MyAirFare_admin.utils.DatePicker
 import binar.finalproject.MyAirFare_admin.utils.PostTicketValidation
-import binar.finalproject.MyAirFare_admin.viewmodel.ticket.AddTicketViewModel
+import binar.finalproject.MyAirFare_admin.utils.TicketConstant
+import binar.finalproject.MyAirFare_admin.viewmodel.ticket.TicketViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -33,20 +35,25 @@ import java.io.File
 class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private var _binding : ActivityAddTicketBinding? = null
     private val binding get() = _binding!!
-    private lateinit var addTicketViewModel: AddTicketViewModel
+    private lateinit var ticketViewModel: TicketViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var uri : Uri
     private var getFile: File? = null
     private var type = ""
+    private var id : String? = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityAddTicketBinding.inflate(layoutInflater)
-        addTicketViewModel = ViewModelProvider(this)[AddTicketViewModel::class.java]
+        ticketViewModel = ViewModelProvider(this)[TicketViewModel::class.java]
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         setContentView(binding.root)
         binding.etDateFlight.setText(DatePicker.getCurrentDate())
+        id = intent.getStringExtra("id")
+        if(id != null){
+            setupView(id!!)
+        }
         dropDownMenu()
         bottomSheet()
         postTicket()
@@ -113,6 +120,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private fun upload(){
         if(getFile != null){
             val file = ImagePost.reduceFileImage(getFile as File)
+            val types = intent.getIntExtra("type",0)
             binding.apply{
                 val airlane = etNamePlane.text.toString()
                 val from = etFrom.text.toString()
@@ -135,36 +143,86 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                     authPreferencesViewModel.getToken().observe(this@AddTicketActivity){
                         Log.d("TOUKEN",it)
                         if(it != null && it != "undefined"){
-                            addTicketViewModel.addTicket(
-                                it,
-                                airlane.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                from.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                dest.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                dest_air.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                price.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                chair.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                type.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                imageMultipart,
-                                flightNumber.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                kelas.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                estimated.toRequestBody("text/plain".toMediaTypeOrNull())
-                            )
-                        }
-                    }
-                    addTicketViewModel.addTicketObserver().observe(this@AddTicketActivity){
-                        if(it != null){
-                            Toast.makeText(this@AddTicketActivity, "Tambah Tiket Berhasil", Toast.LENGTH_SHORT).show()
-                            finish()
-                        }else{
-                            addTicketViewModel.messageObserver().observe(this@AddTicketActivity){ message ->
-                                Toast.makeText(this@AddTicketActivity, message, Toast.LENGTH_SHORT).show()
+                            if(id !=  null && types == TicketConstant.READ){
+                                ticketViewModel.readTicketById(it, id!!)
+                                setToast(ticketViewModel.readTicketByIdObserver(),ticketViewModel.messageObserver())
+                            }else if(id !=  null && types == TicketConstant.UPDATE){
+                                ticketViewModel.doUpdateTicket(
+                                    it, id!!,
+                                    airlane.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    from.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    dest.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    dest_air.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    price.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    chair.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    type.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    imageMultipart,
+                                    flightNumber.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    kelas.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    estimated.toRequestBody("text/plain".toMediaTypeOrNull())
+                                )
+                                setToast(ticketViewModel.doUpdateTicketObserver(),ticketViewModel.messageObserver())
+                            }else{
+                                ticketViewModel.addTicket(
+                                    it,
+                                    airlane.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    from.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    dest.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    dest_air.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    price.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    chair.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    type.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    imageMultipart,
+                                    flightNumber.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    kelas.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    estimated.toRequestBody("text/plain".toMediaTypeOrNull())
+                                )
+                                setToast(ticketViewModel.addTicketObserver(),ticketViewModel.messageObserver())
                             }
                         }
                     }
+                    
+                    
                 }else{
                     Toast.makeText(this@AddTicketActivity, validation, Toast.LENGTH_SHORT).show()
                 }
 
+            }
+        }
+    }
+    
+    private fun <T> setToast(a : LiveData<T>, b :LiveData<String>){
+        a.observe(this@AddTicketActivity){
+            if(it != null){
+                Toast.makeText(this@AddTicketActivity, "Tambah Tiket Berhasil", Toast.LENGTH_SHORT).show()
+                finish()
+            }else{
+                b.observe(this@AddTicketActivity){ message ->
+                    Toast.makeText(this@AddTicketActivity, message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun setupView(id : String){
+        authPreferencesViewModel.getToken().observe(this){
+            if(it != null && it != "undefined"){
+                ticketViewModel.readTicketById(it,id)
+                ticketViewModel.readTicketByIdObserver().observe(this){ datas ->
+                    if(datas != null){
+                        binding.apply {
+                            etNamePlane.setText(datas.tickets.name)
+                            etFrom.setText(datas.tickets.from)
+                            etDestination.setText(datas.tickets.dest)
+                            etclass.setText(datas.tickets.kelas)
+                            etNoChair.setText(datas.tickets.no_chair)
+                            etPrice.setText((datas.tickets.price.toString()))
+                            etEstimated.setText(datas.tickets.estimated_up_dest)
+                            etDateFlight.setText(datas.tickets.date_air)
+                            etFlightNumber.setText(datas.tickets.flight_number)
+                        }
+                    }
+                }
             }
         }
     }

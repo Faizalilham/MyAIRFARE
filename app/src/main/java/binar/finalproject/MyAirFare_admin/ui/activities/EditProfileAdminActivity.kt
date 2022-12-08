@@ -3,6 +3,9 @@ package binar.finalproject.MyAirFare_admin.ui.activities
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
@@ -10,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.utils.EditProfileValidation
 import binar.finalproject.MyAirFare.utils.ImagePost
+import binar.finalproject.MyAirFare_admin.R
 import binar.finalproject.MyAirFare_admin.databinding.ActivityEditProfileAdminBinding
 import binar.finalproject.MyAirFare_admin.databinding.ImageBottomSheetBinding
 import binar.finalproject.MyAirFare_admin.viewmodel.auth.AuthPreferencesViewModel
@@ -24,13 +28,14 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 @AndroidEntryPoint
-class EditProfileAdminActivity : AppCompatActivity() {
+class EditProfileAdminActivity : AppCompatActivity(),AdapterView.OnItemClickListener {
     private var _binding : ActivityEditProfileAdminBinding? = null
     private val binding get() = _binding!!
     private lateinit var currentUserViewModel: CurrentUserViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var uri : Uri
     private var getFile: File? = null
+    private var type = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityEditProfileAdminBinding.inflate(layoutInflater)
@@ -41,19 +46,32 @@ class EditProfileAdminActivity : AppCompatActivity() {
         getDetail()
         bottomSheet()
         updateProfile()
+        dropDownMenu()
+    }
+
+    private fun dropDownMenu(){
+        val data = resources.getStringArray(R.array.type)
+        val adapter = ArrayAdapter(this, R.layout.dropdown_type_ticket,data)
+        with(binding.tvTittle){
+            setAdapter(adapter)
+            onItemClickListener = this@EditProfileAdminActivity
+        }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val item = parent?.getItemAtPosition(position).toString()
+        type = item
     }
 
     private fun getDetail(){
         val i = intent.getParcelableExtra<CurrentUser>("user")
         binding.apply {
             if(i != null){
-                val a = i.user.username.split(".")
-                if(a.size > 1){
-                    etUsername.setText(a[1])
-                    tvTittle.setText(a[0])
-                }else{
-                    etUsername.setText(a[0])
+                val tittle = i.user.username.split(".")
+                if(tittle.size > 1){
+                    tvTittle.setText(tittle[0])
                 }
+                etUsername.setText(i.user.username)
                 etLastname.setText(i.user.l_name)
                 etFirstname.setText(i.user.f_name)
                 etEmail.setText(i.user.email)

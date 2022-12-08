@@ -1,9 +1,7 @@
 package binar.finalproject.MyAirFare.api
 
 
-import binar.finalproject.MyAirFare_admin.model.ticket.DeleteTicketResponse
-import binar.finalproject.MyAirFare_admin.model.ticket.PostTicketResponse
-import binar.finalproject.MyAirFare_admin.model.ticket.UpdateTicketResponse
+import binar.finalproject.MyAirFare_admin.model.ticket.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -11,6 +9,17 @@ import retrofit2.http.*
 
 interface ApiEndPoint {
 
+
+    @GET("api/v1/tickets")
+    fun readAllTicket(
+        @Header("x-access-token") Description : String
+    ):Call<ReadTicketResponse>
+
+    @GET("api/v1/{id}/ticket")
+    fun readTicketById(
+        @Header("x-access-token") Description : String,
+        @Path("id") id : String
+    ):Call<ReadTicketByIdResponse>
 
     @Multipart
     @POST("api/v1/ticket")
@@ -53,6 +62,8 @@ interface ApiEndPoint {
         @Header("x-access-token")Description : String,
         @Path("id") id : String
     ): Call<DeleteTicketResponse>
+
+
 
 
 }

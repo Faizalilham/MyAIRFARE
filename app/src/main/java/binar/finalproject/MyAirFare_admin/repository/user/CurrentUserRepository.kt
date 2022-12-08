@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.api.AuthEndPoint
 import binar.finalproject.MyAirFare.model.user.UserCurrentUpdate
+import binar.finalproject.MyAirFare_admin.utils.ErrorValidation
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -35,9 +36,10 @@ class CurrentUserRepository @Inject constructor(private val api : AuthEndPoint) 
                         currentUser.postValue(body)
                         Log.d("success","$body")
                     }else{
+                        val error = ErrorValidation.errorAuthValidation(response.code())
                         currentUser.postValue(null)
-                        message.postValue(response.message())
-                        Log.d("Response Error Body","Response Error => ${response.code()}")
+                        message.postValue(error)
+                        Log.d("ERROR",response.code().toString())
                     }
                 }else{
                     currentUser.postValue(null)

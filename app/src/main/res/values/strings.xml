@@ -123,6 +123,7 @@
     <string name="ya">Ya</string>
     <string name="alert_text_logout">Sayang sekali, banyak keuntungan yang akan anda lewatkan : Booking,keranjang, history dan masih banyak lagi. Apakah anda yakin untuk keluar ?</string>
     <string name="keluar_dari_akun">Keluar dari akun</string>
+    <string name="cari_berdasarkan_email">Cari berdasarkan email</string>
 
     <string-array name="type">
         <item>Dewasa</item>

@@ -6,6 +6,9 @@ import binar.finalproject.MyAirFare.model.login.UserLoginRequest
 import binar.finalproject.MyAirFare.model.login.UserLoginResponse
 import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.model.user.UserCurrentUpdate
+import binar.finalproject.MyAirFare_admin.model.user.ListEmailResponse
+import binar.finalproject.MyAirFare_admin.model.user.ListUserResponse
+import binar.finalproject.MyAirFare_admin.model.user.SingleUserResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -39,5 +42,22 @@ interface AuthEndPoint {
         @Part("title") title : RequestBody,
         @Part image : MultipartBody.Part
     ): Call<UserCurrentUpdate>
+
+    @GET("api/v1/users")
+    fun getAllUser(
+        @Header("x-access-token") Description : String,
+    ): Call<ListUserResponse>
+
+    @GET("api/v1/{id}/user")
+    fun getUserById(
+        @Header("x-access-token") Description : String,
+        @Path("id") id : String
+    ): Call<SingleUserResponse>
+
+    @GET("api/v1/{email}/user-email")
+    fun filterUser(
+        @Header("x-access-token") Description : String,
+        @Path("email") email : String
+    ): Call<ListEmailResponse>
 
 }
