@@ -1,15 +1,24 @@
 package binar.finalproject.MyAirFare.api
 
 
-import binar.finalproject.MyAirFare.model.flight.ScheduleResponse
+import binar.finalproject.MyAirFare.model.tickets.ReadTicketByIdResponse
+import binar.finalproject.MyAirFare.model.tickets.ReadTicketResponse
+import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiEndPoint {
 
+    @GET("api/v1/tickets")
+    fun readAllTicket(
+        @Header("x-access-token") Description : String
+    ):Call<ReadTicketResponse>
+
+    @GET("api/v1/{id}/ticket")
+    fun readTicketById(
+        @Header("x-access-token") Description : String,
+        @Path("id") id : String
+    ):Call<ReadTicketByIdResponse>
 
 
     @GET("api/v1/get-schedule")

@@ -79,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearBisnis">
@@ -130,6 +131,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/imageLogo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1.5"
@@ -165,8 +167,10 @@
 
 
        <LinearLayout
+           android:id="@+id/linear"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp10"
            app:layout_constraintTop_toBottomOf="@id/linearAsalTujuan"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
@@ -224,8 +228,6 @@
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintTop_toBottomOf="@id/linearAsalTujuan" />
            </LinearLayout>
-
-
 
        </LinearLayout>
 

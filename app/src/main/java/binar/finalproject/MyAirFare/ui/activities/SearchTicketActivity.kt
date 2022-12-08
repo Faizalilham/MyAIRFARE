@@ -12,8 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.MyAirFare.adapter.TicketAdapter
 import binar.finalproject.MyAirFare.databinding.ActivitySearchTicketBinding
-import binar.finalproject.MyAirFare.model.flight.Schedule
-import binar.finalproject.MyAirFare.utils.DatePicker
+import binar.finalproject.MyAirFare.model.tickets.Schedule
 import binar.finalproject.MyAirFare.viewmodel.ticket.SearchTicketViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +46,6 @@ class SearchTicketActivity : AppCompatActivity() {
         val dateTime = "$date $time"
         if(from != null && dest != null){
             doSearch(from,dest,dateTime)
-            Log.d("TANGGAL su",dateTime)
             Toast.makeText(this, dateTime, Toast.LENGTH_SHORT).show()
             binding.apply {
                 etKeberangkatan.setText(from)
@@ -58,11 +56,12 @@ class SearchTicketActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun doSearch(from : String, dest : String,dateTime :String){
-        Log.d("TANGGAL","12/06/2022 10:00:00")
         searchTicketViewModel.doSearchTicket(from,dest,dateTime)
+        showLoading(true)
         searchTicketViewModel.doSearchTicketObserver().observe(this){
             if(it != null){
-                if(it.tickets.go.size > 1){
+                showLoading(false)
+                if(it.tickets.go.size > 0){
                     binding.apply {
                         imageNotFound.visibility = View.GONE
                         tvNotFound.visibility = View.GONE
@@ -97,6 +96,9 @@ class SearchTicketActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@SearchTicketActivity)
         }
 
+    }
+    private fun showLoading(show : Boolean){
+        if(show) binding.loading.visibility = View.VISIBLE else  binding.loading.visibility = View.GONE
     }
 
     override fun onDestroy() {

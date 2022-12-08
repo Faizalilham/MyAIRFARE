@@ -1,12 +1,20 @@
 package binar.finalproject.MyAirFare.adapter
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.MyAirFare.databinding.ListItemHomeBinding
-import binar.finalproject.MyAirFare.model.flight.Schedule
+import binar.finalproject.MyAirFare.model.tickets.Schedule
+import binar.finalproject.MyAirFare.utils.DatePicker
+import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.time.OffsetDateTime
+import java.util.*
 
 
 class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketAdapter.TicketViewHolder>(){
@@ -44,20 +52,29 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
         return TicketViewHolder(ListItemHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
         holder.binding.apply {
             val diff = differ.currentList[position]
-            tvDate.text = diff.estimated_up_dest
+            val dateAir = DatePicker.dateCalculation(diff.date_air)
+            val estimated = DatePicker.dateCalculation(diff.estimated_up_dest)
+            val timeAir = DatePicker.timeCalculation(diff.date_air)
+            val timeEstimated = DatePicker.timeCalculation(diff.estimated_up_dest)
+            val date = "$dateAir - $estimated"
+            Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${diff.logo}").into(imageLogo)
+            tvTime.text = DatePicker.getDifferentTime(diff.date_air,diff.estimated_up_dest)
+            tvDate.text = date
+            tvAsalTime.text = timeAir
+            tvTujuanTime.text = timeEstimated
             tvClass.text = diff.kelas
             tvAsal.text = diff.from
             tvTujuan.text = diff.dest
-            tvDate.text = diff.date_air
             tvPrice.text = diff.price.toString()
             tvKodePenerbangan.text = diff.flight_number
-
             card.setOnClickListener {
                 listener.onClicked(diff)
             }
+
         }
     }
 

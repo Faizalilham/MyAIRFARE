@@ -81,4 +81,8 @@ dependencies {
 
     //Lottie Animations
     implementation 'com.airbnb.android:lottie:5.2.0'
+
+    // Midtrans
+    implementation 'com.midtrans:uikit:1.34.0-SANDBOX'
+
 }

@@ -14,14 +14,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class CartFragment : Fragment() {
 
 
-    private var _binding : FragmentCartBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentCartBinding
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCartBinding.inflate(layoutInflater)
+        binding = FragmentCartBinding.inflate(layoutInflater)
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         return binding.root
     }
@@ -65,10 +64,7 @@ class CartFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
 
 
 }

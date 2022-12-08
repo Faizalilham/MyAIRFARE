@@ -1,15 +1,17 @@
 package binar.finalproject.MyAirFare.ui.activities
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.ActivityDetailPerjalananBinding
 import binar.finalproject.MyAirFare.databinding.AlertLoginBinding
-import binar.finalproject.MyAirFare.databinding.AlertLogoutBinding
-import binar.finalproject.MyAirFare.model.flight.Schedule
+import binar.finalproject.MyAirFare.model.tickets.Schedule
+import binar.finalproject.MyAirFare.utils.DatePicker
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +21,7 @@ class DetailPerjalanan : AppCompatActivity() {
     private var _binding : ActivityDetailPerjalananBinding? = null
     private val binding get() = _binding!!
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailPerjalananBinding.inflate(layoutInflater)
@@ -29,6 +32,7 @@ class DetailPerjalanan : AppCompatActivity() {
         doBooking()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupView(){
         val i = intent.getParcelableExtra<Schedule>("schedule")
         if(i != null){
@@ -38,6 +42,11 @@ class DetailPerjalanan : AppCompatActivity() {
                 tvKotaAsal.text = i.from
                 tvKotaTujuan.text = i.dest
                 tvPrice.text = i.price.toString()
+                tvJamAsal.text = DatePicker.timeCalculation(i.date_air)
+                tvJamTujuan.text = DatePicker.timeCalculation(i.estimated_up_dest)
+                tvTanggalAsal.text = DatePicker.dateCalculation(i.date_air)
+                tvTanggalTujuan.text = DatePicker.dateCalculation(i.estimated_up_dest)
+
             }
         }
     }
@@ -45,7 +54,11 @@ class DetailPerjalanan : AppCompatActivity() {
     private fun doBooking(){
         authPreferencesViewModel.getToken().observe(this){
             if(it != null && it != "undefined"){
-                // Do Booking Soon
+              binding.btnBooking.setOnClickListener {
+                  startActivity(Intent(this,PaymentDetailsActivity::class.java).also{ its ->
+                      its.putExtra("kode",binding.tvKodePenerbangan.text.toString())
+                  })
+              }
             }else{
                 alertLogin()
             }

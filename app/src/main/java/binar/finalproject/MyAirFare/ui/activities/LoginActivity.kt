@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
@@ -90,8 +91,11 @@ class LoginActivity : AppCompatActivity() {
             if(it.isSuccessful){
                 if(account.idToken != null){
                     authViewModel.doLoginWithGoogle(account.idToken!!)
+                    Log.d("googles",account.idToken.toString())
+                    showLoading(true)
                     authViewModel.doLoginWithGoogleObserver().observe(this){ loginGoogle ->
                         if(loginGoogle != null){
+                            showLoading(false)
                             startActivity(Intent(this,MainActivity::class.java).also { _ ->
                                 Log.d("touken",loginGoogle.token)
                                 Toast.makeText(this, "Login success, hallo ${loginGoogle.user.username}", Toast.LENGTH_SHORT).show()
@@ -124,8 +128,10 @@ class LoginActivity : AppCompatActivity() {
             val validation = AuthValidation.loginValidation(email,password)
             if(validation == "success"){
                 authViewModel.doLogin(email,password)
+                showLoading(true)
                 authViewModel.doLoginObserver().observe(this){
                     if(it != null){
+                        showLoading(false)
                         startActivity(Intent(this,MainActivity::class.java).also { _ ->
                             Log.d("touken",it.token)
                             Toast.makeText(this, "Login success, hallo ${it.user.username}", Toast.LENGTH_SHORT).show()
@@ -144,6 +150,17 @@ class LoginActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(this, validation, Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun showLoading(show : Boolean){
+        binding.apply {
+            if(show){
+                loading.visibility = View.VISIBLE
+                loadingBg.visibility = View.VISIBLE
+            } else
+                loading.visibility = View.GONE
+                loadingBg.visibility = View.GONE
         }
     }
 

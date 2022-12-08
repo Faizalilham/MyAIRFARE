@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.MyAirFare.api.ApiEndPoint
-import binar.finalproject.MyAirFare.model.flight.ScheduleResponse
+import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
 import binar.finalproject.MyAirFare.utils.ErrorValidation
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,11 +35,13 @@ class SearchTicketRepository @Inject constructor(private val api : ApiEndPoint) 
                         doSearchTicket.postValue(null)
                         val error = ErrorValidation.errorAuthValidation(response.code())
                         message.postValue(error)
+                        Log.d("error","${response.code()}")
                     }
                 }else{
                     doSearchTicket.postValue(null)
                     val error = ErrorValidation.errorAuthValidation(response.code())
                     message.postValue(error)
+                    Log.d("error","${response.code()}")
                 }
             }
 

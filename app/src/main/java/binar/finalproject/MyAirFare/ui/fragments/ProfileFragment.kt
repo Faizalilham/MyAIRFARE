@@ -25,6 +25,10 @@ import binar.finalproject.MyAirFare.ui.activities.SettingActivity
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.CurrentUserViewModel
 import com.bumptech.glide.Glide
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -34,6 +38,8 @@ class ProfileFragment : Fragment() {
     private lateinit var binding : FragmentProfileBinding
     private lateinit var currentUserViewModel: CurrentUserViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
+    private lateinit var auth : FirebaseAuth
+    private lateinit var googleSignInClient : GoogleSignInClient
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,6 +47,10 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         currentUserViewModel = ViewModelProvider(this)[CurrentUserViewModel::class.java]
+        auth = FirebaseAuth.getInstance()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(
+            R.string.default_web_client_id)).requestEmail().build()
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(),gso)
         return binding.root
     }
 
@@ -135,6 +145,8 @@ class ProfileFragment : Fragment() {
         alert.window?.attributes?.windowAnimations = R.style.myDialogAnimation
         view.apply {
             btnLogout.setOnClickListener {
+                auth.signOut()
+                googleSignInClient.signOut()
                 authPreferencesViewModel.deleteToken()
                 binding.apply {
                     tvUsername.visibility = View.GONE
