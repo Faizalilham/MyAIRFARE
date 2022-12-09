@@ -1,5 +1,6 @@
 package binar.finalproject.MyAirFare_admin.utils
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Build
@@ -12,6 +13,7 @@ import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -83,5 +85,33 @@ object DatePicker {
         val formattedDate = outputFormatter.format(dates)
         return formattedDate.toString()
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SimpleDateFormat")
+    fun dateCalculation(date: String):String{
+        val odt = OffsetDateTime.parse(date)
+        val instant = odt.toInstant()
+        val dates = Date.from(instant)
+        val a = SimpleDateFormat("dd MMMM yyyy")
+        return a.format(dates)
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun timeCalculation(time : String):String{
+        val odt = OffsetDateTime.parse(time)
+        val instant = odt.toInstant()
+        val dates = Date.from(instant)
+        val a = SimpleDateFormat("HH:mm",Locale.getDefault())
+        val ab =  a.format(dates)
+        val r = ab.split(":").toMutableList()
+        r[0] = (r[0].toInt() - 7).toString()
+        println(time)
+        println(odt)
+        println(instant)
+        println(dates)
+        return r.joinToString(":")
+    }
+
 
 }

@@ -123,11 +123,13 @@ class TicketRepository @Inject constructor(private val api : ApiEndPoint) {
                         doUpdateTicket.postValue(null)
                         val error = ErrorValidation.errorAuthValidation(response.code())
                         message.postValue(error)
+                        Log.d("ERROR",error)
                     }
                 }else{
                     doUpdateTicket.postValue(null)
                     val error = ErrorValidation.errorAuthValidation(response.code())
                     message.postValue(error)
+                    Log.d("ERROR",error)
                 }
             }
 

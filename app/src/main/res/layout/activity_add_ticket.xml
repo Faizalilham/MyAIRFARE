@@ -148,7 +148,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/tanggal_penerbangan"
-                    android:inputType="date"
+                    android:inputType="text"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 
@@ -284,6 +284,17 @@
                 android:fontFamily="@font/poppins_regular"
                 android:padding="@dimen/dp15"
                 android:text="@string/tambah_tiket"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp15"
+                android:backgroundTint="@color/orange"
+                android:fontFamily="@font/poppins_regular"
+                android:padding="@dimen/dp15"
+                android:text="@string/perbarui_tiket"
                 android:textAllCaps="false" />
 
         </LinearLayout>

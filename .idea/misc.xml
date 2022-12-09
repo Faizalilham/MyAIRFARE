@@ -9,6 +9,7 @@
         <entry key="app/src/main/res/drawable/bg_user.xml" value="0.1725" />
         <entry key="app/src/main/res/layout/activity_add_ticket.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_delete_user.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_detail_ticket.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_edit_profile_admin.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/activity_edit_profile_user.xml" value="0.14" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.16979166666666667" />
@@ -19,7 +20,9 @@
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/activity_ticket_available.xml" value="0.16979166666666667" />
         <entry key="app/src/main/res/layout/activity_user.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/alert_delete_ticket.xml" value="0.10657894736842105" />
         <entry key="app/src/main/res/layout/alert_logout.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/delete_ticket_alert.xml" value="0.10657894736842105" />
         <entry key="app/src/main/res/layout/dropdown_type_ticket.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/image_bottom_sheet.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/list_item_available_ticket.xml" value="0.33" />

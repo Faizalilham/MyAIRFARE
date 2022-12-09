@@ -53,25 +53,19 @@ class TicketAvailableActivity : AppCompatActivity() {
     private fun setupRecycler(datas : MutableList<Tickets>){
         ticketAdapter = TicketAdapter(object : TicketAdapter.OnClick{
             override fun onDetail(ticket: Tickets) {
-                startActivity(Intent(this@TicketAvailableActivity,AddTicketActivity::class.java).also{
+                startActivity(Intent(this@TicketAvailableActivity,DetailTicketActivity::class.java).also{
                     it.putExtra("id",ticket.id)
-                    it.putExtra("type",TicketConstant.READ)
                 })
             }
 
             override fun onUpdate(ticket: Tickets) {
                 startActivity(Intent(this@TicketAvailableActivity,AddTicketActivity::class.java).also{
                     it.putExtra("id",ticket.id)
-                    it.putExtra("type",TicketConstant.UPDATE)
+                    it.putExtra("types",TicketConstant.UPDATE)
+
                 })
             }
 
-            override fun onDelete(ticket: Tickets) {
-                startActivity(Intent(this@TicketAvailableActivity,AddTicketActivity::class.java).also{
-                    it.putExtra("id",ticket.id)
-                    it.putExtra("type",TicketConstant.DELETE)
-                })
-            }
 
         })
         ticketAdapter.submitData(datas)

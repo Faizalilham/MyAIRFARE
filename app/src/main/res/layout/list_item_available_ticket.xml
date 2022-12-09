@@ -44,14 +44,6 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_edit"
                 android:layout_gravity="center_vertical"
-                android:layout_marginEnd="@dimen/dp10"/>
-
-            <ImageView
-                android:id="@+id/imageDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete"
-                android:layout_gravity="center_vertical"
                 android:layout_marginEnd="@dimen/dp15"/>
 
 

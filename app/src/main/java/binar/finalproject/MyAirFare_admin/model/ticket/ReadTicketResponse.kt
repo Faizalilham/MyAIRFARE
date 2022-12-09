@@ -1,15 +1,18 @@
 package binar.finalproject.MyAirFare_admin.model.ticket
 
+import android.os.Parcelable
 import binar.finalproject.MyAirFare.model.login.Carts
+import kotlinx.parcelize.Parcelize
 
 data class ReadTicketResponse(
     val tickets : MutableList<Tickets>
 )
 
 data class ReadTicketByIdResponse(
-    val tickets : Tickets
+    val ticket : Tickets
 )
 
+@Parcelize
 data class Tickets(
     val id : String,
     val name : String,
@@ -28,9 +31,9 @@ data class Tickets(
     val createdAt : String,
     val updatedAt : String,
     val carts : MutableList<Carts>,
-    val available : MutableList<AvailableTickets>
-)
+):Parcelable
 
+@Parcelize
 data class AvailableTickets(
     val id : Int,
     val ticked_id : String,
@@ -38,4 +41,4 @@ data class AvailableTickets(
     val chair_number : Int,
     val createdAt : String,
     val updatedAt : String
-)
+):Parcelable

@@ -53,8 +53,9 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
            Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${diff.logo}").into(imageFlight)
            card.setOnClickListener {
                listener.onDetail(diff)
+           }
+           imageEdit.setOnClickListener {
                listener.onUpdate(diff)
-               listener.onDelete(diff)
            }
        }
     }
@@ -64,6 +65,5 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
     interface OnClick{
         fun onDetail(ticket: Tickets)
         fun onUpdate(ticket: Tickets)
-        fun onDelete(ticket: Tickets)
     }
 }

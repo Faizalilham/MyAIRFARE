@@ -23,6 +23,7 @@ import binar.finalproject.MyAirFare_admin.utils.DatePicker
 import binar.finalproject.MyAirFare_admin.utils.PostTicketValidation
 import binar.finalproject.MyAirFare_admin.utils.TicketConstant
 import binar.finalproject.MyAirFare_admin.viewmodel.ticket.TicketViewModel
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -53,10 +54,21 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         id = intent.getStringExtra("id")
         if(id != null){
             setupView(id!!)
+            binding.tvTittle.text = "Perbarui Tiket"
+            binding.btnPost.visibility = View.GONE
+        }else{
+            binding.tvTittle.text = "Tambah Tiket"
+            binding.btnUpdate.visibility = View.GONE
         }
         dropDownMenu()
         bottomSheet()
         postTicket()
+        updateTicket()
+        back()
+    }
+
+    private fun back(){
+        binding.toolbar.setOnClickListener { finish() }
     }
 
     private fun dropDownMenu(){
@@ -120,7 +132,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private fun upload(){
         if(getFile != null){
             val file = ImagePost.reduceFileImage(getFile as File)
-            val types = intent.getIntExtra("type",0)
+            val types = intent.getIntExtra("types",0)
             binding.apply{
                 val airlane = etNamePlane.text.toString()
                 val from = etFrom.text.toString()
@@ -141,12 +153,9 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                 val validation = PostTicketValidation.postTicketValidation(airlane,from,dest,dest_air,price.toInt(),chair.toInt(),type,flightNumber,estimated,kelas)
                 if(validation == "success"){
                     authPreferencesViewModel.getToken().observe(this@AddTicketActivity){
-                        Log.d("TOUKEN",it)
+                        Log.d("TOUKEN","$it $id")
                         if(it != null && it != "undefined"){
-                            if(id !=  null && types == TicketConstant.READ){
-                                ticketViewModel.readTicketById(it, id!!)
-                                setToast(ticketViewModel.readTicketByIdObserver(),ticketViewModel.messageObserver())
-                            }else if(id !=  null && types == TicketConstant.UPDATE){
+                            if(id !=  null && types == TicketConstant.UPDATE){
                                 ticketViewModel.doUpdateTicket(
                                     it, id!!,
                                     airlane.toRequestBody("text/plain".toMediaTypeOrNull()),
@@ -161,7 +170,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                                     kelas.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     estimated.toRequestBody("text/plain".toMediaTypeOrNull())
                                 )
-                                setToast(ticketViewModel.doUpdateTicketObserver(),ticketViewModel.messageObserver())
+                                setToast(ticketViewModel.doUpdateTicketObserver(),ticketViewModel.messageObserver(),"Update Tiket Berhasil")
                             }else{
                                 ticketViewModel.addTicket(
                                     it,
@@ -177,7 +186,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                                     kelas.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     estimated.toRequestBody("text/plain".toMediaTypeOrNull())
                                 )
-                                setToast(ticketViewModel.addTicketObserver(),ticketViewModel.messageObserver())
+                                setToast(ticketViewModel.addTicketObserver(),ticketViewModel.messageObserver(),"Tambah Tiket Berhasil")
                             }
                         }
                     }
@@ -188,13 +197,17 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                 }
 
             }
+        }else{
+            Toast.makeText(this, "Tolong Masukkan Gambar", Toast.LENGTH_SHORT).show()
         }
     }
     
-    private fun <T> setToast(a : LiveData<T>, b :LiveData<String>){
+    private fun <T> setToast(a : LiveData<T>, b :LiveData<String>,message : String){
         a.observe(this@AddTicketActivity){
             if(it != null){
-                Toast.makeText(this@AddTicketActivity, "Tambah Tiket Berhasil", Toast.LENGTH_SHORT).show()
+                binding.btnPost.visibility = View.VISIBLE
+                binding.btnUpdate.visibility = View.VISIBLE
+                Toast.makeText(this@AddTicketActivity, message , Toast.LENGTH_SHORT).show()
                 finish()
             }else{
                 b.observe(this@AddTicketActivity){ message ->
@@ -211,15 +224,16 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                 ticketViewModel.readTicketByIdObserver().observe(this){ datas ->
                     if(datas != null){
                         binding.apply {
-                            etNamePlane.setText(datas.tickets.name)
-                            etFrom.setText(datas.tickets.from)
-                            etDestination.setText(datas.tickets.dest)
-                            etclass.setText(datas.tickets.kelas)
-                            etNoChair.setText(datas.tickets.no_chair)
-                            etPrice.setText((datas.tickets.price.toString()))
-                            etEstimated.setText(datas.tickets.estimated_up_dest)
-                            etDateFlight.setText(datas.tickets.date_air)
-                            etFlightNumber.setText(datas.tickets.flight_number)
+                            etNamePlane.setText(datas.ticket.name)
+                            etFrom.setText(datas.ticket.from)
+                            etDestination.setText(datas.ticket.dest)
+                            etclass.setText(datas.ticket.kelas)
+                            etNoChair.setText(datas.ticket.no_chair.toString())
+                            etPrice.setText((datas.ticket.price.toString()))
+                            etEstimated.setText(datas.ticket.estimated_up_dest)
+                            etDateFlight.setText(datas.ticket.date_air)
+                            etFlightNumber.setText(datas.ticket.flight_number)
+                            Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${datas.ticket.logo}").into(imageProfile)
                         }
                     }
                 }
@@ -229,6 +243,12 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private fun postTicket(){
         binding.btnPost.setOnClickListener {
+            upload()
+        }
+    }
+
+    private fun updateTicket(){
+        binding.btnUpdate.setOnClickListener {
             upload()
         }
     }

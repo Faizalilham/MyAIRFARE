@@ -35,12 +35,12 @@ interface ApiEndPoint {
         @Part image : MultipartBody.Part,
         @Part("flightNumber") flightNumber : RequestBody,
         @Part("kelas") kelas : RequestBody,
-        @Part("estimated_up_dest") estimated_up_dest : RequestBody,
+        @Part("estimated_up_dest") estimated_up_dest : RequestBody
     ): Call<PostTicketResponse>
 
 
     @Multipart
-    @PUT("api/v1/{id}/update")
+    @PUT("api/v1/ticket/{id}/update")
     fun doUpdateTicket(
         @Header("x-access-token") Description : String,
         @Path("id") id : String,
@@ -48,16 +48,16 @@ interface ApiEndPoint {
         @Part("from_city") from_city : RequestBody,
         @Part("destination") destination : RequestBody,
         @Part("date_air") date_air : RequestBody,
-        @Part("price") price : RequestBody,
+        @Part("price") price :RequestBody,
         @Part("no_chair") no_chair : RequestBody,
         @Part("type_ticket") type_ticket : RequestBody,
         @Part image : MultipartBody.Part,
         @Part("flightNumber") flightNumber : RequestBody,
         @Part("kelas") kelas : RequestBody,
-        @Part("estimated_up_dest") estimated_up_dest : RequestBody
+        @Part("estimated_up_dest") estimated_up_dest : RequestBody,
     ): Call<UpdateTicketResponse>
 
-    @DELETE("api/v1/{id}/delete")
+    @DELETE("api/v1/ticket/{id}/delete")
     fun doDeleteTicket(
         @Header("x-access-token")Description : String,
         @Path("id") id : String
