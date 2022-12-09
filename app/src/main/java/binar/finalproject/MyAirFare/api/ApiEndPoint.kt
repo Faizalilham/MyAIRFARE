@@ -4,6 +4,9 @@ package binar.finalproject.MyAirFare.api
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketByIdResponse
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketResponse
 import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
+import binar.finalproject.MyAirFare.model.wait_list.WaitListDeleteResponse
+import binar.finalproject.MyAirFare.model.wait_list.WaitListRequest
+import binar.finalproject.MyAirFare.model.wait_list.WaitListResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -36,6 +39,23 @@ interface ApiEndPoint {
         @Query("return") kembalian : String,
         @Query("kelas") kelas : String
     ): Call<ScheduleResponse>
+
+    @GET("api/v1/wait-list")
+    fun getAllListCart(
+        @Header("x-access-token") Description : String,
+    ):Call<WaitListResponse>
+
+    @POST("api/v1/wait-list")
+    fun postCart(
+        @Header("x-access-token") Description : String,
+        @Body tickets : WaitListRequest
+    ):Call<WaitListResponse>
+
+    @DELETE("api/v1/wait-list/{id}")
+    fun deleteCart(
+        @Header("x-access-token") Description : String,
+        @Path("id") id : String
+    ):Call<WaitListDeleteResponse>
 
 }
 

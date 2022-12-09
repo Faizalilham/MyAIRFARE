@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -127,8 +128,15 @@ object DatePicker {
         val odt = OffsetDateTime.parse(time)
         val instant = odt.toInstant()
         val dates = Date.from(instant)
-        val a = SimpleDateFormat("HH:mm")
-        return a.format(dates)
+        val a = SimpleDateFormat("HH:mm",Locale.getDefault())
+        val ab =  a.format(dates)
+        val r = ab.split(":").toMutableList()
+        r[0] = (r[0].toInt() - 7).toString()
+        println(time)
+        println(odt)
+        println(instant)
+        println(dates)
+        return r.joinToString(":")
     }
 
     @SuppressLint("SimpleDateFormat")
