@@ -42,11 +42,9 @@ class SearchTicketActivity : AppCompatActivity() {
         val from = intent.getStringExtra("from")
         val dest = intent.getStringExtra("destination")
         val date =  intent.getStringExtra("date")
-        val time =  intent.getStringExtra("time")
-        val dateTime = "$date $time"
-        if(from != null && dest != null){
-            doSearch(from,dest,dateTime)
-            Toast.makeText(this, dateTime, Toast.LENGTH_SHORT).show()
+        if(from != null && dest != null && date != null){
+            doSearch(from,dest,date)
+            Toast.makeText(this, date, Toast.LENGTH_SHORT).show()
             binding.apply {
                 etKeberangkatan.setText(from)
                 etTiba.setText(dest)

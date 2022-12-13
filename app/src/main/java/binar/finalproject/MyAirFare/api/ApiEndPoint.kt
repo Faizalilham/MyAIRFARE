@@ -4,6 +4,7 @@ package binar.finalproject.MyAirFare.api
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketByIdResponse
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketResponse
 import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
+import binar.finalproject.MyAirFare.model.wait_list.WaitList
 import binar.finalproject.MyAirFare.model.wait_list.WaitListDeleteResponse
 import binar.finalproject.MyAirFare.model.wait_list.WaitListRequest
 import binar.finalproject.MyAirFare.model.wait_list.WaitListResponse
@@ -49,12 +50,12 @@ interface ApiEndPoint {
     fun postCart(
         @Header("x-access-token") Description : String,
         @Body tickets : WaitListRequest
-    ):Call<WaitListResponse>
+    ):Call<WaitList>
 
     @DELETE("api/v1/wait-list/{id}")
     fun deleteCart(
         @Header("x-access-token") Description : String,
-        @Path("id") id : String
+        @Path("id") id : Int
     ):Call<WaitListDeleteResponse>
 
 }

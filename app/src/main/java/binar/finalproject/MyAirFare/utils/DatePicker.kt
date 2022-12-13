@@ -11,10 +11,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.OffsetDateTime
-import java.time.ZonedDateTime
+import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -80,7 +77,7 @@ object DatePicker {
     fun formatterDate(date : String):String{
         val inputFormatter =
             DateTimeFormatter.ofPattern("dd-MMMM-yyyy", Locale.getDefault())
-        val outputFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.getDefault())
+        val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
         val dates: LocalDate = LocalDate.parse(date, inputFormatter)
         val formattedDate = outputFormatter.format(dates)
         return formattedDate.toString()
@@ -131,11 +128,15 @@ object DatePicker {
         val a = SimpleDateFormat("HH:mm",Locale.getDefault())
         val ab =  a.format(dates)
         val r = ab.split(":").toMutableList()
-        r[0] = (r[0].toInt() - 7).toString()
-        println(time)
-        println(odt)
-        println(instant)
-        println(dates)
+        val ac = (r[0].toInt() - 7)
+        r[0] = if(ac < 0){
+            println("PPPP ${r[0]} $ac"+ (24 + ac).toString())
+            (24 - (ac+7)).toString()
+        }else{
+            ac.toString()
+        }
+        println("Time $time")
+        println("date $dates")
         return r.joinToString(":")
     }
 
@@ -164,6 +165,14 @@ object DatePicker {
         }else{
             "Terlewat"
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun formatDateDC(currentDate : String?, targetTimeZone: String): String {
+        val instant = Instant.parse(currentDate)
+        val formatter = DateTimeFormatter.ofPattern("HH:mm")
+            .withZone(ZoneId.of(targetTimeZone))
+        return formatter.format(instant)
     }
 
 

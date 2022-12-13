@@ -6,12 +6,14 @@
         <entry key="app/src/main/res/drawable/background_auth.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/background_circle.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/background_edit_text.xml" value="0.1725" />
+        <entry key="app/src/main/res/drawable/background_increment_decrement.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/background_search_ticket.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/bg_rounded_stoke_transparent.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/bg_rounded_stroke.xml" value="0.1785" />
         <entry key="app/src/main/res/drawable/bg_rounded_stroke_transparent.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/bg_user.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/ic_back.xml" value="0.1725" />
+        <entry key="app/src/main/res/drawable/ic_increment.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/selected_blue.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/unselected_blue.xml" value="0.1725" />
         <entry key="app/src/main/res/drawable/view_pager_selector.xml" value="0.1725" />
@@ -20,8 +22,8 @@
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_forget_password.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_payment_details.xml" value="0.11" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_payment_details.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_search_ticket.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.25" />
@@ -43,6 +45,7 @@
         <entry key="app/src/main/res/layout/fragment_third_screen.xml" value="0.17" />
         <entry key="app/src/main/res/layout/fragment_ticket.xml" value="0.1" />
         <entry key="app/src/main/res/layout/image_bottom_sheet.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/list_item_cart.xml" value="0.33" />
         <entry key="app/src/main/res/layout/list_item_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_notifications.xml" value="0.21" />
         <entry key="app/src/main/res/layout/list_item_ticket.xml" value="0.33" />

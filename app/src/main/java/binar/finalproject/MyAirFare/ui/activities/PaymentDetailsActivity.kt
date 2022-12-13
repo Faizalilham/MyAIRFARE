@@ -1,12 +1,17 @@
 package binar.finalproject.MyAirFare.ui.activities
 
+import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.databinding.ActivityPaymentDetailsBinding
+import binar.finalproject.MyAirFare.model.tickets.Schedule
+import binar.finalproject.MyAirFare.utils.DatePicker
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.CurrentUserViewModel
+import com.bumptech.glide.Glide
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback
 import com.midtrans.sdk.corekit.core.MidtransSDK
 import com.midtrans.sdk.corekit.core.TransactionRequest
@@ -23,6 +28,8 @@ class PaymentDetailsActivity : AppCompatActivity() {
     private val binding get() = _binding!!
     private lateinit var currentUserViewModel: CurrentUserViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityPaymentDetailsBinding.inflate(layoutInflater)
@@ -74,12 +81,14 @@ class PaymentDetailsActivity : AppCompatActivity() {
                     }
                 }
             })
-            .setMerchantBaseUrl("")
+            .setMerchantBaseUrl("http://myairfare.infinityfreeapp.com/index.php/charge")
             .enableLog(true)
             .setColorTheme(CustomColorTheme("#FFE51255", "#B61548", "#FFE51255"))
             .setLanguage("id")
             .buildSDK()
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun startPayment(){
         val transactionRequest = TransactionRequest("MyAirFare",100.000)
         authPreferencesViewModel.getToken().observe(this){ token ->
@@ -105,19 +114,6 @@ class PaymentDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupView(email : String,f_name : String,lastname : String){
-        val i = intent.getStringExtra("kode")
-        if(i != null){
-            binding.apply {
-                kodePenerbangan.text = i
-                etEmail.setText(email)
-                val fullName = "$f_name $lastname"
-                etNamaLengkap.setText(fullName)
-            }
-        }
-
-    }
-
     private fun customerDetails(
         transactionRequest: TransactionRequest,
         username : String,firstname : String,lastname : String,email :String,phone : String
@@ -130,6 +126,41 @@ class PaymentDetailsActivity : AppCompatActivity() {
         customerDetails.phone = phone
         transactionRequest.customerDetails = customerDetails
     }
+
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setupView(email : String, f_name : String, lastname : String){
+        val diff = intent.getParcelableExtra<Schedule>("schedule")
+        if(diff != null){
+            binding.apply {
+                val dateAir = DatePicker.dateCalculation(diff.date_air)
+                val estimated = DatePicker.dateCalculation(diff.estimated_up_dest)
+                val timeAir = DatePicker.timeCalculation(diff.date_air)
+                val timeEstimated = DatePicker.timeCalculation(diff.estimated_up_dest)
+                val date = "$dateAir - $estimated"
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${diff.logo}").into(imageLogo)
+                tvTime.text = DatePicker.getDifferentTime(diff.date_air,diff.estimated_up_dest)
+                tvDate.text = date
+                tvAsalTime.text = timeAir
+                tvTujuanTime.text = timeEstimated
+                when(diff.kelas){
+                    1 ->  tvClass.text = "ECONOMY"
+                    2 ->  tvClass.text = "BUSSINESS"
+                }
+                tvAsal.text = diff.from
+                tvTujuan.text = diff.dest
+                tvPrice.text = diff.price.toString()
+                tvKodePenerbangan.text = diff.flight_number
+                etEmail.setText(email)
+                val fullName = "$f_name $lastname"
+                etNamaLengkap.setText(fullName)
+            }
+        }
+
+    }
+
+
 
 
     private fun back(){

@@ -23,7 +23,11 @@
         android:id="@+id/cartFragment"
         android:name="binar.finalproject.MyAirFare.ui.fragments.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_self"
+            app:destination="@id/cartFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ticketFragment"
         android:name="binar.finalproject.MyAirFare.ui.fragments.TicketFragment"

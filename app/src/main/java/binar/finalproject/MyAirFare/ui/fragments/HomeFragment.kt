@@ -78,8 +78,8 @@ class HomeFragment : Fragment() {
                 val destination = etDestination.text.toString()
                 val date = etDate.text.toString()
                 val time = etTime.text.toString()
-                val dates = DatePicker.formatterDate(date)
                 if(from.isNotBlank() && destination.isNotBlank() && date.isNotBlank()  && time.isNotBlank()){
+                    val dates = DatePicker.formatterDate(date)
                     startActivity(Intent(requireActivity(),SearchTicketActivity::class.java).also{
                         it.putExtra("from",from)
                         it.putExtra("destination",destination)

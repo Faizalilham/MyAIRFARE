@@ -22,16 +22,15 @@ data class Schedule(
     val date_air : String,
     val price : Int,
     val no_chair : Int,
-    val type : String,
+    val type : Int,
     val trip_type : String,
     val deleted : Boolean,
     val logo : String,
     val flight_number : String,
-    val kelas : String,
+    val kelas : Int,
     val estimated_up_dest : String,
     val createdAt : String,
     val updatedAt : String,
-    val carts: MutableList<Carts>
 ):Parcelable
 
 
@@ -67,11 +66,12 @@ data class Transaksi(
 data class CheckIn(
     val id : Int
 ):Parcelable
+
 @Parcelize
 data class AvailableTickets(
     val id : Int,
     val ticked_id : String,
-    val user_id : String = "" ,
+    val user_id : String,
     val chair_number : Int,
     val createdAt : String,
     val updatedAt : String

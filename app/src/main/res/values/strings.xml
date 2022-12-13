@@ -117,6 +117,11 @@
     <string name="tvGuest_cart_one">Pantau Tiket anda melalui fitur keranjang</string>
     <string name="tvGuest2">Tambah dan pesan tiket saat anda siap nanti</string>
     <string name="masuk_akun">Masuk akun</string>
+    <string name="total">Total</string>
+    <string name="harga_tiket">Harga Tiket</string>
+    <string name="tipe_tiket">Tipe Tiket</string>
+    <string name="kelas">Kelas</string>
+    <string name="tidak_ada_data_keranjang">Tidak ada data keranjang</string>
 
     <string-array name="tittle_item">
         <item>Tuan</item>
