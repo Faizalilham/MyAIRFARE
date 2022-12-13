@@ -128,7 +128,13 @@
     <string name="hapus_tiket">Hapus Tiket</string>
     <string name="alert_delete_ticket">Periksa tiket terlebih dahulu, apakah anda yakin ingin menghapus tiket ini ?</string>
     <string name="perbarui_tiket">Perbarui Tiket</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="search_not_found">Pencarian tidak ditemukan, silahkan masukkan kata kunci lain</string>
 
+    <string-array name="classes">
+        <item>Economy</item>
+        <item>Bussiness</item>
+    </string-array>
     <string-array name="type">
         <item>Dewasa</item>
         <item>Anak-Anak</item>

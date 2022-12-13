@@ -15,7 +15,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/sp18"
         android:textStyle="bold"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp25"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +25,7 @@
         android:id="@+id/imageAdmin"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_margin="@dimen/dp15"
         android:src="@drawable/ic_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

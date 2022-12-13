@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
@@ -33,8 +34,12 @@ class DetailTicketActivity : AppCompatActivity() {
         setContentView(binding.root)
         readTicket()
         deleteTicket()
+        back()
     }
 
+    private fun back(){
+        binding.toolbar.setOnClickListener { finish() }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun readTicket(){
@@ -44,8 +49,10 @@ class DetailTicketActivity : AppCompatActivity() {
                if(id != null){
                    Log.d("TIKET","$it  $id")
                    ticketViewModel.readTicketById(it,id)
+                   showLoading(true)
                    ticketViewModel.readTicketByIdObserver().observe(this){ ticket ->
                        if(ticket != null){
+                           showLoading(false)
                            setupView(
                                ticket.ticket.logo,
                                ticket.ticket.name,
@@ -70,8 +77,8 @@ class DetailTicketActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun setupView(
         image : String,airlane : String,from : String,
-        dest : String,chairs : Int,code : String,type : String,price : Int,
-        date :String,estimated : String,kelas : String
+        dest : String,chairs : Int,code : String,type : Int,price : Int,
+        date :String,estimated : String,kelas : Int
     ){
 
         val datesFrom = DatePicker.dateCalculation(date)
@@ -90,16 +97,23 @@ class DetailTicketActivity : AppCompatActivity() {
         """.trimIndent()
         binding.apply {
             tvChairs.text = chairs.toString()
-            tvClass.text = kelas
+            when(kelas){
+                1 -> tvClass.text = "ECONOMY"
+                2 -> tvClass.text = "BUSSINESS"
+            }
+            when(type){
+                1 -> tvType.text = "DEWASA"
+                2 -> tvType.text = "ANAK-ANAK"
+            }
             tvCode.text = code
             tvDestination.text = dest
             tvFrom.text = from
             tvAirlane.text = airlane
             tvDateAir.text = datesAir
             tvEstimated.text = estimatedAir
-            tvType.text = type
             tvChairs.text = chairs.toString()
-            tvPrice.text = price.toString()
+            val pricesIdn = "Rp. ${price.toString()}"
+            tvPrice.text = pricesIdn
             Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app$image").into(imageLogo)
         }
     }
@@ -137,6 +151,20 @@ class DetailTicketActivity : AppCompatActivity() {
                        }
                     }
                 }
+            }
+        }
+    }
+
+    private fun showLoading(show : Boolean){
+        if(show){
+            binding.apply {
+                loading.visibility = View.VISIBLE
+                loadingBg.visibility = View.VISIBLE
+            }
+        } else {
+            binding.apply {
+                loading.visibility = View.GONE
+                loadingBg.visibility = View.GONE
             }
         }
     }

@@ -43,7 +43,10 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
        holder.binding.apply {
            val diff = differ.currentList[position]
-           tvNameBisnis.text = diff.kelas
+           when(diff.kelas){
+               1 ->  tvNameBisnis.text = "ECONOMY"
+               2 ->  tvNameBisnis.text = "BUSSINESS"
+           }
            tvAsal.text = diff.from
            tvTujuan.text = diff.dest
            tvPrice.text = diff.price.toString()

@@ -34,6 +34,7 @@ class UserActivity : AppCompatActivity() {
         setContentView(binding.root)
         getAllUser()
         keyEventSearch()
+        back()
     }
 
     private fun getAllUser(){
@@ -90,6 +91,17 @@ class UserActivity : AppCompatActivity() {
     private fun showLoading(show : Boolean){
         if(show) binding.loading.visibility = View.VISIBLE else  binding.loading.visibility = View.GONE
     }
+    private fun showFound(found : Boolean){
+        binding.apply {
+            if(found) {
+                imageNotFound.visibility =  View.GONE
+                tvNotFound.visibility =  View.GONE
+            }else {
+                imageNotFound.visibility =  View.GONE
+                tvNotFound.visibility  = View.GONE
+            }
+        }
+    }
 
 
     private fun searchUser(token : String,key : String){
@@ -98,9 +110,15 @@ class UserActivity : AppCompatActivity() {
         binding.recyclerUser.visibility = View.GONE
         userViewModel.filterUserObserver().observe(this){
             if(it != null){
-                showLoading(false)
-                binding.recyclerUser.visibility = View.VISIBLE
-                setRecyclerUserEmail(it)
+                if(it.size > 0){
+                    showLoading(false)
+                    showFound(true)
+                    binding.recyclerUser.visibility = View.VISIBLE
+                    setRecyclerUserEmail(it)
+                }else{
+                    showLoading(false)
+                    showFound(false)
+                }
             }else{
                userViewModel.messageObserver().observe(this){message ->
                    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -116,7 +134,6 @@ class UserActivity : AppCompatActivity() {
                 if(search.isNotBlank()){
                     authPreferencesViewModel.getToken().observe(this){
                         if(it != null && it != "undefined"){
-                            Log.d("WKWKWKW","$it $search")
                             searchUser(it,search)
                         }
                     }
@@ -126,6 +143,10 @@ class UserActivity : AppCompatActivity() {
                 true
             } else false
         }
+    }
+
+    private fun back(){
+        binding.toolbar.setOnClickListener { finish() }
     }
 
 

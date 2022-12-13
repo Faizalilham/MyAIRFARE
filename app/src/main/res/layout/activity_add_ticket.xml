@@ -18,6 +18,7 @@
             android:background="@drawable/bg_rounded_stroke"
             android:paddingStart="10dp"
             android:paddingEnd="1dp"
+            android:layout_margin="@dimen/dp10"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back" />
@@ -30,7 +31,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/sp18"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp20"
             android:fontFamily="@font/poppins_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -234,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nomor_penerbangan"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 
@@ -244,14 +245,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp10"
                 app:boxBackgroundMode="outline"
-                app:endIconMode="clear_text"
+                app:endIconMode="dropdown_menu"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etclass"
+                <AutoCompleteTextView
+                    android:id="@+id/tvClass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/kelas"
+                    android:hint="@string/type_ticket"
+                    android:padding="@dimen/dp15"
                     android:fontFamily="@font/poppins_regular"
                     android:background="@drawable/background_edit_text"/>
 

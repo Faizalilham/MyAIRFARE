@@ -33,6 +33,15 @@ class TicketViewModel @Inject constructor(
     fun doDeleteTicket(token : String, id:String) = ticketRepository.doDeleteTicket(token,id)
     fun readTicket(token :String) = ticketRepository.readTicket(token)
     fun readTicketById(token :String,id : String) = ticketRepository.doReadTicketById(token,id)
+    fun doFilterTicket(
+        from : String,
+        dest : String,
+        depart : String,
+        kelas :String,
+        type : String
+    ) = ticketRepository.doFilterTicket(from,dest, depart, kelas, type)
+
+    fun doFilterTicketObserver() = ticketRepository.doFilterTicketObserver()
 
 
     fun readTicketByIdObserver() = ticketRepository.doReadTicketByIdObserver()

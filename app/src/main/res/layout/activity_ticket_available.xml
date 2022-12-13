@@ -26,12 +26,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="500dp">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="500dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
                                 android:id="@+id/tvTittle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/daftar_pengguna"
+                                android:text="@string/tiket_tersedia"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/sp18"
                                 android:textStyle="bold"
@@ -132,7 +132,7 @@
                                     android:background="@drawable/background_edit_text"
                                     android:fontFamily="@font/poppins_regular"
                                     android:imeOptions="actionSearch"
-                                    android:hint="@string/cari_berdasarkan_email"
+                                    android:hint="@string/asal"
                                     android:textColor="@color/black"
                                     android:inputType="textEmailAddress" />
 
@@ -155,7 +155,7 @@
                                     android:background="@drawable/background_edit_text"
                                     android:fontFamily="@font/poppins_regular"
                                     android:imeOptions="actionSearch"
-                                    android:hint="@string/cari_berdasarkan_email"
+                                    android:hint="@string/tujuan"
                                     android:textColor="@color/black"
                                     android:inputType="textEmailAddress" />
 
@@ -163,6 +163,29 @@
 
 
                         </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/ilDate"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:endIconMode="clear_text"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dp5"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:background="@drawable/background_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:imeOptions="actionSearch"
+                                android:hint="@string/tanggal"
+                                android:textColor="@color/black"
+                                android:inputType="textEmailAddress" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -170,50 +193,47 @@
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
-
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/ilDate"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:endIconMode="clear_text"
+                                android:layout_marginTop="@dimen/dp10"
+                                app:boxBackgroundMode="outline"
+                                app:endIconMode="dropdown_menu"
                                 android:layout_weight="1"
-                                android:layout_margin="@dimen/dp5"
-                                >
+                                android:layout_marginStart="@dimen/dp5"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/etDate"
+                                <AutoCompleteTextView
+                                    android:id="@+id/tvTypeTicket"
                                     android:layout_width="match_parent"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/background_edit_text"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:imeOptions="actionSearch"
-                                    android:hint="@string/cari_berdasarkan_email"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/type_ticket"
+                                    android:padding="@dimen/dp15"
                                     android:textColor="@color/black"
-                                    android:inputType="textEmailAddress" />
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:background="@drawable/background_edit_text"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/ilKelas"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                app:endIconMode="clear_text"
+                                android:layout_marginTop="@dimen/dp10"
+                                app:boxBackgroundMode="outline"
+                                app:endIconMode="dropdown_menu"
                                 android:layout_weight="1"
-                                android:layout_margin="@dimen/dp5"
-                                >
+                                android:layout_marginStart="@dimen/dp5"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                                <com.google.android.material.textfield.TextInputEditText
-                                    android:id="@+id/etKelas"
+                                <AutoCompleteTextView
+                                    android:id="@+id/tvClass"
                                     android:layout_width="match_parent"
-                                    android:layout_height="70dp"
-                                    android:background="@drawable/background_edit_text"
-                                    android:fontFamily="@font/poppins_regular"
-                                    android:imeOptions="actionSearch"
-                                    android:hint="@string/cari_berdasarkan_email"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/kelas"
+                                    android:padding="@dimen/dp15"
                                     android:textColor="@color/black"
-                                    android:inputType="textEmailAddress" />
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:background="@drawable/background_edit_text"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -221,7 +241,7 @@
                         </LinearLayout>
 
                         <Button
-                            android:id="@+id/btnPost"
+                            android:id="@+id/btnSearch"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp15"
@@ -252,6 +272,33 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageNotFound"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_not_found"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="2.0" />
+
+            <TextView
+                android:id="@+id/tvNotFound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/search_not_found"
+                android:textSize="@dimen/sp16"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/dp15"
+                android:fontFamily="@font/poppins_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imageNotFound" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loading"

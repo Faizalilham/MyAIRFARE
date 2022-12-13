@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import binar.finalproject.MyAirFare_admin.databinding.ActivityAddTicketBinding
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.lifecycle.LiveData
@@ -17,7 +18,6 @@ import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.utils.ImagePost
 import binar.finalproject.MyAirFare_admin.viewmodel.auth.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare_admin.R
-import binar.finalproject.MyAirFare_admin.databinding.ActivityAddTicketBinding
 import binar.finalproject.MyAirFare_admin.databinding.ImageBottomSheetBinding
 import binar.finalproject.MyAirFare_admin.utils.DatePicker
 import binar.finalproject.MyAirFare_admin.utils.PostTicketValidation
@@ -40,7 +40,6 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var uri : Uri
     private var getFile: File? = null
-    private var type = ""
     private var id : String? = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -56,11 +55,14 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
             setupView(id!!)
             binding.tvTittle.text = "Perbarui Tiket"
             binding.btnPost.visibility = View.GONE
+            dropDownMenuType()
+            dropDownMenuClass()
         }else{
             binding.tvTittle.text = "Tambah Tiket"
             binding.btnUpdate.visibility = View.GONE
+            dropDownMenuType()
+            dropDownMenuClass()
         }
-        dropDownMenu()
         bottomSheet()
         postTicket()
         updateTicket()
@@ -71,18 +73,30 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         binding.toolbar.setOnClickListener { finish() }
     }
 
-    private fun dropDownMenu(){
-        val data = resources.getStringArray(R.array.type)
-        val adapter = ArrayAdapter(this,R.layout.dropdown_type_ticket,data)
+    private fun dropDownMenuType(){
+        val arrayType = resources.getStringArray(R.array.type)
+        val adapter = ArrayAdapter(this,R.layout.dropdown_type_ticket,arrayType)
         with(binding.tvTypeTicket){
+            setAdapter(adapter)
+            onItemClickListener = this@AddTicketActivity
+        }
+    }
+    private fun dropDownMenuClass(){
+        val arrayClass = resources.getStringArray(R.array.classes)
+        val adapter = ArrayAdapter(this,R.layout.dropdown_type_ticket,arrayClass)
+        with(binding.tvClass){
             setAdapter(adapter)
             onItemClickListener = this@AddTicketActivity
         }
     }
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val item = parent?.getItemAtPosition(position).toString()
-        type = item
+        if (parent == binding.tvClass) {
+            binding.tvClass.setText(parent.getItemAtPosition(position).toString())
+        } else if (parent == binding.tvTypeTicket) {
+            binding.tvTypeTicket.setText(parent.getItemAtPosition(position).toString())
+        }
+
     }
 
     private val openGallery = registerForActivityResult(ActivityResultContracts.GetContent()){
@@ -141,8 +155,27 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                 val price = etPrice.text.toString()
                 val chair = etNoChair.text.toString()
                 val flightNumber = etFlightNumber.text.toString()
-                val kelas = etclass.text.toString()
                 val estimated = etEstimated.text.toString()
+                val classess = tvClass.text.toString()
+                val tipe = tvTypeTicket.text.toString()
+                var kelas = "1"
+                var type = "1"
+                if(classess == "Economy"){
+                    kelas = "1"
+                    Toast.makeText(this@AddTicketActivity, kelas, Toast.LENGTH_SHORT).show()
+                }else{
+                    kelas = "2"
+                    Toast.makeText(this@AddTicketActivity, kelas, Toast.LENGTH_SHORT).show()
+                }
+                if(tipe == "Dewasa"){
+                    type = "1"
+                    Toast.makeText(this@AddTicketActivity, type, Toast.LENGTH_SHORT).show()
+                }else{
+                    type = "2"
+                    Toast.makeText(this@AddTicketActivity, type, Toast.LENGTH_SHORT).show()
+                }
+                Log.d("TIPE DAN CLASS","$kelas $type")
+                Log.d("TIPE DAN CLASS","$classess $tipe")
                 val currentImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                 val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                     "image",
@@ -227,7 +260,14 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                             etNamePlane.setText(datas.ticket.name)
                             etFrom.setText(datas.ticket.from)
                             etDestination.setText(datas.ticket.dest)
-                            etclass.setText(datas.ticket.kelas)
+                            when(datas.ticket.kelas){
+                                1 -> tvClass.setText("ECONOMY")
+                                2 -> tvClass.setText("BUSSINESS")
+                            }
+                            when(datas.ticket.type){
+                                1 -> tvTypeTicket.setText("DEWASA")
+                                2 -> tvTypeTicket.setText("ANAK-ANAK")
+                            }
                             etNoChair.setText(datas.ticket.no_chair.toString())
                             etPrice.setText((datas.ticket.price.toString()))
                             etEstimated.setText(datas.ticket.estimated_up_dest)

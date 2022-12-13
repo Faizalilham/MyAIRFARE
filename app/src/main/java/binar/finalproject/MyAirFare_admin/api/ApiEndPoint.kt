@@ -63,6 +63,15 @@ interface ApiEndPoint {
         @Path("id") id : String
     ): Call<DeleteTicketResponse>
 
+    @GET("api/v1/filter-ticket")
+    fun doFilterTicket(
+        @Query("from") from : String,
+        @Query("destination") destination : String,
+        @Query("depart") depart : String,
+        @Query("kelas") kelas : String,
+        @Query("type_passenger[]") type_passenger : String
+    ):Call<FilterTicketResponse>
+
 
 
 

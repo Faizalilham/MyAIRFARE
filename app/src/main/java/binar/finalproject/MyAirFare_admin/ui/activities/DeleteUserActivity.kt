@@ -26,6 +26,10 @@ class DeleteUserActivity : AppCompatActivity() {
         if(i != null){
             getTicketById(i)
         }
+        back()
+    }
+    private fun back(){
+        binding.toolbar.setOnClickListener { finish() }
     }
 
     private fun getTicketById(i :String){

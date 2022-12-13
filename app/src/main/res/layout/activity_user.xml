@@ -135,6 +135,33 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent">
 
+           <ImageView
+               android:id="@+id/imageNotFound"
+               android:layout_width="200dp"
+               android:layout_height="200dp"
+               android:src="@drawable/ic_not_found"
+               android:visibility="gone"
+               app:layout_constraintBottom_toBottomOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintVertical_bias="2.0" />
+
+           <TextView
+               android:id="@+id/tvNotFound"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/search_not_found"
+               android:textSize="@dimen/sp16"
+               android:textColor="@color/black"
+               android:gravity="center"
+               android:visibility="gone"
+               android:layout_marginTop="@dimen/dp15"
+               android:fontFamily="@font/poppins_regular"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintTop_toBottomOf="@id/imageNotFound" />
+
            <com.airbnb.lottie.LottieAnimationView
                android:id="@+id/loading"
                android:layout_width="300dp"
@@ -153,7 +180,7 @@
            <androidx.recyclerview.widget.RecyclerView
                android:id="@+id/recyclerUser"
                android:layout_width="match_parent"
-               android:layout_height="0dp"
+               android:layout_height="match_parent"
                android:layout_marginTop="@dimen/dp15"
                app:layout_constraintBottom_toBottomOf="parent"
                tools:listitem="@layout/list_item_user"/>

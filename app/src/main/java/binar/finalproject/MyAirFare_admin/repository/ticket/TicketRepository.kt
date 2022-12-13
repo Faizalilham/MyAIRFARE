@@ -215,4 +215,49 @@ class TicketRepository @Inject constructor(private val api : ApiEndPoint) {
         })
     }
 
+    private val doFilterTicket : MutableLiveData<FilterTicketResponse?> = MutableLiveData()
+    fun doFilterTicketObserver() : LiveData<FilterTicketResponse?> = doFilterTicket
+
+
+    fun doFilterTicket(
+        from : String,dest : String,depart : String,kelas : String, type : String
+    ){
+        api.doFilterTicket(from,dest,depart,kelas, type)
+            .enqueue(object : Callback<FilterTicketResponse>{
+                override fun onResponse(
+                    call: Call<FilterTicketResponse>,
+                    response: Response<FilterTicketResponse>
+                ) {
+
+                    if(response.isSuccessful){
+                        val body = response.body()
+                        if(body != null){
+                            doFilterTicket.postValue(body)
+                            Log.d("SUCCESS","$body")
+                        }else{
+                            val error = ErrorValidation.errorAuthValidation(response.code())
+                            doFilterTicket.postValue(null)
+                            message.postValue(error)
+                            Log.d("ERROR",response.code().toString())
+                        }
+                    }else{
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        doFilterTicket.postValue(null)
+                        message.postValue(error)
+                        Log.d("ERROR",response.code().toString())
+                    }
+
+
+                }
+
+                override fun onFailure(call: Call<FilterTicketResponse>, t: Throwable) {
+                    doFilterTicket.postValue(null)
+                    message.postValue(t.message)
+                    Log.d("ERROR",message.toString())
+                }
+
+            })
+    }
+
+
 }
