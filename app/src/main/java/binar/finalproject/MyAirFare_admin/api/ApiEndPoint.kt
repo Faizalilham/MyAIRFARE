@@ -69,7 +69,8 @@ interface ApiEndPoint {
         @Query("destination") destination : String,
         @Query("depart") depart : String,
         @Query("kelas") kelas : String,
-        @Query("type_passenger[]") type_passenger : String
+        @Query("type_passenger[]") type_passenger : String,
+        @Query("return") returns : String,
     ):Call<FilterTicketResponse>
 
 

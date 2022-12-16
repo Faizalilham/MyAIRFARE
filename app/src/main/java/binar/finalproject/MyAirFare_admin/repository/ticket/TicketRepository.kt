@@ -220,9 +220,9 @@ class TicketRepository @Inject constructor(private val api : ApiEndPoint) {
 
 
     fun doFilterTicket(
-        from : String,dest : String,depart : String,kelas : String, type : String
+        from : String,dest : String,depart : String,kelas : String, type : String,returns : String
     ){
-        api.doFilterTicket(from,dest,depart,kelas, type)
+        api.doFilterTicket(from,dest,depart,kelas, type,returns)
             .enqueue(object : Callback<FilterTicketResponse>{
                 override fun onResponse(
                     call: Call<FilterTicketResponse>,

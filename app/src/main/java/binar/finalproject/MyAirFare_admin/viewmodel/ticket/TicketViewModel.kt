@@ -38,8 +38,8 @@ class TicketViewModel @Inject constructor(
         dest : String,
         depart : String,
         kelas :String,
-        type : String
-    ) = ticketRepository.doFilterTicket(from,dest, depart, kelas, type)
+        type : String,returns : String
+    ) = ticketRepository.doFilterTicket(from,dest, depart, kelas, type,returns)
 
     fun doFilterTicketObserver() = ticketRepository.doFilterTicketObserver()
 

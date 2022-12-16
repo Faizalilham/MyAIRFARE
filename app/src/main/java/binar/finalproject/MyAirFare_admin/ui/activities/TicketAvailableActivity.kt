@@ -1,18 +1,22 @@
 package binar.finalproject.MyAirFare_admin.ui.activities
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.MyAirFare_admin.R
 import binar.finalproject.MyAirFare_admin.adapter.TicketAdapter
 import binar.finalproject.MyAirFare_admin.databinding.ActivityTicketAvailableBinding
 import binar.finalproject.MyAirFare_admin.model.ticket.Tickets
+import binar.finalproject.MyAirFare_admin.utils.DatePicker
 import binar.finalproject.MyAirFare_admin.utils.TicketConstant
 import binar.finalproject.MyAirFare_admin.viewmodel.auth.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare_admin.viewmodel.ticket.TicketViewModel
@@ -25,6 +29,7 @@ class TicketAvailableActivity : AppCompatActivity(), AdapterView.OnItemClickList
     private lateinit var ticketViewModel : TicketViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var ticketAdapter: TicketAdapter
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityTicketAvailableBinding.inflate(layoutInflater)
@@ -36,6 +41,16 @@ class TicketAvailableActivity : AppCompatActivity(), AdapterView.OnItemClickList
         dropDownMenuClass()
         dropDownMenuType()
         back()
+        setDate()
+    }
+
+    private fun setDate(){
+        binding.etDate.setOnClickListener {
+            DatePicker.datePicker(this,binding.etDate)
+        }
+        binding.etDateReturn.setOnClickListener {
+            DatePicker.datePicker(this,binding.etDateReturn)
+        }
     }
 
     private fun dropDownMenuType(){
@@ -64,11 +79,11 @@ class TicketAvailableActivity : AppCompatActivity(), AdapterView.OnItemClickList
 
     }
 
-    private fun searchTicket(from : String,dest : String,depart : String, kelas : String, type : String){
+    private fun searchTicket(from : String,dest : String,depart : String, kelas : String, type : String,dateReturn : String){
         authPreferencesViewModel.getToken().observe(this){
             if(it != null && it != "undefined"){
                 ticketViewModel.doFilterTicket(
-                    from, dest, depart, kelas, type
+                    from, dest, depart, kelas, type,dateReturn
                 )
                 showLoading(true)
                 ticketViewModel.doFilterTicketObserver().observe(this){ filterSearch ->
@@ -77,7 +92,6 @@ class TicketAvailableActivity : AppCompatActivity(), AdapterView.OnItemClickList
                             showLoading(false)
                             showFound(true)
                             setupRecycler(filterSearch.tickets.go)
-                            Toast.makeText(this@TicketAvailableActivity, "${filterSearch.tickets.go}", Toast.LENGTH_SHORT).show()
                         }else{
                             showLoading(false)
                             showFound(false)
@@ -92,16 +106,21 @@ class TicketAvailableActivity : AppCompatActivity(), AdapterView.OnItemClickList
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun doSearch(){
         binding.apply {
             btnSearch.setOnClickListener {
                 val from = etFrom.text.toString().trim()
-                val dest = etDestination.text.toString().trim()
+                val dest = etDestination.text.toString()
                 val depart = etDate.text.toString().trim()
                 val kelas = tvClass.text.toString().trim()
                 val type = tvTypeTicket.text.toString().trim()
+                val dateReturn = etDateReturn.text.toString().trim()
                 if(from.isNotBlank() && dest.isNotBlank() && depart.isNotBlank() && kelas.isNotBlank()){
-                    searchTicket(from,dest,depart,kelas,type)
+                    val date = DatePicker.formatterDate(depart)
+                    val dates = DatePicker.formatterDate(dateReturn)
+                    Log.d("FILTER","$from $dest $date $kelas $type $dates")
+                    searchTicket(from,dest,date,kelas,type,dates)
                 }else{
                     Toast.makeText(this@TicketAvailableActivity, "Kolom tidak boleh kosong", Toast.LENGTH_SHORT).show()
                 }
@@ -153,6 +172,7 @@ class TicketAvailableActivity : AppCompatActivity(), AdapterView.OnItemClickList
             layoutManager = LinearLayoutManager(this@TicketAvailableActivity)
         }
     }
+
 
     private fun showLoading(show : Boolean){
         if(show){

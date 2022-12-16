@@ -130,6 +130,8 @@
     <string name="perbarui_tiket">Perbarui Tiket</string>
     <string name="tanggal">Tanggal</string>
     <string name="search_not_found">Pencarian tidak ditemukan, silahkan masukkan kata kunci lain</string>
+    <string name="tanggal_kembali">Tanggal Kembali</string>
+    <string name="tanggal_berangkat">Tanggal Berangkat</string>
 
     <string-array name="classes">
         <item>Economy</item>

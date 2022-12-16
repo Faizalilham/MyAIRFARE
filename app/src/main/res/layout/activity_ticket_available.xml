@@ -26,12 +26,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp">
+                android:layout_height="570dp">
 
                 <LinearLayout
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="570dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -181,7 +181,7 @@
                                 android:background="@drawable/background_edit_text"
                                 android:fontFamily="@font/poppins_regular"
                                 android:imeOptions="actionSearch"
-                                android:hint="@string/tanggal"
+                                android:hint="@string/tanggal_berangkat"
                                 android:textColor="@color/black"
                                 android:inputType="textEmailAddress" />
 
@@ -239,6 +239,28 @@
 
 
                         </LinearLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:endIconMode="clear_text"
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/dp5"
+                            >
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etDateReturn"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:background="@drawable/background_edit_text"
+                                android:fontFamily="@font/poppins_regular"
+                                android:imeOptions="actionSearch"
+                                android:hint="@string/tanggal_kembali"
+                                android:textColor="@color/black"
+                                android:inputType="textEmailAddress" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
 
                         <Button
                             android:id="@+id/btnSearch"
