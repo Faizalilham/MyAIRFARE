@@ -26,5 +26,5 @@ data class CurrentUsers(
     val photo : String,
     val createdAt : String,
     val updatedAt : String,
-    val carts : MutableList<Carts>
+//    val carts : MutableList<Carts>
 ):Parcelable

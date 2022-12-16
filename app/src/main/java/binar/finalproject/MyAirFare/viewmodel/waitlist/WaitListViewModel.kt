@@ -15,7 +15,7 @@ class WaitListViewModel @Inject constructor(
     fun getAllWaitList(token : String) = waitListRepository.getAllWaitList(token)
     fun getAllWaitListObserver () = waitListRepository.getAllWaitListObserver()
 
-    fun postWaitList(token : String,tickets_id : String) = waitListRepository.postWaitList(token,tickets_id)
+    fun postWaitList(token : String,tickets_id : MutableList<String>) = waitListRepository.postWaitList(token,tickets_id)
     fun postWaitListObserver() = waitListRepository.postWaitListObserver()
 
     fun deleteWaitList(token : String,id : Int) = waitListRepository.deleteWaitList(token,id)

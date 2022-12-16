@@ -50,7 +50,8 @@ interface AuthEndPoint {
         @Part("password") password : RequestBody,
         @Part("re_type_pass") re_type_pass : RequestBody,
         @Part("title") title : RequestBody,
-        @Part image : MultipartBody.Part
+        @Part image : MultipartBody.Part,
+        @Part("visa_number")visa_number : RequestBody
     ): Call<UserCurrentUpdate>
 
     @POST("api/v1/loginRegGoogle")

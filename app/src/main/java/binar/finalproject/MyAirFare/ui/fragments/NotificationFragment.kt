@@ -1,5 +1,6 @@
 package binar.finalproject.MyAirFare.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.databinding.FragmentNotificationBinding
 import binar.finalproject.MyAirFare.socket.SocketHandler
+import binar.finalproject.MyAirFare.ui.activities.LoginActivity
 import binar.finalproject.MyAirFare.utils.Notifications
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,13 +41,19 @@ class NotificationFragment : Fragment() {
         connectSocket()
 
     }
+    private fun doLogin(){
+        binding.btnLogin.setOnClickListener { startActivity(
+            Intent(requireActivity(),
+                LoginActivity::class.java)
+        )}
+    }
 
     private fun connectSocket(){
         SocketHandler.setSocket()
         val socket = SocketHandler.getSocket()
         socket.connect()
-        socket.emit("counter")
-        socket.on("counter"){
+        socket.emit("counter") // endpoint request notifikasi
+        socket.on("counter"){  // get response data
             if(it != null){
                 val count = it[0] as String// getData from server
                 activity?.runOnUiThread{
@@ -89,6 +97,7 @@ class NotificationFragment : Fragment() {
             imageGuest.visibility = View.VISIBLE
             tvGuest.visibility = View.VISIBLE
             btnLogin.visibility = View.VISIBLE
+            doLogin()
         }
     }
 

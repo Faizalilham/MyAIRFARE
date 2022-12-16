@@ -6,11 +6,13 @@ import binar.finalproject.MyAirFare.model.tickets.Ticket
 import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 data class UserLoginResponse(
     val token : String,
     val user : UserLogin
-)
+):Parcelable
 
+@Parcelize
 data class UserLogin(
     val id : String,
     val username : String,
@@ -26,7 +28,7 @@ data class UserLogin(
     val createdAt : String,
     val updatedAt : String,
     val carts : MutableList<Carts>
-)
+):Parcelable
 
 @Parcelize
 data class Carts(

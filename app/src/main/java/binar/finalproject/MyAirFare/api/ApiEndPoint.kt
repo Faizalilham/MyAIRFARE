@@ -4,6 +4,9 @@ package binar.finalproject.MyAirFare.api
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketByIdResponse
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketResponse
 import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
+import binar.finalproject.MyAirFare.model.transactions.PostTransactionsRequest
+import binar.finalproject.MyAirFare.model.transactions.PostTransactionsResponse
+import binar.finalproject.MyAirFare.model.transactions.ReadTransactionsResponse
 import binar.finalproject.MyAirFare.model.wait_list.WaitList
 import binar.finalproject.MyAirFare.model.wait_list.WaitListDeleteResponse
 import binar.finalproject.MyAirFare.model.wait_list.WaitListRequest
@@ -37,8 +40,9 @@ interface ApiEndPoint {
         @Query("from") from : String,
         @Query("destination") destination : String,
         @Query("depart") depart : String,
-        @Query("return") kembalian : String,
-        @Query("kelas") kelas : String
+        @Query("kelas") kelas : String,
+        @Query("type_passenger[]") type_passenger : String,
+        @Query("return") returns : String
     ): Call<ScheduleResponse>
 
     @GET("api/v1/wait-list")
@@ -57,6 +61,31 @@ interface ApiEndPoint {
         @Header("x-access-token") Description : String,
         @Path("id") id : Int
     ):Call<WaitListDeleteResponse>
+
+
+    @GET("api/v1/user-transactions")
+    fun getAllTransactions(
+        @Header("x-access-token") Description : String,
+    ):Call<ReadTransactionsResponse>
+
+    @GET("api/v1/transactions/:id")
+    fun getTransactionById(
+        @Header("x-access-token") Description : String,
+        @Path("id") id : Int,
+    ):Call<ReadTransactionsResponse>
+
+    @POST("api/v1/user-transactions")
+    fun postTransaction(
+        @Header("x-access-token") Description : String,
+        @Body postTransactionsRequest: PostTransactionsRequest
+    ):Call<PostTransactionsResponse>
+
+    @DELETE("api/v1/transactions/{id}")
+    fun deleteTransaction(
+        @Header("x-access-token") Description : String,
+        @Path("id") id : Int,
+    ):Call<WaitListDeleteResponse>
+
 
 }
 

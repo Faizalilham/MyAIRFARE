@@ -60,9 +60,9 @@ class CurrentUserRepository @Inject constructor(private val api : AuthEndPoint) 
 
     fun currentUserUpdate(token : String,username : RequestBody,firstname : RequestBody,
     lastname : RequestBody,email : RequestBody,password : RequestBody,confirmPassword : RequestBody,
-                          tittle : RequestBody,image : MultipartBody.Part){
+                          tittle : RequestBody,image : MultipartBody.Part,visa_number : RequestBody){
 
-        api.updateCurrentUser(token,username,firstname,lastname,email,password,confirmPassword,tittle,image)
+        api.updateCurrentUser(token,username,firstname,lastname,email,password,confirmPassword,tittle,image,visa_number)
             .enqueue(object : Callback<UserCurrentUpdate>{
                 override fun onResponse(
                     call: Call<UserCurrentUpdate>,

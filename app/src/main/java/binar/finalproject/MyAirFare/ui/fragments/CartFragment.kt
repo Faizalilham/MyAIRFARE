@@ -1,5 +1,6 @@
 package binar.finalproject.MyAirFare.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,8 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.adapter.CartAdapter
 import binar.finalproject.MyAirFare.databinding.FragmentCartBinding
+import binar.finalproject.MyAirFare.model.tickets.Schedule
 import binar.finalproject.MyAirFare.model.wait_list.TicketWaitList
 import binar.finalproject.MyAirFare.model.wait_list.WaitList
+import binar.finalproject.MyAirFare.ui.activities.DetailPerjalanan
+import binar.finalproject.MyAirFare.ui.activities.LoginActivity
+import binar.finalproject.MyAirFare.ui.activities.MainActivity
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.waitlist.WaitListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -89,20 +94,28 @@ class CartFragment : Fragment() {
     }
 
     private fun setRecycler(data : MutableList<WaitList>){
-        cartAdapter = CartAdapter(object : CartAdapter.QuantitiyListener{
-            override fun onSelected(listPrices: MutableList<Int>) {
-                val prices = "Rp. ${listPrices.sum().toString()}"
-                binding.tvPrice.text = prices
-            }
-
+        cartAdapter = CartAdapter(object : CartAdapter.OnClickListener{
             override fun onDelete(id : Int) {
                 deleteWaitList(id)
+            }
+
+            override fun onDetail(schedule: MutableList<Schedule>, chairs: MutableList<Int>) {
+                startActivity(Intent(requireActivity(), DetailPerjalanan::class.java).also{
+                    it.putExtra("schedule",schedule[0])
+                    if(schedule.size > 1){
+                        it.putExtra("returnFlight",schedule[1])
+                    }
+                    it.putIntegerArrayListExtra("chairs", ArrayList(chairs))
+                })
             }
         })
         cartAdapter.submiData(data)
         binding.recyclerCart.apply {
             adapter = cartAdapter
-            layoutManager = LinearLayoutManager(requireActivity())
+            if (isAdded && activity != null) {
+                layoutManager = LinearLayoutManager(requireActivity())
+            }
+
         }
     }
 
@@ -120,6 +133,10 @@ class CartFragment : Fragment() {
         if(loading) binding.loading.visibility = View.VISIBLE else binding.loading.visibility = View.GONE
     }
 
+    private fun doLogin(){
+        binding.btnLogin.setOnClickListener { startActivity(Intent(requireActivity(),LoginActivity::class.java))}
+    }
+
 
     private fun showWarning(show : Boolean){
         binding.apply {
@@ -127,7 +144,6 @@ class CartFragment : Fragment() {
                 imageNotFound.visibility = View.VISIBLE
                 tvNotFound.visibility = View.VISIBLE
                 recyclerCart.visibility = View.VISIBLE
-                bottomAppBar.visibility = View.VISIBLE
                 imageGuest.visibility = View.GONE
                 tvGuest.visibility = View.GONE
                 tvGuest2.visibility = View.GONE
@@ -136,11 +152,11 @@ class CartFragment : Fragment() {
                 imageNotFound.visibility = View.GONE
                 tvNotFound.visibility = View.GONE
                 recyclerCart.visibility = View.GONE
-                bottomAppBar.visibility = View.GONE
                 imageGuest.visibility = View.VISIBLE
                 tvGuest.visibility = View.VISIBLE
                 tvGuest2.visibility = View.VISIBLE
                 btnLogin.visibility = View.VISIBLE
+                doLogin()
             }
         }
     }

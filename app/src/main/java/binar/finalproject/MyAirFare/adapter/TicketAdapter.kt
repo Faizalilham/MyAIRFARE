@@ -21,6 +21,8 @@ import java.util.*
 
 class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketAdapter.TicketViewHolder>(){
 
+    private val listChairs = mutableListOf<Int>()
+
     inner class TicketViewHolder(val binding : ListItemHomeBinding):RecyclerView.ViewHolder(binding.root)
 
     private val diffUtil = object : DiffUtil.ItemCallback<Schedule>(){
@@ -58,11 +60,10 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
         holder.binding.apply {
             val diff = differ.currentList[position]
-            Log.d("KONTOLLL",DatePicker.formatDateDC(diff.date_air,TimeZone.getDefault().id))
             val dateAir = DatePicker.dateCalculation(diff.date_air)
             val estimated = DatePicker.dateCalculation(diff.estimated_up_dest)
-            val timeAir = DatePicker.formatDateDC(diff.date_air,TimeZone.getDefault().id)
-            val timeEstimated = DatePicker.formatDateDC(diff.estimated_up_dest,TimeZone.getDefault().id)
+            val timeAir = DatePicker.timeCalculation(diff.date_air)
+            val timeEstimated = DatePicker.timeCalculation(diff.estimated_up_dest)
             val date = "$dateAir - $estimated"
             Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${diff.logo}").into(imageLogo)
             tvTime.text = DatePicker.getDifferentTime(diff.date_air,diff.estimated_up_dest)
@@ -72,13 +73,17 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
             when(diff.kelas){
                 1 ->  tvClass.text = "ECONOMY"
                 2 ->  tvClass.text = "BUSSINESS"
+                else -> tvClass.text = ""
             }
             tvAsal.text = diff.from
             tvTujuan.text = diff.dest
             tvPrice.text = diff.price.toString()
             tvKodePenerbangan.text = diff.flight_number
+            diff.available.forEach {
+                listChairs.add(it.chair_number)
+            }
             card.setOnClickListener {
-                listener.onClicked(diff)
+                listener.onClicked(diff,listChairs)
             }
 
         }
@@ -87,6 +92,6 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
     override fun getItemCount(): Int = differ.currentList.size
 
     interface OnClick{
-        fun onClicked(schedule: Schedule)
+        fun onClicked(schedule: Schedule,chairs : MutableList<Int>)
     }
 }

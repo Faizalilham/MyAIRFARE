@@ -122,6 +122,36 @@
     <string name="tipe_tiket">Tipe Tiket</string>
     <string name="kelas">Kelas</string>
     <string name="tidak_ada_data_keranjang">Tidak ada data keranjang</string>
+    <string name="pulang_pergi">Pulang Pergi</string>
+    <string name="tanggal_pulang">Tanggal Pulang</string>
+    <string name="tanggal_pergi">Tanggal Pergi</string>
+    <string name="jumlah_kursi">Jumlah Kursi</string>
+    <string name="jenis_tiket">Jenis Tiket</string>
+    <string name="perjalanan_pergi">Perjalanan Pergi</string>
+    <string name="perjalanan_pulang">Perjalanan Pulang</string>
+    <string name="total_harga_tiket">Total Harga Tiket</string>
+    <string name="menunggu_pembayaran">Menunggu Pembayaran</string>
+    <string name="detail_transaksi">Detail Transaksi</string>
+    <string name="data_transaksi">Data Transaksi</string>
+    <string name="rincian_harga">Rincian Harga</string>
+    <string name="pilih_metode_pembayaran">Pilih Metode Pembayaran</string>
+    <string name="klik_lanjutkan_untuk_melihat_metode_pembayaran">Klik lanjutkan untuk melihat metode pembayaran</string>
+    <string name="lainnya">Lainnya</string>
+    <string name="batalkan_pesanan_ini">Batalkan Pesanan Ini</string>
+    <string name="lanjutkan_pembayaran">Lanjutkan Pembayaran</string>
+    <string name="batalkan_tiket">Batalkan Tiket</string>
+    <string name="apakah_anda_yakin_untuk_membatalkan_tiket_ini">Apakah anda yakin untuk membatalkan tiket ini ?</string>
+    <string name="visa_number">Visa Number</string>
+
+    <string-array name="classes">
+        <item>Economy</item>
+        <item>Bussiness</item>
+    </string-array>
+    <string-array name="type">
+        <item>Dewasa</item>
+        <item>Anak-Anak</item>
+    </string-array>
+
 
     <string-array name="tittle_item">
         <item>Tuan</item>

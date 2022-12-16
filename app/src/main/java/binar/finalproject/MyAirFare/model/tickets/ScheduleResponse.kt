@@ -10,7 +10,8 @@ data class ScheduleResponse(
 )
 
 data class Go(
-    val go : MutableList<Schedule>
+    val go : MutableList<Schedule>,
+    val return_flight : MutableList<Schedule>
 )
 
 @Parcelize
@@ -31,6 +32,9 @@ data class Schedule(
     val estimated_up_dest : String,
     val createdAt : String,
     val updatedAt : String,
+    val ticketClass : TicketClass,
+    val passenger : Passenger,
+    val available : MutableList<AvailableTickets>
 ):Parcelable
 
 
@@ -63,6 +67,23 @@ data class Transaksi(
 ):Parcelable
 
 @Parcelize
+data class TicketClass(
+    val id : Int,
+    val name : String,
+    val createdAt : String,
+    val updatedAt : String
+):Parcelable
+
+@Parcelize
+data class Passenger(
+    val id : Int,
+    val passenger : String,
+    val createdAt : String,
+    val updatedAt : String
+):Parcelable
+
+
+@Parcelize
 data class CheckIn(
     val id : Int
 ):Parcelable
@@ -70,8 +91,8 @@ data class CheckIn(
 @Parcelize
 data class AvailableTickets(
     val id : Int,
-    val ticked_id : String,
-    val user_id : String,
+    val ticket_id : String,
+    val user_id : String?,
     val chair_number : Int,
     val createdAt : String,
     val updatedAt : String

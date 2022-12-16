@@ -1,28 +1,32 @@
 package binar.finalproject.MyAirFare.ui.fragments
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.*
+import androidx.annotation.LayoutRes
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.adapter.TicketAdapter
 import binar.finalproject.MyAirFare.databinding.FragmentHomeBinding
 import binar.finalproject.MyAirFare.model.tickets.Schedule
-import binar.finalproject.MyAirFare.ui.activities.DetailPerjalanan
 import binar.finalproject.MyAirFare.ui.activities.SearchTicketActivity
 import binar.finalproject.MyAirFare.utils.DatePicker
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.ticket.TicketViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
 
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -45,8 +49,12 @@ class HomeFragment : Fragment() {
         setupView()
         search()
         setDate()
-        setTime()
         getAllTicket()
+        isReturn()
+        val classes = resources.getStringArray(R.array.classes)
+        val type = resources.getStringArray(R.array.type)
+        dropDownMenu(classes,R.layout.dropdown_tittle_item,binding.tvClass)
+        dropDownMenu(type,R.layout.dropdown_tittle_item,binding.tvTypeTicket)
     }
     private fun setupView(){
         authPreferencesViewModel.getName().observe(requireActivity()){
@@ -56,17 +64,57 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    private fun dropDownMenu(arr : Array<String>, @LayoutRes layout : Int, tv : AutoCompleteTextView){
+        val adapter = ArrayAdapter(requireActivity(), layout,arr)
+        with(tv){
+            setAdapter(adapter)
+            onItemClickListener = this@HomeFragment
+        }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        if (parent == binding.tvClass) {
+            binding.tvClass.setText(parent.getItemAtPosition(position).toString())
+        } else if (parent == binding.tvTypeTicket) {
+            binding.tvTypeTicket.setText(parent.getItemAtPosition(position).toString())
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun isReturn(){
+        binding.switches.setOnCheckedChangeListener { _, checked ->
+            if(checked){
+                binding.apply {
+                    setAnimation(linearClassType,1.0f,View.VISIBLE)
+                    setAnimation(ilLinearDateReturn,1.0f,View.VISIBLE)
+                    collapseConstraint.layoutParams.height = 1280
+                    collapseLinear.layoutParams.height = 1280
+                    setEnabled(true)
+                    btnSearch.setOnClickListener {
+                        go(DatePicker.formatterDate(etDateReturn.text.toString()))
+                    }
+                }
+            }else{
+                binding.apply {
+                    setAnimation(linearClassType,0.0f,View.GONE)
+                    setAnimation(ilLinearDateReturn,0.0f,View.GONE)
+                    collapseConstraint.layoutParams.height = 1020
+                    collapseLinear.layoutParams.height = 1020
+                    setEnabled(false)
+                }
+            }
+
+            binding.switches.isChecked = checked
+
+        }
+    }
     private fun setDate(){
         binding.etDate.setOnClickListener {
             DatePicker.datePicker(requireActivity(),binding.etDate)
         }
-    }
-
-    private fun setTime(){
-        binding.apply {
-            etTime.setOnClickListener{
-                DatePicker.timePicker(requireActivity(),childFragmentManager,etTime)
-            }
+        binding.etDateReturn.setOnClickListener {
+            DatePicker.datePicker(requireActivity(),binding.etDateReturn)
         }
     }
 
@@ -74,24 +122,33 @@ class HomeFragment : Fragment() {
     private fun search(){
         binding.apply {
             btnSearch.setOnClickListener {
-                val from = etFrom.text.toString()
-                val destination = etDestination.text.toString()
-                val date = etDate.text.toString()
-                val time = etTime.text.toString()
-                if(from.isNotBlank() && destination.isNotBlank() && date.isNotBlank()  && time.isNotBlank()){
-                    val dates = DatePicker.formatterDate(date)
-                    startActivity(Intent(requireActivity(),SearchTicketActivity::class.java).also{
-                        it.putExtra("from",from)
-                        it.putExtra("destination",destination)
-                        it.putExtra("date",dates)
-                        it.putExtra("time",time)
-
-                    })
-                }else{
-                    Toast.makeText(requireActivity(), "Kolom asal dan tujuan wajib diisi", Toast.LENGTH_SHORT).show()
-                }
+                go(null)
             }
 
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun go(dateReturn : String?){
+        binding.apply {
+            val from = etFrom.text.toString()
+            val destination = etDestination.text.toString()
+            val date = etDate.text.toString()
+            val kelas = tvClass.text.toString()
+            val tipe = tvTypeTicket.text.toString()
+            if(from.isNotBlank() && destination.isNotBlank() && date.isNotBlank() ){
+                val dates = DatePicker.formatterDate(date)
+                startActivity(Intent(requireActivity(),SearchTicketActivity::class.java).also{
+                    it.putExtra("from",from)
+                    it.putExtra("destination",destination)
+                    it.putExtra("date",dates)
+                    it.putExtra("kelas",kelas)
+                    it.putExtra("tipe",tipe)
+                    it.putExtra("dateReturn",dateReturn)
+                })
+            }else{
+                Toast.makeText(requireActivity(), "Kolom asal dan tujuan wajib diisi", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -113,10 +170,8 @@ class HomeFragment : Fragment() {
 
     private fun setRecycler(data : MutableList<Schedule>){
         ticketAdapter = TicketAdapter(object : TicketAdapter.OnClick{
-            override fun onClicked(schedule: Schedule) {
-                startActivity(Intent(requireActivity(),DetailPerjalanan::class.java).also{
-                    it.putExtra("schedule",schedule)
-                })
+            override fun onClicked(schedule: Schedule,chairs : MutableList<Int>) {
+                // Not clicked in list ticket home
             }
 
         })
@@ -126,6 +181,27 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
         }
     }
+
+    private fun setEnabled(enable : Boolean){
+        binding.apply {
+            etDateReturn.isEnabled = enable
+            tvTypeTicket.isEnabled = enable
+            tvClass.isEnabled = enable
+        }
+    }
+
+    fun setAnimation(anim : LinearLayout,alpha : Float, i : Int){
+        anim.animate()
+            .alpha(alpha)
+            .setDuration(100)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    anim.visibility = i
+                }
+            })
+    }
+
     private fun showLoading(show : Boolean){
         if(show) binding.loading.visibility = View.VISIBLE else  binding.loading.visibility = View.GONE
     }
@@ -134,6 +210,8 @@ class HomeFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+
 
 
 }

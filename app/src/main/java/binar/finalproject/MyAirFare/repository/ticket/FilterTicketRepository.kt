@@ -21,10 +21,10 @@ class FilterTicketRepository @Inject constructor(private val api : ApiEndPoint) 
 
     fun doFilterTicket(
         from :String,dest : String,depart :String,
-        kembalian :String,kelas : String
+        kelas : String,tipe : String,dateReturn : String
 
     ){
-        api.doFilterTicket(from,dest,depart, kembalian, kelas).enqueue(object :
+        api.doFilterTicket(from,dest,depart,kelas,tipe,dateReturn).enqueue(object :
             Callback<ScheduleResponse>{
             override fun onResponse(
                 call: Call<ScheduleResponse>,
@@ -39,16 +39,19 @@ class FilterTicketRepository @Inject constructor(private val api : ApiEndPoint) 
                         doFilterTicket.postValue(null)
                         val error = ErrorValidation.errorAuthValidation(response.code())
                         message.postValue(error)
+                        Log.d("errorr","${response.code()}")
                     }
                 }else{
                     doFilterTicket.postValue(null)
                     val error = ErrorValidation.errorAuthValidation(response.code())
                     message.postValue(error)
+                    Log.d("errorr","${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<ScheduleResponse>, t: Throwable) {
                 doFilterTicket.postValue(null)
+                Log.d("error","${t.message}")
             }
 
         })

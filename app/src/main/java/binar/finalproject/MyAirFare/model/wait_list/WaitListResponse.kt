@@ -1,12 +1,17 @@
 package binar.finalproject.MyAirFare.model.wait_list
 
+import android.os.Parcelable
 import binar.finalproject.MyAirFare.model.login.Carts
 import binar.finalproject.MyAirFare.model.login.UserLoginResponse
 import binar.finalproject.MyAirFare.model.tickets.AvailableTickets
+import binar.finalproject.MyAirFare.model.tickets.Schedule
+import kotlinx.parcelize.Parcelize
 
 data class WaitListResponse(
     val wait_list : MutableList<WaitList>
 )
+
+
 
 data class WaitList(
     val id : Int,
@@ -23,6 +28,7 @@ data class WaitList(
     val carts : MutableList<CartWaitList>
 )
 
+@Parcelize
 data class CartWaitList(
     val id : String,
     val trx_id : String,
@@ -32,8 +38,8 @@ data class CartWaitList(
     val chair_number : Int?,
     val createdAt : String,
     val updatedAt : String,
-    val ticket : TicketWaitList
-)
+    val ticket : Schedule
+):Parcelable
 
 data class TicketWaitList(
     val id : String,
@@ -52,7 +58,7 @@ data class TicketWaitList(
     val estimated_up_dest : String,
     val createdAt : String,
     val updatedAt : String,
-//    val available : MutableList<AvailableTickets>
+    val available : MutableList<AvailableTickets>
 )
 
 data class WaitListDeleteResponse(

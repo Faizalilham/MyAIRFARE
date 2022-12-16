@@ -56,8 +56,8 @@ class WaitListRepository @Inject constructor(private val api : ApiEndPoint) {
     private val postWaitList : MutableLiveData<WaitList?> = MutableLiveData()
     fun postWaitListObserver() : LiveData<WaitList?> = postWaitList
 
-    fun postWaitList(token : String, tickets_id : String){
-        api.postCart(token, WaitListRequest(mutableListOf(tickets_id)))
+    fun postWaitList(token : String, tickets_id : MutableList<String>){
+        api.postCart(token, WaitListRequest(tickets_id))
             .enqueue(object : Callback<WaitList>{
                 override fun onResponse(call: Call<WaitList>, response: Response<WaitList>) {
 

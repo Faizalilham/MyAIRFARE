@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import binar.finalproject.MyAirFare.databinding.FragmentActiveTicketBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class ActiveTicketFragment : Fragment() {
 
 

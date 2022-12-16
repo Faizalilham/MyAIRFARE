@@ -7,11 +7,15 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
+import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.ActivityEditProfileBinding
 import binar.finalproject.MyAirFare.databinding.ImageBottomSheetBinding
 import binar.finalproject.MyAirFare.model.user.CurrentUser
@@ -29,13 +33,14 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 @AndroidEntryPoint
-class EditProfileActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private var _binding : ActivityEditProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var currentUserViewModel: CurrentUserViewModel
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var uri : Uri
     private var getFile: File? = null
+    private var tittle = ""
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +53,22 @@ class EditProfileActivity : AppCompatActivity() {
         getDetail()
         bottomSheet()
         updateProfile()
+        dropDownMenu()
 
+    }
+
+    private fun dropDownMenu(){
+        val data = resources.getStringArray(R.array.tittle_item)
+        val adapter = ArrayAdapter(this, R.layout.dropdown_tittle_item,data)
+        with(binding.tvTittle){
+            setAdapter(adapter)
+            onItemClickListener = this@EditProfileActivity
+        }
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val item = parent?.getItemAtPosition(position).toString()
+        tittle = item
     }
 
     private fun getDetail(){
@@ -126,6 +146,7 @@ class EditProfileActivity : AppCompatActivity() {
                 val password = etPassword.text.toString()
                 val confirmPassword = etConfirmPassword.text.toString()
                 val tittle = tvTittle.text.toString()
+                val visaNumber = etVisaNumber.text.toString()
 
                 val currentImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                 val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -147,7 +168,8 @@ class EditProfileActivity : AppCompatActivity() {
                                password.toRequestBody("text/plain".toMediaTypeOrNull()),
                                confirmPassword.toRequestBody("text/plain".toMediaTypeOrNull()),
                                tittle.toRequestBody("text/plain".toMediaTypeOrNull()),
-                               imageMultipart
+                               imageMultipart,
+                               visaNumber.toRequestBody("text/plain".toMediaTypeOrNull())
                            )
                        }else{
                            currentUserViewModel.messageObserver().observe(this@EditProfileActivity){ message ->
@@ -198,10 +220,9 @@ class EditProfileActivity : AppCompatActivity() {
         return if (permissionCheck == PackageManager.PERMISSION_GRANTED &&
             permissionCheck2 == PackageManager.PERMISSION_GRANTED &&
             permissionCheck3 == PackageManager.PERMISSION_GRANTED    ) {
-            Toast.makeText(this@EditProfileActivity, "Permission Location DIIZINKAN", Toast.LENGTH_LONG).show()
             true
         } else {
-            Toast.makeText(this@EditProfileActivity, "Permission Location DITOLAK", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@EditProfileActivity, "Permission  DITOLAK", Toast.LENGTH_LONG).show()
             requestLocationPermission()
             false
         }

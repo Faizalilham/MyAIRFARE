@@ -39,7 +39,11 @@ class SplashScreenFragment : Fragment() {
             if(it != null){
                 Handler().postDelayed({
                     if(it){
-                        startActivity(Intent(activity,MainActivity::class.java).also { activity?.finish() })
+                        if (isAdded && activity != null) {
+                            startActivity(Intent(requireActivity(),MainActivity::class.java).also {
+                                requireActivity().finish()
+                            })
+                        }
                     }else{
                         findNavController().navigate(R.id.action_splashScreenFragment_to_onBoardingFragment)
 //                        startActivity(Intent(activity, SplashScreen::class.java).also { activity?.finish() })

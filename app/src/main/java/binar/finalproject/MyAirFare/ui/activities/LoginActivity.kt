@@ -140,6 +140,7 @@ class LoginActivity : AppCompatActivity() {
 
                         })
                     }else{
+                        showLoading(false)
                        authViewModel.messageObserver().observe(this){ message ->
                            if(message != null){
                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -156,8 +157,8 @@ class LoginActivity : AppCompatActivity() {
     private fun showLoading(show : Boolean){
         binding.apply {
             if(show){
-                loading.visibility = View.VISIBLE
                 loadingBg.visibility = View.VISIBLE
+                loading.visibility = View.VISIBLE
             } else
                 loading.visibility = View.GONE
                 loadingBg.visibility = View.GONE

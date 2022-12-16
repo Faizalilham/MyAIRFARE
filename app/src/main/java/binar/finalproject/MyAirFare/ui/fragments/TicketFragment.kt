@@ -31,6 +31,7 @@ class TicketFragment : Fragment() {
 
     private fun setViewPager(){
         val fragmentList = arrayListOf(
+            WaitingPaymentFragment(),
             ActiveTicketFragment(),
             InActiveTicketFragment()
         )
@@ -38,8 +39,10 @@ class TicketFragment : Fragment() {
         binding.viewPager.adapter = viewPagerAdapter
         TabLayoutMediator(binding.tabsLayout,binding.viewPager){tab,position ->
             when(position){
-                0 -> tab.text = "Aktif"
-                1 -> tab.text = "Non Aktif"
+                0 -> tab.text = "Menunggu Pembayaran"
+                1 -> tab.text = "Aktif"
+                2 -> tab.text = "Non Aktif"
+
             }
         }.attach()
     }
