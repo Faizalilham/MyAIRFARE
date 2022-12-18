@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import binar.finalproject.MyAirFare_admin.R
 import binar.finalproject.MyAirFare_admin.databinding.ActivityDeleteUserBinding
+import binar.finalproject.MyAirFare_admin.databinding.AlertDeleteUserBinding
 import binar.finalproject.MyAirFare_admin.viewmodel.auth.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare_admin.viewmodel.user.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +28,7 @@ class DeleteUserActivity : AppCompatActivity() {
         val i = intent.getStringExtra("ids")
         if(i != null){
             getTicketById(i)
+            binding.btnDelete.setOnClickListener { deletedUser(i) }
         }
         back()
     }
@@ -51,6 +55,45 @@ class DeleteUserActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun deleteUser(id : String){
+        binding.btnDelete.setOnClickListener {
+            alertDelete(id )
+        }
+    }
+
+    private fun deletedUser(id : String){
+        authPreferencesViewModel.getToken().observe(this){
+            if(it != null){
+                userViewModel.doDeleteUser(it,id)
+                userViewModel.doDeleteUserObserver().observe(this){response ->
+                    if(response != null){
+                        if(response.deleted.size > 0){
+                            finish()
+                            Toast.makeText(this, "Hapus Akun Berhasil", Toast.LENGTH_SHORT).show()
+                        }
+                    }else{
+                        userViewModel.messageObserver().observe(this){message ->
+                            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    private fun alertDelete(id : String){
+        val alert = AlertDialog.Builder(this).create()
+        val view = AlertDeleteUserBinding.inflate(layoutInflater)
+        alert.setView(view.root)
+        alert.window?.attributes?.windowAnimations = R.style.myDialogAnimation
+        view.apply {
+            btnYes.setOnClickListener { deletedUser(id) }
+            btnCancel.setOnClickListener { alert.dismiss() }
+        }
+        alert.show()
     }
 
     private fun setupView(tittle : String,username : String,

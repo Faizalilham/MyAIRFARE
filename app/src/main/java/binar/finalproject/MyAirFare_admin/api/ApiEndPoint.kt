@@ -2,6 +2,7 @@ package binar.finalproject.MyAirFare.api
 
 
 import binar.finalproject.MyAirFare_admin.model.ticket.*
+import binar.finalproject.MyAirFare_admin.model.transactions.ReadTransactionsResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -73,6 +74,11 @@ interface ApiEndPoint {
         @Query("return") returns : String,
     ):Call<FilterTicketResponse>
 
+
+    @GET("api/v1/user-transactions")
+    fun getAllTransactions(
+        @Header("x-access-token") Description : String,
+    ):Call<ReadTransactionsResponse>
 
 
 

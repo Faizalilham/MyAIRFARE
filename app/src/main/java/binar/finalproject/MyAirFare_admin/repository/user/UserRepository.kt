@@ -128,6 +128,44 @@ class UserRepository @Inject constructor(private val api : AuthEndPoint) {
         })
     }
 
+    private val doDeleteUser : MutableLiveData<DeleteUserResponse?> = MutableLiveData()
+    fun doDeleteUserObserver():LiveData<DeleteUserResponse?> = doDeleteUser
+
+
+    fun doDeleteUser(token : String,id : String){
+        api.doDeleteUser(token,id).enqueue(object : Callback<DeleteUserResponse>{
+            override fun onResponse(
+                call: Call<DeleteUserResponse>,
+                response: Response<DeleteUserResponse>
+            ) {
+                if(response.isSuccessful){
+                    val body = response.body()
+                    Log.d("success body","$body")
+                    if(body != null){
+                        doDeleteUser.postValue(body)
+                        Log.d("success","$body")
+                    }else{
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        doDeleteUser.postValue(null)
+                        message.postValue(error)
+                        Log.d("ERROR",response.code().toString())
+                    }
+                }else{
+                    val error = ErrorValidation.errorAuthValidation(response.code())
+                    doDeleteUser.postValue(null)
+                    message.postValue(error)
+                    Log.d("Response Error yg","Response Error => ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<DeleteUserResponse>, t: Throwable) {
+                doDeleteUser.postValue(null)
+                message.postValue(t.message.toString())
+            }
+
+        })
+    }
+
 
 
 

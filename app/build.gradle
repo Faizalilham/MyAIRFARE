@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "binar.finalproject.MyAirFare_admin"
-        minSdk 21
+        minSdk 24
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -79,4 +79,7 @@ dependencies {
 
     //Lottie Animations
     implementation 'com.airbnb.android:lottie:5.2.0'
+
+    // QR Code Generator
+    implementation 'com.journeyapps:zxing-android-embedded:4.1.0'
 }

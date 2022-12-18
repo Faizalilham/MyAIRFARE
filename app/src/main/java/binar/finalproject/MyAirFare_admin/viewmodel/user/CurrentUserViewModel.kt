@@ -19,9 +19,9 @@ class CurrentUserViewModel @Inject constructor(
         fun currentUserUpdate(token : String, username : RequestBody, firstname : RequestBody,
                               lastname : RequestBody, email : RequestBody, password : RequestBody,
                               confirmPassword : RequestBody,
-                              tittle : RequestBody, image : MultipartBody.Part
+                              tittle : RequestBody, image : MultipartBody.Part,visa_number : RequestBody
         ) = currentUserRepository.currentUserUpdate(token,username,firstname,lastname,email,
-            password,confirmPassword,tittle,image)
+            password,confirmPassword,tittle,image,visa_number)
 
         fun currentUserUpdateObserver() = currentUserRepository.currentUserUpdateObserver()
         fun messageObserver() = currentUserRepository.messageObserver()

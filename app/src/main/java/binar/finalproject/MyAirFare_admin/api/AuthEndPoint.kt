@@ -6,6 +6,7 @@ import binar.finalproject.MyAirFare.model.login.UserLoginRequest
 import binar.finalproject.MyAirFare.model.login.UserLoginResponse
 import binar.finalproject.MyAirFare.model.user.CurrentUser
 import binar.finalproject.MyAirFare.model.user.UserCurrentUpdate
+import binar.finalproject.MyAirFare_admin.model.user.DeleteUserResponse
 import binar.finalproject.MyAirFare_admin.model.user.ListEmailResponse
 import binar.finalproject.MyAirFare_admin.model.user.ListUserResponse
 import binar.finalproject.MyAirFare_admin.model.user.SingleUserResponse
@@ -40,7 +41,8 @@ interface AuthEndPoint {
         @Part("password") password : RequestBody,
         @Part("re_type_pass") re_type_pass : RequestBody,
         @Part("title") title : RequestBody,
-        @Part image : MultipartBody.Part
+        @Part image : MultipartBody.Part,
+        @Part("visa_number") visa_number : RequestBody
     ): Call<UserCurrentUpdate>
 
     @GET("api/v1/users")
@@ -59,5 +61,11 @@ interface AuthEndPoint {
         @Header("x-access-token") Description : String,
         @Path("email") email : String
     ): Call<ListEmailResponse>
+
+    @DELETE("api/v1/{id}/delete-user")
+    fun doDeleteUser(
+        @Header("x-access-token") Description : String,
+        @Path("id") id : String
+    ):Call<DeleteUserResponse>
 
 }

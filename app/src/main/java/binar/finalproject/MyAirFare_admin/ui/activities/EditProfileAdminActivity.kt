@@ -135,6 +135,7 @@ class EditProfileAdminActivity : AppCompatActivity(),AdapterView.OnItemClickList
                 val password = etPassword.text.toString()
                 val confirmPassword = etConfirmPassword.text.toString()
                 val tittle = tvTittle.text.toString()
+                val visaNumber = etVisaNumber.text.toString()
 
                 val currentImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
                 val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -156,7 +157,8 @@ class EditProfileAdminActivity : AppCompatActivity(),AdapterView.OnItemClickList
                                 password.toRequestBody("text/plain".toMediaTypeOrNull()),
                                 confirmPassword.toRequestBody("text/plain".toMediaTypeOrNull()),
                                 tittle.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                imageMultipart
+                                imageMultipart,
+                                visaNumber.toRequestBody("text/plain".toMediaTypeOrNull())
                             )
                         }else{
                             currentUserViewModel.messageObserver().observe(this@EditProfileAdminActivity){ message ->

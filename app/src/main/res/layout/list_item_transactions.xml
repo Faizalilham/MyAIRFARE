@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/dp15"
+    app:cardCornerRadius="@dimen/dp15"
+    app:cardElevation="@dimen/dp15">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/orderID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:text="Order Id"
+            android:layout_margin="@dimen/dp10"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/sp16"
+            android:textColor="@color/second_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <ImageView
+            android:id="@+id/imageLogo"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:src="@drawable/ic_garuda"
+            android:layout_margin="@dimen/dp10"
+            app:layout_constraintEnd_toStartOf="@id/airlane"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/airlane"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:text="airlane"
+            android:layout_margin="@dimen/dp10"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/sp16"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearFlight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/second_gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/orderID">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp20"
+                    android:layout_height="@dimen/dp20"
+                    android:src="@drawable/ic_flight_plane"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dp10"
+                    />
+
+                <TextView
+                    android:id="@+id/tvFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:text="Order Id"
+                    android:layout_margin="@dimen/dp10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/sp16"
+                    android:textColor="@color/black"/>
+
+                <ImageView
+                    android:layout_width="@dimen/dp15"
+                    android:layout_height="@dimen/dp15"
+                    android:src="@drawable/ic_exchange"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="@dimen/dp5"/>
+
+                <TextView
+                    android:id="@+id/tvDestination"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:text="Order Id"
+                    android:layout_margin="@dimen/dp10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="@dimen/sp16"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:text="Order Id"
+                    android:layout_marginStart="@dimen/dp10"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/black"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginStart="@dimen/dp10"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/dp10"
+            android:padding="@dimen/dp5"
+            android:textSize="@dimen/sp12"
+            android:background="@drawable/background_edit_text"
+            android:backgroundTint="@color/primary"
+            app:layout_constraintTop_toBottomOf="@id/linearFlight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:text=""
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/red"
+            android:layout_margin="@dimen/dp10"
+            app:layout_constraintTop_toBottomOf="@id/linearFlight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

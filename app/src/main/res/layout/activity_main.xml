@@ -218,7 +218,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardDataTransfer"
+            android:id="@+id/cardQRCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp15"
@@ -234,7 +234,7 @@
                     android:id="@+id/imageDataTransfer"
                     android:layout_width="@dimen/dp20"
                     android:layout_height="@dimen/dp20"
-                    android:src="@drawable/ic_tf"
+                    android:src="@drawable/ic_qr_code"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"/>
@@ -242,7 +242,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data Transfer"
+                    android:text="Buat Scan QR"
                     android:textColor="@color/black"
                     android:layout_marginStart="@dimen/dp20"
                     android:fontFamily="@font/poppins_regular"

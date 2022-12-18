@@ -19,5 +19,8 @@ class UserViewModel @Inject constructor(
     fun filterUser(token : String,email : String) = userRepository.filterUser(token,email)
     fun filterUserObserver() = userRepository.filterUserObserver()
 
+    fun doDeleteUser(token : String,id : String) = userRepository.doDeleteUser(token,id)
+    fun doDeleteUserObserver() = userRepository.doDeleteUserObserver()
+
     fun messageObserver() = userRepository.messageObserver()
 }

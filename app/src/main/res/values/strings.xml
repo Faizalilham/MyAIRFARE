@@ -132,6 +132,10 @@
     <string name="search_not_found">Pencarian tidak ditemukan, silahkan masukkan kata kunci lain</string>
     <string name="tanggal_kembali">Tanggal Kembali</string>
     <string name="tanggal_berangkat">Tanggal Berangkat</string>
+    <string name="alert_delete_user">Apakah anda yakin untuk mengahapus akun ini? Pengguna yang memiliki akun ini tidak akan bisa login lagi</string>
+    <string name="visa_number">Visa Number</string>
+    <string name="masukkan_kode_penerbangan">Masukkan kode penerbangan</string>
+    <string name="buat_qr_code">Buat QR Code</string>
 
     <string-array name="classes">
         <item>Economy</item>

@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/dp10"
-    tools:context=".ui.activities.SoldTicketActivity">
+    android:orientation="vertical"
+    tools:context=".ui.activities.QRCodeActivity">
+
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/bg_rounded_stroke"
-        android:paddingStart="10dp"
+        android:paddingStart="5dp"
         android:paddingEnd="1dp"
+        android:layout_margin="@dimen/dp15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back" />
@@ -22,40 +24,50 @@
         android:id="@+id/tvTittle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tiket_terjual"
+        android:text="@string/buat_qr_code"
         android:textColor="@color/black"
         android:textSize="@dimen/sp18"
         android:textStyle="bold"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp25"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loading"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:scaleType="centerCrop"
-        app:lottie_rawRes="@raw/motion_loading"
-        app:lottie_loop="true"
-        app:lottie_autoPlay="true"
-        android:visibility="gone"
-        android:layout_marginBottom="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ticketRecycler"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:layout_marginTop="@dimen/dp15"
-        app:layout_constraintTop_toBottomOf="@id/tvTittle"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/list_item_sold_ticket"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTittle">
+
+        <EditText
+            android:id="@+id/etFlightNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp30"
+            android:hint="@string/masukkan_kode_penerbangan" />
+
+        <Button
+            android:id="@+id/btnGenerateQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp30"
+            android:layout_marginEnd="@dimen/dp30"
+            android:padding="@dimen/dp5"
+            android:text="@string/buat_qr_code"
+            android:textAllCaps="false" />
+
+        <ImageView
+            android:id="@+id/imageQRCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp20" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

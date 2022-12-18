@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/dp15"
+    app:cardElevation="@dimen/dp15">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp15"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hapus_akun"
+            android:textSize="@dimen/sp18"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/dp15"
+            android:fontFamily="@font/poppins_regular"
+            />
+
+        <TextView
+            android:id="@+id/tvNotFound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/alert_delete_user"
+            android:textSize="@dimen/sp16"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp15"
+            android:fontFamily="@font/poppins_regular"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnYes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ya"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/dp15"
+            android:textSize="@dimen/sp16"
+            android:fontFamily="@font/poppins_regular"
+            app:cornerRadius="@dimen/dp5"
+            android:padding="@dimen/dp10"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tidak"
+            android:textAllCaps="false"
+            android:textSize="@dimen/sp16"
+            android:fontFamily="@font/poppins_regular"
+            app:cornerRadius="@dimen/dp5"
+            android:padding="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp5"
+            app:strokeColor="@color/primary"
+            app:strokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
