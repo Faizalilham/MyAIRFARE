@@ -56,7 +56,7 @@ class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<C
                 val timeEstimated = DatePicker.timeCalculation(it.ticket.estimated_up_dest)
                 val date = "$dateAir - $estimated"
                 Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${it.ticket.logo}").into(imageLogo)
-                tvTime.text = DatePicker.getDifferentTime(it.ticket.date_air,it.ticket.estimated_up_dest)
+                tvTime.text = DatePicker.getDifferentTime(it.ticket.date_air)
                 tvDate.text = date
                 tvAsalTime.text = timeAir
                 tvTujuanTime.text = timeEstimated
@@ -81,7 +81,7 @@ class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<C
             }
 
             card.setOnClickListener {
-                listener.onDetail(schedule,listChairs)
+                listener.onDetail(schedule,listChairs,diff.id.toString())
             }
 
             btnDelete.setOnClickListener { _ ->
@@ -95,6 +95,6 @@ class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<C
 
     interface OnClickListener{
         fun onDelete(id : Int)
-        fun onDetail(schedule: MutableList<Schedule>, chairs : MutableList<Int>)
+        fun onDetail(schedule: MutableList<Schedule>, chairs : MutableList<Int>,waitListId : String)
     }
 }

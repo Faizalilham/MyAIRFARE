@@ -1,12 +1,13 @@
 package binar.finalproject.MyAirFare.api
 
 
+import binar.finalproject.MyAirFare.model.checkin.CheckinAutoRequest
+import binar.finalproject.MyAirFare.model.checkin.CheckinManualRequest
+import binar.finalproject.MyAirFare.model.checkin.CheckinResponse
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketByIdResponse
 import binar.finalproject.MyAirFare.model.tickets.ReadTicketResponse
 import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
-import binar.finalproject.MyAirFare.model.transactions.PostTransactionsRequest
-import binar.finalproject.MyAirFare.model.transactions.PostTransactionsResponse
-import binar.finalproject.MyAirFare.model.transactions.ReadTransactionsResponse
+import binar.finalproject.MyAirFare.model.transactions.*
 import binar.finalproject.MyAirFare.model.wait_list.WaitList
 import binar.finalproject.MyAirFare.model.wait_list.WaitListDeleteResponse
 import binar.finalproject.MyAirFare.model.wait_list.WaitListRequest
@@ -68,7 +69,7 @@ interface ApiEndPoint {
         @Header("x-access-token") Description : String,
     ):Call<ReadTransactionsResponse>
 
-    @GET("api/v1/transactions/:id")
+    @GET("api/v1/transactions/{id}")
     fun getTransactionById(
         @Header("x-access-token") Description : String,
         @Path("id") id : Int,
@@ -80,11 +81,30 @@ interface ApiEndPoint {
         @Body postTransactionsRequest: PostTransactionsRequest
     ):Call<PostTransactionsResponse>
 
-    @DELETE("api/v1/transactions/{id}")
+    @POST("api/v1/user-transactions")
+    fun postTransactionWithCart(
+        @Header("x-access-token") Description : String,
+        @Body postTransactionsRequest: PostTransactionsWithCartRequest
+    ):Call<PostTransactionsResponse>
+
+    @DELETE("api/v1/user-transactions/{id}")
     fun deleteTransaction(
         @Header("x-access-token") Description : String,
-        @Path("id") id : Int,
-    ):Call<WaitListDeleteResponse>
+        @Path("id") id : String,
+    ):Call<TransactionsDeleteResponse>
+
+
+    @POST("api/v1/checkin-auto")
+    fun doCheckinAuto(
+        @Header("x-access-token") Description : String,
+        @Body checkinRequest : CheckinAutoRequest
+    ):Call<CheckinResponse>
+
+    @POST("api/v1/checkin-manual")
+    fun doCheckinManual(
+        @Header("x-access-token") Description : String,
+        @Body checkinRequest : CheckinManualRequest
+    ):Call<CheckinResponse>
 
 
 }

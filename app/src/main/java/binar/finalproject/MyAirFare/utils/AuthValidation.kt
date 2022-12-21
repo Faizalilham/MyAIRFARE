@@ -27,8 +27,8 @@ object AuthValidation {
             "success"
         }
 
-        result = if(password.length <= 5) {
-            "please enter valid password, password must be at least 8 character"
+        result = if(password.length <= 4) {
+            "please enter valid password, password must be at least 4 character"
         }else {
             "success"
         }

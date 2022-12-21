@@ -15,13 +15,19 @@ class TransactionsViewModel @Inject constructor(
 
         fun doPostTransactionsObserver() = transactionsRepository.postTransactionsObserver()
 
+        fun doPostTransactionsWithCart(token : String,
+        waitListId : String,
+        chairs : MutableList<Int>) = transactionsRepository.doPostTransactionsWithCart(token, waitListId, chairs)
+
+        fun doPostTransactionsWithCartObserver() = transactionsRepository.doPostTransactionsWithCartObserver()
+
         fun doGetAllTransaction(token : String) = transactionsRepository.doGetAllTransactions(token)
         fun doGetAllTransactionObserver()  = transactionsRepository.getAllTransactionsObserver()
 
         fun doGetTransactionById(token : String,id :Int) = transactionsRepository.doGetTransactionById(token,id)
         fun doGetTransactionByIdObserver()  = transactionsRepository.getTransactionByIdObserver()
 
-        fun doDeleteTransaction(token : String,id : Int) = transactionsRepository.doDeleteTransaction(token,id)
+        fun doDeleteTransaction(token : String,id : String) = transactionsRepository.doDeleteTransaction(token,id)
         fun doDeleteTransactionObserver() = transactionsRepository.deleteTransactionObserver()
 
         fun messageObserver() = transactionsRepository.messageObserver()

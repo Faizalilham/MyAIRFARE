@@ -45,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
         doLogin()
         doResetPassword()
         doSignInWithGoogle()
+        showLoading(false)
     }
 
     private fun doRegister(){
@@ -86,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setUI(account: GoogleSignInAccount) {
         val credentials = GoogleAuthProvider.getCredential(account.idToken,null)
-        Toast.makeText(this, credentials.toString(), Toast.LENGTH_SHORT).show()
         auth.signInWithCredential(credentials).addOnCompleteListener {
             if(it.isSuccessful){
                 if(account.idToken != null){
@@ -110,7 +110,6 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                 }
-                Toast.makeText(this, account.idToken, Toast.LENGTH_SHORT).show()
                 Log.d("ID_google",account.id.toString())
             }
         }

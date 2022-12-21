@@ -142,6 +142,9 @@
     <string name="batalkan_tiket">Batalkan Tiket</string>
     <string name="apakah_anda_yakin_untuk_membatalkan_tiket_ini">Apakah anda yakin untuk membatalkan tiket ini ?</string>
     <string name="visa_number">Visa Number</string>
+    <string name="nama_penerbangan">Nama Penerbangan</string>
+    <string name="checkin_sekarang">Checkin Sekarang</string>
+    <string name="klik_scan_untuk_checkin_menggunakan_nomor_penerbangan_anda">Klik chekin sekarang untuk scan menggunakan nomor penerbangan anda</string>
 
     <string-array name="classes">
         <item>Economy</item>

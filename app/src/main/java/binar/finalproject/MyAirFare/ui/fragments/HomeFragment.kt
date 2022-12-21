@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,6 +56,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         val type = resources.getStringArray(R.array.type)
         dropDownMenu(classes,R.layout.dropdown_tittle_item,binding.tvClass)
         dropDownMenu(type,R.layout.dropdown_tittle_item,binding.tvTypeTicket)
+        binding.apply {
+            etDateReturn.focusable = View.NOT_FOCUSABLE
+            etDateReturn.isFocusableInTouchMode = false
+        }
     }
     private fun setupView(){
         authPreferencesViewModel.getName().observe(requireActivity()){
@@ -92,7 +97,15 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
                     collapseLinear.layoutParams.height = 1280
                     setEnabled(true)
                     btnSearch.setOnClickListener {
-                        go(DatePicker.formatterDate(etDateReturn.text.toString()))
+                       if(etDateReturn.text.toString().isNotEmpty()){
+                           if(etDate.text.toString() != etDateReturn.text.toString()){
+                               go(DatePicker.formatterDate(etDateReturn.text.toString()))
+                           }else{
+                               Toast.makeText(requireActivity(), "Tidak ada penerbangan pulang pergi di tanggal yang sama", Toast.LENGTH_SHORT).show()
+                           }
+                       }else{
+                           go(DatePicker.formatterDate(""))
+                       }
                     }
                 }
             }else{
@@ -182,15 +195,25 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setEnabled(enable : Boolean){
         binding.apply {
+            tvTypeTicket.text?.clear()
+            tvClass.text?.clear()
+            etDateReturn.setText("")
+            etDateReturn.focusable = View.NOT_FOCUSABLE
+            etDateReturn.isFocusableInTouchMode = false
+            tvClass.focusable = View.NOT_FOCUSABLE
+            tvClass.isFocusableInTouchMode = false
+            tvTypeTicket.focusable = View.NOT_FOCUSABLE
+            tvTypeTicket.isFocusableInTouchMode = false
             etDateReturn.isEnabled = enable
             tvTypeTicket.isEnabled = enable
             tvClass.isEnabled = enable
         }
     }
 
-    fun setAnimation(anim : LinearLayout,alpha : Float, i : Int){
+    private fun setAnimation(anim : LinearLayout,alpha : Float, i : Int){
         anim.animate()
             .alpha(alpha)
             .setDuration(100)

@@ -566,7 +566,7 @@
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="50dp"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/dp10"
                                     app:endIconMode="dropdown_menu"
                                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -672,7 +672,7 @@
                            <TextView
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:text="@string/cgk"
+                               android:text="@string/harga_tiket"
                                android:textColor="@color/black"
                                android:textSize="@dimen/sp18"
                                android:textAlignment="textEnd"
@@ -693,7 +693,6 @@
                                android:id="@+id/tvPriceReturn"
                                android:layout_width="match_parent"
                                android:layout_height="wrap_content"
-                               android:text="@string/cgk"
                                android:textColor="@color/black"
                                android:textSize="@dimen/sp16"
                                android:layout_marginTop="@dimen/dp10"

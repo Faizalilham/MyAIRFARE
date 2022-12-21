@@ -22,8 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class WaitingPaymentFragment : Fragment(){
 
-    private var _binding : FragmentActiveTicketBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentActiveTicketBinding
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var transactionsViewModel : TransactionsViewModel
     private lateinit var transactionsAdapter: TransactionsAdapter
@@ -31,7 +30,7 @@ class WaitingPaymentFragment : Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentActiveTicketBinding.inflate(layoutInflater)
+        binding = FragmentActiveTicketBinding.inflate(layoutInflater)
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         transactionsViewModel = ViewModelProvider(this)[TransactionsViewModel::class.java]
         return binding.root
@@ -46,23 +45,31 @@ class WaitingPaymentFragment : Fragment(){
     private fun getAllTransactions(){
         authPreferencesViewModel.getToken().observe(requireActivity()){
             if(it != null && it != "undefined"){
+                Log.d("KKKKKK",it.toString())
                 transactionsViewModel.doGetAllTransaction(it)
                 showLoading(true)
-                transactionsViewModel.doGetAllTransactionObserver().observe(requireActivity()){  transactions ->
-                    if(transactions != null){
-                        showLoading(false)
-                        transactions.transaction.forEach { trx ->
-                            val a = DatePicker.timeCalculationTransactions(trx.createdAt)
-                            val b = System.currentTimeMillis()
-                            Log.d("JARAK","${a.time} $b")
-                            if(trx.status == "payment-pending" ){
-                                setRecycler(transactions.transaction)
+                if(isAdded && activity != null){
+                    transactionsViewModel.doGetAllTransactionObserver().observe(requireActivity()){  transactions ->
+                        if(transactions != null){
+                            showLoading(false)
+                            transactions.transaction.forEach { trx ->
+                                Log.d("STATUS",trx.status)
+                                val a = transactions.transaction.filter { its ->
+                                    its.status == "pending-payment"
+                                }
+                                if(a.isNotEmpty()){
+                                    showWarning(false)
+                                    setRecycler(a.toMutableList())
+                                    Log.d("TOTOTD","$a")
+                                }else{
+                                    showWarning(true)
+                                }
                             }
-                        }
-                    }else{
-                        showLoading(false)
-                        transactionsViewModel.messageObserver().observe(requireActivity()){ message ->
-                            Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                        }else{
+                            showLoading(false)
+                            transactionsViewModel.messageObserver().observe(requireActivity()){ message ->
+                                Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
@@ -75,6 +82,8 @@ class WaitingPaymentFragment : Fragment(){
             override fun onDetail(transactions: Transactions) {
                 startActivity(Intent(requireActivity(),DetailTransactionsActivity::class.java).also{
                     it.putExtra("transactions",transactions)
+                    it.putExtra("status",transactions.status)
+                    it.putExtra("id",1)
                 })
             }
         })
@@ -91,11 +100,17 @@ class WaitingPaymentFragment : Fragment(){
         if(loading) binding.loading.visibility = View.VISIBLE else binding.loading.visibility = View.GONE
     }
 
-
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    private fun showWarning(show : Boolean){
+        binding.apply {
+            if(show){
+                imageNotFound.visibility = View.VISIBLE
+                tvNotFound.visibility = View.VISIBLE
+            }else{
+                imageNotFound.visibility = View.GONE
+                tvNotFound.visibility = View.GONE
+            }
+        }
     }
+
+
 }

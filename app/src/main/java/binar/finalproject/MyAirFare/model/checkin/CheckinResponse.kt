@@ -1,25 +1,19 @@
-package binar.finalproject.MyAirFare.model.transactions
+package binar.finalproject.MyAirFare.model.checkin
 
 import android.os.Parcelable
 import binar.finalproject.MyAirFare.model.tickets.Passenger
 import binar.finalproject.MyAirFare.model.tickets.TicketClass
+import binar.finalproject.MyAirFare.model.transactions.CheckIn
+import binar.finalproject.MyAirFare.model.transactions.Transactions
+import binar.finalproject.MyAirFare.model.transactions.UserLoginTransactions
 import kotlinx.parcelize.Parcelize
 
-data class PostTransactionsRequest(
-    val tickets_id : MutableList<String>,
-    val chairs_number : MutableList<Int>
-)
-data class PostTransactionsWithCartRequest(
-    val wait_list_id : String,
-    val chairs_number : MutableList<Int>
-)
-
-data class PostTransactionsResponse(
-    val trx : Transactions
-)
+data class CheckinResponse (
+    val trxs : MutableList<TransactionsCheckins>
+    )
 
 @Parcelize
-data class Transactions(
+data class TransactionsCheckins(
     val id : String,
     val user_id : String,
     val price : Int,
@@ -32,12 +26,21 @@ data class Transactions(
     val createdAt : String,
     val updatedAt : String,
     val user : UserLoginTransactions,
-    val carts : MutableList<CartWaitListTransactions>,
-    val checkins : MutableList<CheckIn>
+    val carts : MutableList<CartWaitListCheckIn>,
+//    val checkins : MutableList<CheckIns>
+): Parcelable
+
+@Parcelize
+data class CheckIns(
+    val id : Int,
+    val trx_id : Int,
+    val status : String,
+    val createdAt : String,
+    val updatedAt : String
 ):Parcelable
 
 @Parcelize
-data class CartWaitListTransactions(
+data class CartWaitListCheckIn(
     val id : String,
     val trx_id : String,
     val ticket_id : String,
@@ -46,11 +49,11 @@ data class CartWaitListTransactions(
     val chair_number : Int?,
     val createdAt : String,
     val updatedAt : String,
-    val ticket : ScheduleTransactions
-):Parcelable
+    val ticket : ScheduleCheckIns
+): Parcelable
 
 @Parcelize
-data class ScheduleTransactions(
+data class ScheduleCheckIns(
     val id : String,
     val name : String,
     val from : String,
@@ -69,35 +72,15 @@ data class ScheduleTransactions(
     val updatedAt : String,
     val ticketClass : TicketClass,
     val passenger : Passenger,
-):Parcelable
-
-
-@Parcelize
-data class UserLoginTransactions(
-val id : String,
-val username : String,
-val f_name : String,
-val l_name : String,
-val email : String,
-val g_id : String?,
-val password : String,
-val access_level : Int,
-val active : Boolean,
-val deleted : Boolean,
-val photo : String,
-val createdAt : String,
-val updatedAt : String
-):Parcelable
+//    val chair : Chair
+): Parcelable
 
 @Parcelize
-data class CheckIn(
-    val id : Int,
-    val trx_id : Int,
-    val status : String,
+data class Chair(
+    val id : String,
+    val ticket_id : String,
+    val user_id : String,
+    val chair_number : String,
     val createdAt : String,
     val updatedAt : String
 ):Parcelable
-
-data class TransactionsDeleteResponse(
-    val deleted : Int
-)

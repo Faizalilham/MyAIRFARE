@@ -27,6 +27,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_payment_details.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_scan_qractivity.xml" value="0.10723684210526316" />
         <entry key="app/src/main/res/layout/activity_search_ticket.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.14" />
@@ -49,6 +50,7 @@
         <entry key="app/src/main/res/layout/fragment_ticket.xml" value="0.1" />
         <entry key="app/src/main/res/layout/image_bottom_sheet.xml" value="0.17" />
         <entry key="app/src/main/res/layout/list_item_cart.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/list_item_checkin.xml" value="0.17" />
         <entry key="app/src/main/res/layout/list_item_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/list_item_notifications.xml" value="0.21" />
         <entry key="app/src/main/res/layout/list_item_ticket.xml" value="0.33" />

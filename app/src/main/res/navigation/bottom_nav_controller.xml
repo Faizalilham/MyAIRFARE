@@ -32,10 +32,23 @@
         android:id="@+id/ticketFragment"
         android:name="binar.finalproject.MyAirFare.ui.fragments.TicketFragment"
         android:label="fragment_ticket"
-        tools:layout="@layout/fragment_ticket" />
+        tools:layout="@layout/fragment_ticket" >
+        <action
+            android:id="@+id/action_ticketFragment_self"
+            app:destination="@id/ticketFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationFragment2"
         android:name="binar.finalproject.MyAirFare.ui.fragments.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/checkInFragment"
+        android:name="binar.finalproject.MyAirFare.ui.fragments.CheckInFragment"
+        android:label="CheckInFragment"
+        tools:layout="@layout/fragment_active_ticket">
+        <action
+            android:id="@+id/action_checkInFragment_self"
+            app:destination="@id/checkInFragment" />
+    </fragment>
 </navigation>

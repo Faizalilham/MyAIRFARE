@@ -68,11 +68,22 @@ class SearchTicketActivity : AppCompatActivity() {
             if(it != null){
                 showLoading(false)
                 if(it.tickets.go.size > 0 && it.tickets.return_flight.size > 0 ){
-                    binding.apply {
-                        imageNotFound.visibility = View.GONE
-                        tvNotFound.visibility = View.GONE
+                    it.tickets.go.forEach { go ->
+                        it.tickets.return_flight.forEach { rtn ->
+                            if(go.available.size > 0 && rtn.available.size > 0){
+                                binding.apply {
+                                    imageNotFound.visibility = View.GONE
+                                    tvNotFound.visibility = View.GONE
+                                }
+                                setupRecycler(it.tickets.go,it.tickets.return_flight)
+                            }else{
+                                binding.apply {
+                                    imageNotFound.visibility = View.VISIBLE
+                                    tvNotFound.visibility = View.VISIBLE
+                                }
+                            }
+                        }
                     }
-                    setupRecycler(it.tickets.go,it.tickets.return_flight)
                 }else{
                     binding.apply {
                         imageNotFound.visibility = View.VISIBLE
@@ -96,11 +107,20 @@ class SearchTicketActivity : AppCompatActivity() {
             if(it != null){
                 showLoading(false)
                 if(it.tickets.go.size > 0){
-                    binding.apply {
-                        imageNotFound.visibility = View.GONE
-                        tvNotFound.visibility = View.GONE
+                    it.tickets.go.forEach { go ->
+                        if(go.available.size > 0 ){
+                            binding.apply {
+                                imageNotFound.visibility = View.GONE
+                                tvNotFound.visibility = View.GONE
+                            }
+                            setupRecycler(it.tickets.go, mutableListOf())
+                        }else{
+                            binding.apply {
+                                imageNotFound.visibility = View.VISIBLE
+                                tvNotFound.visibility = View.VISIBLE
+                            }
+                        }
                     }
-                    setupRecycler(it.tickets.go, mutableListOf())
                 }else{
                     binding.apply {
                         imageNotFound.visibility = View.VISIBLE

@@ -123,6 +123,7 @@
                android:gravity="end">
 
                <ImageView
+                   android:id="@+id/arrowLinearFlight"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:src="@drawable/ic_arrow_down"
@@ -169,7 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:el_duration="500"
-        app:el_expanded="true"
+        app:el_expanded="false"
         app:el_parallax="0.5">
 
         <LinearLayout
@@ -186,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
-                    android:text="Order Id"
+                    android:text="@string/nomor_penerbangan"
                     android:layout_weight="1"
                     android:layout_margin="@dimen/dp10"
                     android:textAlignment="center"
@@ -218,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
-                    android:text="Order Id"
+                    android:text="@string/nomor_kursi"
                     android:layout_weight="1"
                     android:layout_margin="@dimen/dp10"
                     android:textAlignment="center"
@@ -250,7 +251,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
-                    android:text="Order Id"
+                    android:text="@string/kelas"
                     android:layout_weight="1"
                     android:layout_margin="@dimen/dp10"
                     android:textAlignment="center"
@@ -283,7 +284,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
-                    android:text="Order Id"
+                    android:text="@string/nama_penerbangan"
                     android:layout_weight="1"
                     android:layout_margin="@dimen/dp10"
                     android:textAlignment="center"
@@ -332,6 +333,7 @@
             android:textColor="@color/black"/>
 
         <ImageView
+            android:id="@+id/arrowLinearPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_down"
@@ -347,7 +349,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:el_duration="500"
-        app:el_expanded="true"
+        app:el_expanded="false"
         app:el_parallax="0.5">
 
         <LinearLayout
@@ -361,7 +363,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/typeFlight"
+                    android:id="@+id/tvType"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
@@ -422,8 +424,9 @@
 
 
         <TextView
+            android:id="@+id/tvTittlePayment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:textStyle="normal"
             android:text="@string/pilih_metode_pembayaran"
             android:layout_weight="1"
@@ -435,8 +438,9 @@
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/tvSubTittlePayment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:textStyle="normal"
             android:text="@string/klik_lanjutkan_untuk_melihat_metode_pembayaran"
             android:layout_weight="1"
@@ -457,9 +461,48 @@
             android:textAllCaps="false"
             android:layout_marginBottom="@dimen/dp15" />
 
+        <TextView
+            android:id="@+id/tvTittleQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:text="Scan QR Code"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginStart="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp5"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="@dimen/sp16"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tvSubTittleQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:text="@string/klik_scan_untuk_checkin_menggunakan_nomor_penerbangan_anda"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/dp10"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btnScanQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp15"
+            android:backgroundTint="@color/green"
+            android:fontFamily="@font/poppins_regular"
+            android:padding="@dimen/dp10"
+            android:text="@string/checkin_sekarang"
+            android:layout_margin="@dimen/dp10"
+            android:textAllCaps="false"
+            android:layout_marginBottom="@dimen/dp15" />
+
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tvLainnya"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -478,11 +521,10 @@
 
         <TextView
             android:id="@+id/tvReschedule"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="normal"
             android:text="@string/batalkan_pesanan_ini"
-            android:layout_weight="1"
             android:layout_margin="@dimen/dp10"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/red"/>

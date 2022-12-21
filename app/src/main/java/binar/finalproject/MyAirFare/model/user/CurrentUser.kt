@@ -17,7 +17,7 @@ data class CurrentUsers(
     val username : String,
     val email : String,
     val password : String,
-    val g_id : String,
+    val g_id : String?,
     val f_name : String,
     val l_name : String,
     val active : Boolean,

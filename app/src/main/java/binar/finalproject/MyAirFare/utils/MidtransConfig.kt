@@ -31,25 +31,25 @@ object MidtransConfig {
                             "Transaction Pending. ID: " + result.response.transactionId,
                             Toast.LENGTH_LONG
                         ).show()
-                        TransactionResult.STATUS_FAILED -> Toast.makeText(
-                            context,
-                            "Transaction Failed. ID: " + result.response.transactionId
-                                .toString() + ". Message: " + result.response
-                                .statusMessage,
-                            Toast.LENGTH_LONG
-                        ).show()
+//                        TransactionResult.STATUS_FAILED -> Toast.makeText(
+//                            context,
+//                            "Transaction Failed. ID: " + result.response.transactionId
+//                                .toString() + ". Message: " + result.response
+//                                .statusMessage,
+//                            Toast.LENGTH_LONG
+//                        ).show()
                     }
                     result.response.validationMessages
                 } else if (result.isTransactionCanceled) {
-                    Toast.makeText(context, "Transaction Canceled", Toast.LENGTH_LONG).show()
+//                    Toast.makeText(context, "Transaction Canceled", Toast.LENGTH_LONG).show()
                 } else {
                     if (result.status.equals(TransactionResult.STATUS_INVALID)) {
-                        Toast.makeText(context, "Transaction Invalid", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Transaction Invalid", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(
                             context,
                             "Transaction Finished with failure.",
-                            Toast.LENGTH_LONG
+                            Toast.LENGTH_SHORT
                         ).show()
                     }
                 }

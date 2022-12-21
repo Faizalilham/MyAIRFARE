@@ -7,6 +7,20 @@
     android:layout_margin="@dimen/dp10"
     tools:context=".ui.fragments.NotificationFragment">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        app:lottie_rawRes="@raw/motion_loading"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
         android:id="@+id/tvTittle"
@@ -39,6 +53,7 @@
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/ic_not_found"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,6 +69,7 @@
         android:textSize="@dimen/sp16"
         android:textColor="@color/black"
         android:gravity="center"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/dp15"
         android:fontFamily="@font/poppins_regular"
         app:layout_constraintStart_toStartOf="parent"

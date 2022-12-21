@@ -1,44 +1,58 @@
 package binar.finalproject.MyAirFare.ui.fragments
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import binar.finalproject.MyAirFare.adapter.NotificationsAdapter
 import binar.finalproject.MyAirFare.databinding.FragmentNotificationBinding
-import binar.finalproject.MyAirFare.socket.SocketHandler
 import binar.finalproject.MyAirFare.ui.activities.LoginActivity
 import binar.finalproject.MyAirFare.utils.Notifications
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
+import binar.finalproject.MyAirFare.viewmodel.CurrentUserViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import io.socket.client.IO
 import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import org.json.JSONException
 import org.json.JSONObject
+import java.util.*
 
 
 @AndroidEntryPoint
 class NotificationFragment : Fragment() {
 
-    private var _binding : FragmentNotificationBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var  binding : FragmentNotificationBinding
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
+    private lateinit var currentUserViewModel : CurrentUserViewModel
+    private lateinit var socket : Socket
+    private lateinit var notificationsAdapter : NotificationsAdapter
+    private val dataNotifications = mutableListOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentNotificationBinding.inflate(layoutInflater)
+        binding = FragmentNotificationBinding.inflate(layoutInflater)
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
+        currentUserViewModel = ViewModelProvider(this)[CurrentUserViewModel::class.java]
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
-        connectSocket()
+        getNotifications()
+        socket = IO.socket("https://binarfinalsocketserver-production.up.railway.app/")
+        socket.connect()
 
     }
     private fun doLogin(){
@@ -48,17 +62,68 @@ class NotificationFragment : Fragment() {
         )}
     }
 
-    private fun connectSocket(){
-        SocketHandler.setSocket()
-        val socket = SocketHandler.getSocket()
-        socket.connect()
-        socket.emit("counter") // endpoint request notifikasi
-        socket.on("counter"){  // get response data
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun connectSocket(id : String){
+        showLoading(true)
+        socket.emit("newUser",id)
+        socket.on("notify"){
+            Log.d("Notification","$it")
             if(it != null){
-                val count = it[0] as String// getData from server
+                showWarning(false)
+                showLoading(false)
+                for (obj in it) {
+                    val strArray = obj
+                    dataNotifications.add(strArray.toString())
+                }
+                Notifications.makeStatusNotification("",requireContext(),
+                    dataNotifications.slice(dataNotifications.size - 7 until dataNotifications.size).toMutableList())
                 activity?.runOnUiThread{
-                    Notifications.makeStatusNotification(count,requireActivity())
-                    Toast.makeText(requireActivity(), count, Toast.LENGTH_SHORT).show()
+                   setRecycler(dataNotifications)
+                }
+            }else{
+                showWarning(true)
+                showLoading(false)
+            }
+        }
+    }
+
+    private fun showLoading(loading: Boolean){
+        if(loading) binding.loading.visibility = View.VISIBLE else binding.loading.visibility = View.GONE
+    }
+
+
+    private fun showWarning(show : Boolean){
+        binding.apply {
+            if(show){
+                imageNotFound.visibility = View.VISIBLE
+                tvNotFound.visibility = View.VISIBLE
+            }else{
+                imageNotFound.visibility = View.GONE
+                tvNotFound.visibility = View.GONE
+            }
+        }
+    }
+
+    private fun setRecycler(data : MutableList<String>){
+        notificationsAdapter = NotificationsAdapter()
+        notificationsAdapter.submitData(data)
+        binding.recyclerNotifications.apply {
+            adapter = notificationsAdapter
+            if(isAdded && activity != null){
+                layoutManager = LinearLayoutManager(requireActivity())
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun getNotifications(){
+        authPreferencesViewModel.getToken().observe(requireActivity()){
+            if(it != null && it != "undefined"){
+                currentUserViewModel.currentUser(it)
+                currentUserViewModel.currentUserObserver().observe(requireActivity()){user ->
+                    if(user != null){
+                        connectSocket(user.user.id)
+                    }
                 }
             }
         }
@@ -69,9 +134,9 @@ class NotificationFragment : Fragment() {
         Emitter.Listener { args ->
             requireActivity().runOnUiThread(Runnable {
                 val data = args[0] as JSONObject
-                val datas: String
+                Log.d("DATAS","$data")
                 try {
-                    datas = data.getString("")
+                    val datas = data.getString("")
                     Toast.makeText(requireActivity(), datas, Toast.LENGTH_SHORT).show()
                 } catch (e: JSONException) {
                     return@Runnable
@@ -110,11 +175,6 @@ class NotificationFragment : Fragment() {
             tvGuest.visibility = View.GONE
             btnLogin.visibility = View.GONE
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 
 }

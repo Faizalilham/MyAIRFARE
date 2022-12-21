@@ -99,13 +99,15 @@ class CartFragment : Fragment() {
                 deleteWaitList(id)
             }
 
-            override fun onDetail(schedule: MutableList<Schedule>, chairs: MutableList<Int>) {
+            override fun onDetail(schedule: MutableList<Schedule>, chairs: MutableList<Int>,waitListId : String) {
                 startActivity(Intent(requireActivity(), DetailPerjalanan::class.java).also{
                     it.putExtra("schedule",schedule[0])
                     if(schedule.size > 1){
                         it.putExtra("returnFlight",schedule[1])
                     }
                     it.putIntegerArrayListExtra("chairs", ArrayList(chairs))
+                    it.putExtra("waitList",true)
+                    it.putExtra("waitListId",waitListId)
                 })
             }
         })
@@ -141,16 +143,12 @@ class CartFragment : Fragment() {
     private fun showWarning(show : Boolean){
         binding.apply {
             if(show){
-                imageNotFound.visibility = View.VISIBLE
-                tvNotFound.visibility = View.VISIBLE
                 recyclerCart.visibility = View.VISIBLE
                 imageGuest.visibility = View.GONE
                 tvGuest.visibility = View.GONE
                 tvGuest2.visibility = View.GONE
                 btnLogin.visibility = View.GONE
             }else{
-                imageNotFound.visibility = View.GONE
-                tvNotFound.visibility = View.GONE
                 recyclerCart.visibility = View.GONE
                 imageGuest.visibility = View.VISIBLE
                 tvGuest.visibility = View.VISIBLE

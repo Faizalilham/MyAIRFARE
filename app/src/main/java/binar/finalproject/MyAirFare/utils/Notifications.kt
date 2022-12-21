@@ -1,24 +1,26 @@
 package binar.finalproject.MyAirFare.utils
 
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat.getSystemService
 import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.ui.activities.MainActivity
+import java.lang.reflect.Method
 
 
 object Notifications {
 
+    @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun makeStatusNotification(message: String, context: Context) {
+    fun makeStatusNotification(message: String = "", context: Context,
+                               messageList : MutableList<String> = mutableListOf()) {
 
-        // Make a channel if necessary
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = VERBOSE_NOTIFICATION_CHANNEL_NAME
             val description = VERBOSE_NOTIFICATION_CHANNEL_DESCRIPTION
@@ -33,7 +35,7 @@ object Notifications {
         }
 
         val intent = Intent(context, MainActivity::class.java)
-        intent.action = java.lang.Long.toString(System.currentTimeMillis())
+        intent.action = System.currentTimeMillis().toString()
         intent.flags =
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         val pendingIntent = PendingIntent.getActivity(
@@ -45,10 +47,23 @@ object Notifications {
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle(NOTIFICATION_TITLE)
             .setContentText(message)
+            .setShowWhen(true)
+            .setStyle(NotificationCompat.InboxStyle()
+                .addLine(messageList[0])
+                .addLine(messageList[1])
+            )
+            .setGroup("binar.finalproject.MyAirFare")
+            .setGroupSummary(true)
+            .setDefaults(Notification.DEFAULT_ALL)
             .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setPriority(NotificationCompat.PRIORITY_HIGH) // or NotificationManager.IMPORTANCE_HIGH
             .setVibrate(LongArray(0))
 
         NotificationManagerCompat.from(context).notify(NOTIFICATION_ID, builder.build())
+
+//        val service: Any = getSystemService(context,Class.forName("android.app.StatusBarManager"))!!
+//        val statusBarManager = Class.forName("android.app.StatusBarManager")
+//        val expandMethod: Method = statusBarManager.getMethod("expandNotificationsPanel") // collapsePanels, collapse
+//        expandMethod.invoke(service)
     }
 }

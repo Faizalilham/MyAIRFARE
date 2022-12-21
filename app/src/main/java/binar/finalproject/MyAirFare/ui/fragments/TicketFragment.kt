@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.FragmentTicketBinding
 import binar.finalproject.MyAirFare.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -27,13 +31,15 @@ class TicketFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setViewPager()
+        refresh()
     }
 
     private fun setViewPager(){
         val fragmentList = arrayListOf(
             WaitingPaymentFragment(),
             ActiveTicketFragment(),
-            InActiveTicketFragment()
+            InActiveTicketFragment(),
+            CheckInFragment()
         )
         val viewPagerAdapter = ViewPagerAdapter(fragmentList,childFragmentManager,lifecycle)
         binding.viewPager.adapter = viewPagerAdapter
@@ -42,9 +48,16 @@ class TicketFragment : Fragment() {
                 0 -> tab.text = "Menunggu Pembayaran"
                 1 -> tab.text = "Aktif"
                 2 -> tab.text = "Non Aktif"
+                3 -> tab.text = "Riwayat CheckIn"
 
             }
         }.attach()
+    }
+
+    private fun refresh(){
+        binding.swipe.setOnRefreshListener {
+           Navigation.findNavController(binding.root).navigate(R.id.ticketFragment)
+        }
     }
 
     override fun onDestroy() {

@@ -4,16 +4,13 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Build
-import android.text.format.DateFormat.is24HourFormat
 import android.widget.EditText
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentManager
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import java.text.SimpleDateFormat
 import java.time.*
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 object DatePicker {
 
@@ -39,33 +36,6 @@ object DatePicker {
         return formatDate.format(dates)
     }
 
-    fun timePicker(context : Context,manager : FragmentManager,e : EditText){
-        var hour = 0
-        var minute = 0
-        val a = is24HourFormat(context)
-        val clockFormat = if(a) TimeFormat.CLOCK_24H else TimeFormat.CLOCK_12H
-        val picker = MaterialTimePicker.Builder()
-            .setTimeFormat(clockFormat)
-            .setHour(12)
-            .setMinute(0)
-            .setTitleText("Pilih waktu")
-            .build()
-        picker.show(manager,"TAG")
-        picker.addOnPositiveButtonClickListener {
-            hour = picker.hour
-            minute = picker.minute
-            if(minute == 0 || minute.toString() == "00"){
-                val result = "$hour:$minute"+"0:00"
-                e.setText(result)
-            }else{
-                val result = "$hour:$minute:00"
-                e.setText(result)
-            }
-
-
-
-        }
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getCurrentDate(): String {
@@ -78,9 +48,14 @@ object DatePicker {
         val inputFormatter =
             DateTimeFormatter.ofPattern("dd-MMMM-yyyy", Locale.getDefault())
         val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
-        val dates: LocalDate = LocalDate.parse(date, inputFormatter)
-        val formattedDate = outputFormatter.format(dates)
-        return formattedDate.toString()
+
+        return if(date.isNotEmpty()){
+            val dates: LocalDate = LocalDate.parse(date, inputFormatter)
+            val formattedDate = outputFormatter.format(dates)
+            formattedDate.toString()
+        }else{
+            ""
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -120,32 +95,38 @@ object DatePicker {
     }
 
 
-//    @SuppressLint("SimpleDateFormat")
-//    @RequiresApi(Build.VERSION_CODES.O)
-//    fun getDifferentTime(firstTime : String,secondTime : String):String{
-//        val odtFirst = OffsetDateTime.parse(firstTime)
-//        val instantFirst = odtFirst.toInstant()
-//        val datesFirst = Date.from(instantFirst)
-//        val odtSecond = OffsetDateTime.parse(secondTime)
-//        val instantSecond = odtSecond.toInstant()
-//        val datesSecond = Date.from(instantSecond)
-//        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-//        val a = dateFormat.format(datesFirst)
-//        val b = dateFormat.format(datesSecond)
-//        val firstFix = dateFormat.parse(a)
-//        val secondFix = dateFormat.parse(b)
-//        val diff = firstFix!!.time - secondFix!!.time
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getDifferentTime(firstTime : String):String{
+        val odtFirst = OffsetDateTime.parse(firstTime)
+        val instantFirst = odtFirst.toInstant()
+        val datesFirst = Date.from(instantFirst)
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        val a = dateFormat.format(datesFirst)
+        val firstFix = dateFormat.parse(a)
+        val date = Date()
+        val diff = firstFix!!.time  - date.time
 //        val seconds : Long = diff / 1000
 //        val minutes: Long = seconds / 60
 //        val hours : Long = minutes / 60
 //        val day = hours / 24
-//
-//        return if(datesFirst.before(datesSecond)){
-//            "$day:$hours:$minutes"
-//        }else{
-//            "Terlewat"
-//        }
-//    }
+
+        val diffInDays: Long = TimeUnit.MILLISECONDS.toDays(diff)
+        val diffInHours: Long = TimeUnit.MILLISECONDS.toHours(diff)
+        val diffInMin: Long = TimeUnit.MILLISECONDS.toMinutes(diff)
+        val diffInSec: Long = TimeUnit.MILLISECONDS.toSeconds(diff)
+
+
+        val minutes = diff / (60 * 1000) % 60
+        val hours = diff / (60 * 60 * 1000) % 60
+        println("KKKKK $datesFirst $date")
+        println("KKKKKLLL $diffInDays $diffInHours $diffInMin")
+        return if(date.before(datesFirst)){
+            "$hours jam :$minutes menit"
+        }else{
+            "Terlewat"
+        }
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun timeCalculation(currentDate : String?): String {
@@ -156,45 +137,45 @@ object DatePicker {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun timeCalculationTransactions(currentDate : String?): Date {
+    fun timeCalculationTransactions(currentDate : String?): String {
         val instant = Instant.parse(currentDate)
         val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy | HH:mm:ss")
             .withZone(ZoneId.of(TimeZone.getDefault().id))
         println(currentDate)
-        println(formatter.format(instant).plus(1))
-        return Date(formatter.format(instant).plus(1))
+        println(formatter.format(instant))
+        return formatter.format(instant)
     }
 
-    @SuppressLint("SimpleDateFormat")
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun  getDifferentTime(startDate : String,stopDate : String):String{
-        val instantStartDate = Instant.parse(startDate)
-        val instantStopDate = Instant.parse(stopDate)
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss")
-            .withZone(ZoneId.of(TimeZone.getDefault().id))
-        val format = SimpleDateFormat("dd/MM/yy HH:mm:ss")
-        val start = formatter.format(instantStartDate)
-        val stop = formatter.format(instantStopDate)
-        var d1: Date? = null
-        var d2: Date? = null
-        try {
-            d1 = format.parse(start)
-            d2 = format.parse(stop)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        val diff = d2!!.time - d1!!.time
-
-        val diffTotalSeconds = diff / 1000
-        val diffTotalMinutes = diff / (60 * 1000)
-        val diffTotalHours = diff / (60 * 60 * 1000)
-
-        val diffSeconds = diff / 1000 % 60
-        val diffMinutes = diff / (60 * 1000) % 60
-        val diffHours = diff / (60 * 60 * 1000) % 60
-
-        return "$diffHours Jam $diffMinutes Menit"
-    }
+//    @SuppressLint("SimpleDateFormat")
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    fun  getDifferentTime(startDate : String,stopDate : String):String{
+//        val instantStartDate = Instant.parse(startDate)
+//        val instantStopDate = Instant.parse(stopDate)
+//        val formatter = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss")
+//            .withZone(ZoneId.of(TimeZone.getDefault().id))
+//        val format = SimpleDateFormat("dd/MM/yy HH:mm:ss")
+//        val start = formatter.format(instantStartDate)
+//        val stop = formatter.format(instantStopDate)
+//        var d1: Date? = null
+//        var d2: Date? = null
+//        try {
+//            d1 = format.parse(start)
+//            d2 = format.parse(stop)
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//        val diff = d2!!.time - d1!!.time
+//
+//        val diffTotalSeconds = diff / 1000
+//        val diffTotalMinutes = diff / (60 * 1000)
+//        val diffTotalHours = diff / (60 * 60 * 1000)
+//
+//        val diffSeconds = diff / 1000 % 60
+//        val diffMinutes = diff / (60 * 1000) % 60
+//        val diffHours = diff / (60 * 60 * 1000) % 60
+//
+//        return "$diffHours Jam $diffMinutes Menit"
+//    }
 
 
 }

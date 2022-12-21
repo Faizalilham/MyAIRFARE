@@ -37,6 +37,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
     private var ticket_id = mutableListOf<String>()
     private var chairsNumber = mutableListOf<Int>()
     private var totalPrice = mutableListOf<Int>()
+    var returnFlight = false
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +56,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
             if(scheduleReturn.size > 0){
                 binding.linearReturnFlight.visibility = View.VISIBLE
                 setupViewReturn(scheduleReturn,chairs)
+                returnFlight = true
             }else{
                 binding.linearReturnFlight.visibility = View.GONE
                 binding.tvPriceReturn.visibility = View.GONE
@@ -76,6 +78,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
                 tvCode.text = i.flight_number
                 tvFrom.text = i.from
                 tvDestination.text = i.dest
+                tvAirlane.text = i.name
                 when(i.kelas){
                     1 -> tvClass.text = "ECONOMY"
                     2 -> tvClass.text = "BUSSINESS"
@@ -113,11 +116,13 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
             binding.apply {
                 scheduleReturn.forEach { i ->
                     ticket_id.add(i.id)
+                    Log.d("KONNTOL","$i")
                     dropDownMenu(chairs,R.layout.dropdown_tittle_item,tvNoChairReturn)
                     Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${i.logo}").into(imageLogoReturn)
                     tvCodeReturn.text = i.flight_number
                     tvFromReturn.text = i.from
                     tvDestinationReturn.text = i.dest
+                    tvAirlaneReturn.text = i.name
                     when(i.kelas){
                         1 -> tvClassReturn.text = "ECONOMY"
                         2 -> tvClassReturn.text = "BUSSINESS"
@@ -161,39 +166,98 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
     override fun onItemClick(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-        binding.tvNoChair.setText(parent?.getItemAtPosition(position).toString())
-        chairsNumber.add(parent?.getItemAtPosition(position).toString().toInt())
+        binding.apply {
+            if (parent == binding.tvNoChair) {
+                tvNoChair.setText(parent.getItemAtPosition(position).toString())
+            } else if (parent == binding.tvNoChairReturn) {
+                tvNoChairReturn.setText(parent.getItemAtPosition(position).toString())
+            }
+
+        }
+
     }
 
     private fun doBooking(){
         binding.btnBooking.setOnClickListener { _ ->
-            authPreferencesViewModel.getToken().observe(this){
-                if(it != null && it != "undefined"){
-                      Log.d("TIKET ID",ticket_id.toString())
-                      if(chairsNumber.size > 0){
-                            transactionsViewModel.doPostTransactions(
-                                it,
-                                ticket_id,
-                                chairsNumber
-                            )
-                          showLoading(true)
-                          transactionsViewModel.doPostTransactionsObserver().observe(this){ result ->
-                              if(result != null){
-                                  showLoading(false)
-                                  getSnapToken(result.trx.token_trx)
-                                  Toast.makeText(this, result.trx.token_trx, Toast.LENGTH_SHORT).show()
-                              }else{
-                                  transactionsViewModel.messageObserver().observe(this){ message ->
-                                      Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                                  }
-                                  showLoading(false)
-                              }
-                          }
-                      }else{
-                          Toast.makeText(this, "Pilih kursi terlebih dahulu", Toast.LENGTH_SHORT).show()
-                      }
+            val waitList = intent.getBooleanExtra("waitList",false)
+            if(waitList){
+                postWithCart()
+            }else{
+                postWithSearch()
+
+            }
+        }
+    }
+
+    private fun postWithSearch(){
+        authPreferencesViewModel.getToken().observe(this){
+            if(it != null && it != "undefined"){
+                chairsNumber.add(binding.tvNoChair.text.toString().toInt())
+                if(returnFlight){
+                    chairsNumber.add(binding.tvNoChairReturn.text.toString().toInt())
+                }
+                if(chairsNumber.size > 0){
+                    if(ticket_id.size > 1){
+                        ticket_id[1].trim()
+                    }
+                    Log.d("TIKET ID", ticket_id.toString())
+                    transactionsViewModel.doPostTransactions(
+                        it,
+                        ticket_id,
+                        chairsNumber
+                    )
+                    showLoading(true)
+                    transactionsViewModel.doPostTransactionsObserver().observe(this){ result ->
+                        if(result != null){
+                            showLoading(false)
+                            getSnapToken(result.trx.token_trx)
+                            Toast.makeText(this, result.trx.token_trx, Toast.LENGTH_SHORT).show()
+                        }else{
+                            transactionsViewModel.messageObserver().observe(this){ message ->
+                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                            }
+                            showLoading(false)
+                        }
+                    }
                 }else{
-                    alertLogin()
+                    Toast.makeText(this, "Pilih kursi terlebih dahulu", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                alertLogin()
+            }
+        }
+    }
+
+    private fun postWithCart(){
+        val id = intent.getStringExtra("waitListId")
+        authPreferencesViewModel.getToken().observe(this){
+            if(it != null && it != "undefined"){
+                Log.d("TIKET ID",ticket_id.toString())
+                chairsNumber.add(binding.tvNoChair.text.toString().toInt())
+                if(returnFlight){
+                    chairsNumber.add(binding.tvNoChairReturn.text.toString().toInt())
+                }
+                if(chairsNumber.size > 0){
+                    transactionsViewModel.doPostTransactionsWithCart(
+                        it,
+                        id!!,
+                        chairsNumber
+                    )
+                    showLoading(true)
+                    transactionsViewModel.doPostTransactionsWithCartObserver().observe(this){ result ->
+                        if(result != null){
+                            showLoading(false)
+                            getSnapToken(result.trx.token_trx)
+                            Toast.makeText(this, result.trx.token_trx, Toast.LENGTH_SHORT).show()
+                        }else{
+                            transactionsViewModel.messageObserver().observe(this){ message ->
+                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                            }
+                            showLoading(false)
+                        }
+                    }
+                }else{
+                    Toast.makeText(this, "Pilih kursi terlebih dahulu", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -214,6 +278,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
     private fun postWaitList() {
         authPreferencesViewModel.getToken().observe(this){
             if(it != null && it != "undefined"){
+                Log.d("koonntoll","$it $ticket_id")
                 waitListViewModel.postWaitList(it,ticket_id)
                 waitListViewModel.postWaitListObserver().observe(this){ waitList ->
                     if(waitList != null){

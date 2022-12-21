@@ -73,9 +73,15 @@ class WaitListRepository @Inject constructor(private val api : ApiEndPoint) {
                             Log.d("ERROR",response.code().toString())
                         }
                     }else{
-                        val error = ErrorValidation.errorAuthValidation(response.code())
                         postWaitList.postValue(null)
-                        message.postValue(error)
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        if(response.code() == 403){
+                            message.postValue("Tidak bisa transaksi tiket dengan jam penerbangan yang sama")
+                        }else if(response.code() == 401 || response.code() == 404){
+                            message.postValue("Tidak bisa melakukan transaksi tiket yang sudah terlewat")
+                        }else{
+                            message.postValue(error)
+                        }
                         Log.d("ERROR",response.code().toString())
                     }
 

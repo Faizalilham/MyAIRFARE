@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.MyAirFare.api.ApiEndPoint
 import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
-import binar.finalproject.MyAirFare.model.transactions.PostTransactionsRequest
-import binar.finalproject.MyAirFare.model.transactions.PostTransactionsResponse
-import binar.finalproject.MyAirFare.model.transactions.ReadTransactionsResponse
+import binar.finalproject.MyAirFare.model.transactions.*
 import binar.finalproject.MyAirFare.model.wait_list.WaitListDeleteResponse
 import binar.finalproject.MyAirFare.utils.ErrorValidation
 import retrofit2.Call
@@ -45,8 +43,14 @@ class TransactionsRepository @Inject constructor(private  val api : ApiEndPoint)
                         }
                     }else{
                         doPostTransactions.postValue(null)
-                        val error = ErrorValidation.errorAuthValidation(response.code())
-                        message.postValue(error)
+                        if(response.code() == 403){
+                            message.postValue("Tidak bisa melakukan transaksi tiket dengan jam penerbangan yang sama")
+                        }else if(response.code() == 401 || response.code() == 404){
+                            message.postValue("Tidak bisa melakukan transaksi tiket yang sudah terlewat")
+                        }else{
+                            val error = ErrorValidation.errorAuthValidation(response.code())
+                            message.postValue(error)
+                        }
                         Log.d("errorr","${response.code()}")
                     }
                 }
@@ -132,14 +136,14 @@ class TransactionsRepository @Inject constructor(private  val api : ApiEndPoint)
         })
     }
 
-    private val doDeleteTransaction : MutableLiveData<WaitListDeleteResponse?> = MutableLiveData()
-    fun deleteTransactionObserver() : LiveData<WaitListDeleteResponse?> = doDeleteTransaction
+    private val doDeleteTransaction : MutableLiveData<TransactionsDeleteResponse?> = MutableLiveData()
+    fun deleteTransactionObserver() : LiveData<TransactionsDeleteResponse?> = doDeleteTransaction
 
-    fun doDeleteTransaction(token : String,id : Int){
-        api.deleteTransaction(token,id).enqueue(object : Callback<WaitListDeleteResponse>{
+    fun doDeleteTransaction(token : String,id : String){
+        api.deleteTransaction(token,id).enqueue(object : Callback<TransactionsDeleteResponse>{
             override fun onResponse(
-                call: Call<WaitListDeleteResponse>,
-                response: Response<WaitListDeleteResponse>
+                call: Call<TransactionsDeleteResponse>,
+                response: Response<TransactionsDeleteResponse>
             ) {
                 if(response.isSuccessful){
                     val body = response.body()
@@ -160,12 +164,53 @@ class TransactionsRepository @Inject constructor(private  val api : ApiEndPoint)
                 }
             }
 
-            override fun onFailure(call: Call<WaitListDeleteResponse>, t: Throwable) {
+            override fun onFailure(call: Call<TransactionsDeleteResponse>, t: Throwable) {
                 doDeleteTransaction.postValue(null)
                 Log.d("error","${t.message}")
             }
 
         })
+    }
+
+
+    private val doPostTransactionsWithCart : MutableLiveData<PostTransactionsResponse?> = MutableLiveData()
+    fun doPostTransactionsWithCartObserver() : LiveData<PostTransactionsResponse?> = doPostTransactionsWithCart
+
+
+    fun doPostTransactionsWithCart(token : String,waitListId : String,chairNumber :MutableList<Int>){
+        api.postTransactionWithCart(token,PostTransactionsWithCartRequest(waitListId,chairNumber))
+            .enqueue(object : Callback<PostTransactionsResponse>{
+                override fun onResponse(
+                    call: Call<PostTransactionsResponse>,
+                    response: Response<PostTransactionsResponse>
+                ) {
+                    if(response.isSuccessful){
+                        val body = response.body()
+                        if(body != null){
+                            doPostTransactionsWithCart.postValue(body)
+                            Log.d("success","$body")
+                        }else{
+                            doPostTransactionsWithCart.postValue(null)
+                            val error = ErrorValidation.errorAuthValidation(response.code())
+                            message.postValue(error)
+                            Log.d("errorr","${response.code()}")
+                        }
+                    }else{
+                        doPostTransactionsWithCart.postValue(null)
+                        val error = ErrorValidation.errorAuthValidation(response.code())
+                        message.postValue(error)
+                        Log.d("errorr","${response.code()}")
+                    }
+                }
+
+                override fun onFailure(call: Call<PostTransactionsResponse>, t: Throwable) {
+                    doPostTransactionsWithCart.postValue(null)
+                    Log.d("error","${t.message}")
+                }
+
+
+            })
+
     }
 
 

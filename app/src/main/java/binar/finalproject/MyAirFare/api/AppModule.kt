@@ -1,9 +1,14 @@
 package binar.finalproject.MyAirFare.api
 
 
+import android.content.Context
+import androidx.room.Room
+import binar.finalproject.MyAirFare.room.DaoCheckIn
+import binar.finalproject.MyAirFare.room.SetupRoom
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -44,5 +49,14 @@ object AppModule {
 
     @Provides
     fun authEndPoint(retrofit : Retrofit): AuthEndPoint = retrofit.create(AuthEndPoint::class.java)
+
+    @Provides
+    fun roomProvides(@ApplicationContext context : Context): SetupRoom {
+        return Room.databaseBuilder(context,SetupRoom::class.java,"DBFavorite").build()
+    }
+
+    @Singleton
+    @Provides
+    fun daoFavorite(db : SetupRoom):DaoCheckIn = db.daoFavorite()
 
 }
