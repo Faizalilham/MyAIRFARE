@@ -55,7 +55,49 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/dp15"
         app:layout_constraintTop_toBottomOf="@id/tvTittle"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/total"
         tools:listitem="@layout/list_item_sold_ticket"/>
+
+    <LinearLayout
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/total_pendapatan"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/dp10"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/total_pendapatan"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:layout_marginTop="@dimen/dp10"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -105,7 +105,8 @@ class DetailTicketActivity : AppCompatActivity() {
                 1 -> tvType.text = "DEWASA"
                 2 -> tvType.text = "ANAK-ANAK"
             }
-            tvCode.text = code
+            val flightNumber = code.filter { it.isDigit() }
+            tvCode.text = flightNumber
             tvDestination.text = dest
             tvFrom.text = from
             tvAirlane.text = airlane

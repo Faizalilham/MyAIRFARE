@@ -136,6 +136,7 @@
     <string name="visa_number">Visa Number</string>
     <string name="masukkan_kode_penerbangan">Masukkan kode penerbangan</string>
     <string name="buat_qr_code">Buat QR Code</string>
+    <string name="total_pendapatan">Total Pendapatan</string>
 
     <string-array name="classes">
         <item>Economy</item>

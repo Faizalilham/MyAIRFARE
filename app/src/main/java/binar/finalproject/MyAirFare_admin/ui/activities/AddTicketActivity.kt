@@ -50,6 +50,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         setContentView(binding.root)
         binding.etDateFlight.setText(DatePicker.getCurrentDate())
+        binding.etEstimated.setText(DatePicker.getCurrentDate())
         id = intent.getStringExtra("id")
         if(id != null){
             setupView(id!!)
@@ -162,17 +163,13 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                 var type = "1"
                 if(classess == "Economy"){
                     kelas = "1"
-                    Toast.makeText(this@AddTicketActivity, kelas, Toast.LENGTH_SHORT).show()
                 }else{
                     kelas = "2"
-                    Toast.makeText(this@AddTicketActivity, kelas, Toast.LENGTH_SHORT).show()
                 }
                 if(tipe == "Dewasa"){
                     type = "1"
-                    Toast.makeText(this@AddTicketActivity, type, Toast.LENGTH_SHORT).show()
                 }else{
                     type = "2"
-                    Toast.makeText(this@AddTicketActivity, type, Toast.LENGTH_SHORT).show()
                 }
                 Log.d("TIPE DAN CLASS","$kelas $type")
                 Log.d("TIPE DAN CLASS","$classess $tipe")
