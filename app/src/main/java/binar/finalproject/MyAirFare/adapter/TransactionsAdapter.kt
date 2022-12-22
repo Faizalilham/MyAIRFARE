@@ -48,7 +48,7 @@ class TransactionsAdapter(private val listener : OnClick):RecyclerView.Adapter<T
             orderID.text = orderId
             transactions.carts.forEach {
                 airlane.text = it.ticket.name
-                Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${it.ticket.logo}").into(imageLogo)
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${it.ticket.logo}").into(imageLogo)
                 tvFrom.text = it.ticket.from
                 tvDestination.text = it.ticket.dest
                 val dateAir = DatePicker.dateCalculation(it.ticket.date_air)

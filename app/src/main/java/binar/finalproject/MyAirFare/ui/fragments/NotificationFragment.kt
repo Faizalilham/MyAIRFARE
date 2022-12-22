@@ -51,7 +51,7 @@ class NotificationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         getNotifications()
-        socket = IO.socket("https://binarfinalsocketserver-production.up.railway.app/")
+        socket = IO.socket("https://binarfinalsocketserver-production-1a1f.up.railway.app/")
         socket.connect()
 
     }

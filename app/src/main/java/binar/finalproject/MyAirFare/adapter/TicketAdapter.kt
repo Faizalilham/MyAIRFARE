@@ -65,7 +65,7 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
             val timeAir = DatePicker.timeCalculation(diff.date_air)
             val timeEstimated = DatePicker.timeCalculation(diff.estimated_up_dest)
             val date = "$dateAir - $estimated"
-            Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${diff.logo}").into(imageLogo)
+            Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${diff.logo}").into(imageLogo)
             tvTime.text = DatePicker.getDifferentTime(diff.date_air)
             tvDate.text = date
             tvAsalTime.text = timeAir
@@ -89,7 +89,7 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
         }
     }
 
-    override fun getItemCount(): Int = 25
+    override fun getItemCount(): Int = differ.currentList.size
 
     interface OnClick{
         fun onClicked(schedule: Schedule,chairs : MutableList<Int>)

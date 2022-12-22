@@ -74,7 +74,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
             binding.apply {
                 ticket_id.add(i.id)
                 dropDownMenu(chairs,R.layout.dropdown_tittle_item,tvNoChair)
-                Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${i.logo}").into(imageLogo)
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${i.logo}").into(imageLogo)
                 tvCode.text = i.flight_number
                 tvFrom.text = i.from
                 tvDestination.text = i.dest
@@ -118,7 +118,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
                     ticket_id.add(i.id)
                     Log.d("KONNTOL","$i")
                     dropDownMenu(chairs,R.layout.dropdown_tittle_item,tvNoChairReturn)
-                    Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${i.logo}").into(imageLogoReturn)
+                    Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${i.logo}").into(imageLogoReturn)
                     tvCodeReturn.text = i.flight_number
                     tvFromReturn.text = i.from
                     tvDestinationReturn.text = i.dest

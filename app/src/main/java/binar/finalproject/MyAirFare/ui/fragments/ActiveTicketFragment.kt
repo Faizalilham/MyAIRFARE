@@ -15,6 +15,7 @@ import binar.finalproject.MyAirFare.databinding.FragmentActiveTicketBinding
 import binar.finalproject.MyAirFare.model.transactions.Transactions
 import binar.finalproject.MyAirFare.ui.activities.DetailTransactionsActivity
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
+import binar.finalproject.MyAirFare.viewmodel.checkin.CheckInRoomViewModel
 import binar.finalproject.MyAirFare.viewmodel.transactions.TransactionsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +28,7 @@ class ActiveTicketFragment : Fragment() {
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var transactionsViewModel : TransactionsViewModel
     private lateinit var transactionsAdapter: TransactionsAdapter
+    private lateinit var checkInRoomViewModel : CheckInRoomViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +36,7 @@ class ActiveTicketFragment : Fragment() {
         binding = FragmentActiveTicketBinding.inflate(layoutInflater)
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         transactionsViewModel = ViewModelProvider(this)[TransactionsViewModel::class.java]
+        checkInRoomViewModel = ViewModelProvider(this)[CheckInRoomViewModel::class.java]
         return binding.root
     }
 
@@ -44,7 +47,7 @@ class ActiveTicketFragment : Fragment() {
 
 
     private fun getAllTransactions(){
-        authPreferencesViewModel.getToken().observe(requireActivity()){
+        authPreferencesViewModel.getToken().observe(requireActivity()){ it ->
             if(it != null && it != "undefined"){
                 transactionsViewModel.doGetAllTransaction(it)
                 showLoading(true)
@@ -57,6 +60,15 @@ class ActiveTicketFragment : Fragment() {
                             val a = transactions.transaction.filter { its ->
                                 its.status == "finished"
                             }
+                            checkInRoomViewModel.getAllCheckIn()
+                            checkInRoomViewModel.getAllCheckInObserver().observe(requireActivity()){ dt ->
+                                dt?.forEach { checkIn ->
+                                    a.filter { data ->
+                                        data.order_id != checkIn.order_id
+                                    }
+                                }
+                            }
+
                             if(a.isNotEmpty()){
                                 showWarning(false)
                                 setRecycler(a.toMutableList())
@@ -64,6 +76,7 @@ class ActiveTicketFragment : Fragment() {
                             }else{
                                 showWarning(true)
                             }
+
                         }
                     }else{
                         showLoading(false)

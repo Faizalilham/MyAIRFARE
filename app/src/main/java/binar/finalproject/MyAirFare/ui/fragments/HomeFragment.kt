@@ -23,6 +23,7 @@ import binar.finalproject.MyAirFare.ui.activities.SearchTicketActivity
 import binar.finalproject.MyAirFare.utils.DatePicker
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.ticket.TicketViewModel
+import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -93,8 +94,9 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
                 binding.apply {
                     setAnimation(linearClassType,1.0f,View.VISIBLE)
                     setAnimation(ilLinearDateReturn,1.0f,View.VISIBLE)
-                    collapseConstraint.layoutParams.height = 1280
-                    collapseLinear.layoutParams.height = 1280
+                    val height = 650 * resources.displayMetrics.density
+                    collapseConstraint.layoutParams.height =   height.toInt() //1280
+                    collapseLinear.layoutParams.height = height.toInt()
                     setEnabled(true)
                     btnSearch.setOnClickListener {
                        if(etDateReturn.text.toString().isNotEmpty()){
@@ -112,8 +114,9 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
                 binding.apply {
                     setAnimation(linearClassType,0.0f,View.GONE)
                     setAnimation(ilLinearDateReturn,0.0f,View.GONE)
-                    collapseConstraint.layoutParams.height = 1020
-                    collapseLinear.layoutParams.height = 1020
+                    val height = 520 * resources.displayMetrics.density
+                    collapseConstraint.layoutParams.height = height.toInt()
+                    collapseLinear.layoutParams.height = height.toInt()
                     setEnabled(false)
                 }
             }
@@ -210,7 +213,18 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
             etDateReturn.isEnabled = enable
             tvTypeTicket.isEnabled = enable
             tvClass.isEnabled = enable
+            if(enable){
+                etDateReturn.visibility = View.VISIBLE
+                tvTypeTicket.visibility = View.VISIBLE
+                tvClass.visibility = View.VISIBLE
+            }else{
+                etDateReturn.visibility = View.GONE
+                tvTypeTicket.visibility = View.GONE
+                tvClass.visibility = View.GONE
+            }
         }
+
+
     }
 
     private fun setAnimation(anim : LinearLayout,alpha : Float, i : Int){

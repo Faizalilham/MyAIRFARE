@@ -55,7 +55,7 @@ class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<C
                 val timeAir = DatePicker.timeCalculation(it.ticket.date_air)
                 val timeEstimated = DatePicker.timeCalculation(it.ticket.estimated_up_dest)
                 val date = "$dateAir - $estimated"
-                Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${it.ticket.logo}").into(imageLogo)
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${it.ticket.logo}").into(imageLogo)
                 tvTime.text = DatePicker.getDifferentTime(it.ticket.date_air)
                 tvDate.text = date
                 tvAsalTime.text = timeAir
