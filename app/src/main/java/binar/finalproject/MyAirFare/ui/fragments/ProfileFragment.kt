@@ -128,13 +128,13 @@ class ProfileFragment : Fragment() {
             tvUsername.visibility = View.VISIBLE
             tvEmail.visibility = View.VISIBLE
             cardDetailProfile.visibility = View.VISIBLE
-            cardPengaturan.visibility = View.VISIBLE
+            cardPengaturan.visibility = View.GONE
             cardKeluar.visibility = View.VISIBLE
             tvBeforeLogin.visibility = View.GONE
             btnLogin.visibility = View.GONE
             tvUsername.text = username
             tvEmail.text = email
-            activity?.let { Glide.with(it).load("https://binarstudpenfinalprojectbe-production.up.railway.app$image").into(imageProfile) }
+            activity?.let { Glide.with(it).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app$image").into(imageProfile) }
         }
     }
 

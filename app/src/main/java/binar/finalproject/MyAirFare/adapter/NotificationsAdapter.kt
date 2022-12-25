@@ -42,6 +42,8 @@ class NotificationsAdapter():RecyclerView.Adapter<NotificationsAdapter.Notificat
                 tittle.text = "Pembayaran terlewat"
             }else if(diff.lowercase(Locale.getDefault()).contains("dibatalaka")){
                 tittle.text = "Pembatalan transaksi"
+            }else{
+                tittle.text = "Login Success"
             }
             subTittle.text = diff
         }

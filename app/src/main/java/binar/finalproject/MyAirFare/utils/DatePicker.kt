@@ -177,5 +177,16 @@ object DatePicker {
 //        return "$diffHours Jam $diffMinutes Menit"
 //    }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("SimpleDateFormat")
+    fun dateTimeCalculation(dates : String):Boolean{
+        val date = Date()
+        val odtFirst = OffsetDateTime.parse(dates)
+        val instantFirst = odtFirst.toInstant()
+        val datesFirst = Date.from(instantFirst)
+        return date.before(datesFirst)
+
+    }
+
 
 }

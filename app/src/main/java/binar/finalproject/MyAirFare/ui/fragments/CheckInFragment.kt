@@ -38,10 +38,21 @@ class CheckInFragment : Fragment() {
 
     private fun getAllCheckIn(){
         checkInRoomViewModel.getAllCheckIn()
+        showLoading(true)
         if(isAdded && activity != null){
             checkInRoomViewModel.getAllCheckInObserver().observe(requireActivity()){
                 if(it != null){
-                    setRecycler(it)
+                   if(it.size > 0){
+                       showLoading(false)
+                       showWarning(false)
+                       setRecycler(it)
+                   }else{
+                       showLoading(false)
+                       showWarning(true)
+                   }
+                }else{
+                    showLoading(false)
+                    showWarning(true)
                 }
             }
         }
@@ -54,7 +65,7 @@ class CheckInFragment : Fragment() {
                 if(isAdded && activity != null){
                     checkInRoomViewModel.deleteCheckInObserver().observe(requireActivity()){
                         if(it != null){
-                            Navigation.findNavController(binding.root).navigate(R.id.checkInFragment)
+                            Navigation.findNavController(binding.root).navigate(R.id.ticketFragment)
                             Toast.makeText(requireActivity(), "Data CheckIn Terhapus", Toast.LENGTH_SHORT).show()
                         }
                     }
@@ -70,7 +81,23 @@ class CheckInFragment : Fragment() {
                 layoutManager = LinearLayoutManager(requireActivity())
             }
         }
+    }
 
+    private fun showLoading(loading: Boolean){
+        if(loading) binding.loading.visibility = View.VISIBLE else binding.loading.visibility = View.GONE
+    }
+
+    private fun showWarning(show : Boolean){
+        binding.apply {
+            if(show){
+                imageNotFound.visibility = View.VISIBLE
+                tvNotFound.visibility = View.VISIBLE
+                tvNotFound.text = "Tidak ada data checkin"
+            }else{
+                imageNotFound.visibility = View.GONE
+                tvNotFound.visibility = View.GONE
+            }
+        }
     }
 
 }

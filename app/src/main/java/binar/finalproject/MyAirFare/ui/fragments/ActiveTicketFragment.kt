@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.adapter.TransactionsAdapter
 import binar.finalproject.MyAirFare.databinding.FragmentActiveTicketBinding
 import binar.finalproject.MyAirFare.model.transactions.Transactions
@@ -29,6 +31,7 @@ class ActiveTicketFragment : Fragment() {
     private lateinit var transactionsViewModel : TransactionsViewModel
     private lateinit var transactionsAdapter: TransactionsAdapter
     private lateinit var checkInRoomViewModel : CheckInRoomViewModel
+    private var id = mutableListOf<String>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +45,25 @@ class ActiveTicketFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getAllDataInRoom()
         getAllTransactions()
+    }
+
+    private fun getAllDataInRoom(){
+        checkInRoomViewModel.getAllCheckIn()
+        if(isAdded && activity != null){
+            checkInRoomViewModel.getAllCheckInObserver().observe(requireActivity()){ dt ->
+                dt.forEach { ids ->
+                    id.add(ids.order_id)
+                }
+                Log.d("CHECKIN","$id")
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Navigation.findNavController(binding.root).navigate(R.id.ticketFragment)
     }
 
 
@@ -55,18 +76,11 @@ class ActiveTicketFragment : Fragment() {
                     if(transactions != null){
                         showLoading(false)
                         Log.d("TRANSAKSI",transactions.toString())
+                        Log.d("ID ygy",id.toString())
                         transactions.transaction.forEach { trx ->
                             Log.d("STATUS",trx.status)
                             val a = transactions.transaction.filter { its ->
-                                its.status == "finished"
-                            }
-                            checkInRoomViewModel.getAllCheckIn()
-                            checkInRoomViewModel.getAllCheckInObserver().observe(requireActivity()){ dt ->
-                                dt?.forEach { checkIn ->
-                                    a.filter { data ->
-                                        data.order_id != checkIn.order_id
-                                    }
-                                }
+                                its.status == "finished" && !id.contains(its.order_id)
                             }
 
                             if(a.isNotEmpty()){

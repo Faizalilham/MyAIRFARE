@@ -28,9 +28,11 @@ class DetailTransactionsActivity : AppCompatActivity() {
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var transactionsViewModel: TransactionsViewModel
     private var id : Int? = null
+    private var dateAir = ""
     private val chairs = mutableListOf<Int>()
     private val flightNumber = mutableListOf<String>()
     private val flightName = mutableListOf<String>()
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +90,7 @@ class DetailTransactionsActivity : AppCompatActivity() {
                 }
 
                 i.carts.forEach {
+                    dateAir = it.ticket.date_air
                     tvFrom.text = it.ticket.from
                     tvDestination.text = it.ticket.dest
                     when(it.ticket.kelas){
@@ -229,9 +232,18 @@ class DetailTransactionsActivity : AppCompatActivity() {
        }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun doCheckIn(){
-        binding.btnScanQR.setOnClickListener {
-            startActivity(Intent(this,ScanQRActivity::class.java))
+        if(dateAir.isNotEmpty()){
+            if(DatePicker.dateTimeCalculation(dateAir)){
+                binding.btnScanQR.setOnClickListener {
+                    startActivity(Intent(this,ScanQRActivity::class.java))
+                }
+
+            }else{
+                binding.btnScanQR.isEnabled = false
+                Toast.makeText(this, "Sudah terlewat untuk melakukan checkin, silahkan pesan tiket kembali", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -40,7 +40,7 @@ object Notifications {
             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         val pendingIntent = PendingIntent.getActivity(
             context, 0,
-            intent, PendingIntent.FLAG_CANCEL_CURRENT
+            intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
@@ -51,6 +51,10 @@ object Notifications {
             .setStyle(NotificationCompat.InboxStyle()
                 .addLine(messageList[0])
                 .addLine(messageList[1])
+                .addLine(messageList[2])
+                .addLine(messageList[3])
+                .addLine(messageList[4])
+
             )
             .setGroup("binar.finalproject.MyAirFare")
             .setGroupSummary(true)

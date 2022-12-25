@@ -1,6 +1,7 @@
 package binar.finalproject.MyAirFare.adapter
 
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -49,26 +50,31 @@ class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<C
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         holder.binding.apply {
             val diff = differ.currentList[position]
-            diff.carts.forEach {
-                val dateAir = DatePicker.dateCalculation(it.ticket.date_air)
-                val estimated = DatePicker.dateCalculation(it.ticket.estimated_up_dest)
-                val timeAir = DatePicker.timeCalculation(it.ticket.date_air)
-                val timeEstimated = DatePicker.timeCalculation(it.ticket.estimated_up_dest)
+            Log.d("SIZED","${diff.carts.size}")
+            if(diff.carts.size > 0){
+                val dateAir = DatePicker.dateCalculation(diff.carts[0].ticket.date_air)
+                val estimated = DatePicker.dateCalculation(diff.carts[0].ticket.estimated_up_dest)
+                val timeAir = DatePicker.timeCalculation(diff.carts[0].ticket.date_air)
+                val timeEstimated = DatePicker.timeCalculation(diff.carts[0].ticket.estimated_up_dest)
                 val date = "$dateAir - $estimated"
-                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${it.ticket.logo}").into(imageLogo)
-                tvTime.text = DatePicker.getDifferentTime(it.ticket.date_air)
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${diff.carts[0].ticket.logo}").into(imageLogo)
+                tvTime.text = DatePicker.getDifferentTime(diff.carts[0].ticket.date_air)
                 tvDate.text = date
                 tvAsalTime.text = timeAir
                 tvTujuanTime.text = timeEstimated
-                when(it.ticket.kelas){
+                when(diff.carts[0].ticket.kelas){
                     1 ->  tvClass.text = "ECONOMY"
                     2 ->  tvClass.text = "BUSSINESS"
                     else  ->  tvClass.text = ""
                 }
-                tvAsal.text = it.ticket.from
-                tvTujuan.text = it.ticket.dest
-                tvPrice.text = it.ticket.price.toString()
-                tvKodePenerbangan.text = it.ticket.flight_number
+                tvAsal.text = diff.carts[0].ticket.from
+                tvTujuan.text = diff.carts[0].ticket.dest
+                tvPrice.text = diff.carts[0].ticket.price.toString()
+                tvKodePenerbangan.text = diff.carts[0].ticket.flight_number
+                tvType.text = "Sekali Jalan"
+                if(diff.carts.size > 1){
+                    tvType.text = "Pulang Pergi"
+                }
             }
             diff.carts.forEach {
                 it.ticket.available.forEach {  its ->
@@ -78,6 +84,7 @@ class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<C
             val schedule = mutableListOf<Schedule>()
             diff.carts.forEach {
                 schedule.add(it.ticket)
+                Log.d("SCHEDULES","${it.ticket}")
             }
 
             card.setOnClickListener {

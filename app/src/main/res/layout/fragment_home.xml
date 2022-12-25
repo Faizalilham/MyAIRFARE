@@ -199,6 +199,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/pulang_pergi"
+                            android:textColor="@color/third_gray"
+                            android:layout_marginStart="@dimen/dp10"
                             app:thumbTint="@color/primary"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"

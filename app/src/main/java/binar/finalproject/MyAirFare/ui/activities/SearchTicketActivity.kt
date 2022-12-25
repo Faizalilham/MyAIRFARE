@@ -140,7 +140,9 @@ class SearchTicketActivity : AppCompatActivity() {
             override fun onClicked(schedule: Schedule,chairs : MutableList<Int>) {
                 startActivity(Intent(this@SearchTicketActivity,DetailPerjalanan::class.java).also{
                     it.putExtra("schedule",schedule)
-                    it.putExtra("returnFlight",ArrayList(datas))
+                       if(datas.size > 0){
+                           it.putExtra("returnFlight",datas[0])
+                       }
                     it.putIntegerArrayListExtra("chairs", ArrayList(chairs))
                 })
             }

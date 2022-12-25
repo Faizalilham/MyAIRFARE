@@ -49,8 +49,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
-        search()
         setDate()
+        search()
         getAllTicket()
         isReturn()
         val classes = resources.getStringArray(R.array.classes)
@@ -92,12 +92,12 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         binding.switches.setOnCheckedChangeListener { _, checked ->
             if(checked){
                 binding.apply {
+                    setEnabled(true)
                     setAnimation(linearClassType,1.0f,View.VISIBLE)
                     setAnimation(ilLinearDateReturn,1.0f,View.VISIBLE)
                     val height = 650 * resources.displayMetrics.density
                     collapseConstraint.layoutParams.height =   height.toInt() //1280
                     collapseLinear.layoutParams.height = height.toInt()
-                    setEnabled(true)
                     btnSearch.setOnClickListener {
                        if(etDateReturn.text.toString().isNotEmpty()){
                            if(etDate.text.toString() != etDateReturn.text.toString()){
@@ -105,8 +105,6 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
                            }else{
                                Toast.makeText(requireActivity(), "Tidak ada penerbangan pulang pergi di tanggal yang sama", Toast.LENGTH_SHORT).show()
                            }
-                       }else{
-                           go(DatePicker.formatterDate(""))
                        }
                     }
                 }
@@ -118,6 +116,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
                     collapseConstraint.layoutParams.height = height.toInt()
                     collapseLinear.layoutParams.height = height.toInt()
                     setEnabled(false)
+                    search()
                 }
             }
 
@@ -203,7 +202,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         binding.apply {
             tvTypeTicket.text?.clear()
             tvClass.text?.clear()
-            etDateReturn.setText("")
+            etDateReturn.text?.clear()
             etDateReturn.focusable = View.NOT_FOCUSABLE
             etDateReturn.isFocusableInTouchMode = false
             tvClass.focusable = View.NOT_FOCUSABLE

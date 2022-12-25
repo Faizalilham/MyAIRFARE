@@ -145,6 +145,8 @@
     <string name="nama_penerbangan">Nama Penerbangan</string>
     <string name="checkin_sekarang">Checkin Sekarang</string>
     <string name="klik_scan_untuk_checkin_menggunakan_nomor_penerbangan_anda">Klik chekin sekarang untuk scan menggunakan nomor penerbangan anda</string>
+    <string name="tidak_ada_tiket_aktif">Tidak ada tiket aktif</string>
+    <string name="tidak_ada_tiket_yang_sudah_terlewat">Tidak ada tiket yang sudah terlewat</string>
 
     <string-array name="classes">
         <item>Economy</item>

@@ -87,7 +87,7 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                 etEmail.setText(i.user.email)
                 etPassword.setText(i.user.password)
                 etConfirmPassword.setText(i.user.password)
-                Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${i.user.photo}").into(imageProfile)
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${i.user.photo}").into(imageProfile)
             }
         }
     }

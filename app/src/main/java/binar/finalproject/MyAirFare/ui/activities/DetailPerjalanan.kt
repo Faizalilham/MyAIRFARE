@@ -48,19 +48,18 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
         transactionsViewModel = ViewModelProvider(this)[TransactionsViewModel::class.java]
         setContentView(binding.root)
         val schedule = intent.getParcelableExtra<Schedule>("schedule")
-        val scheduleReturn = intent.getParcelableArrayListExtra<Schedule>("returnFlight")
+        val scheduleReturn = intent.getParcelableExtra<Schedule>("returnFlight")
         val chairs = intent.getIntegerArrayListExtra("chairs")?.toMutableList()
+        Log.d("RETURNFLIGHT","$scheduleReturn")
         back()
         setupView(schedule,chairs)
         if(scheduleReturn != null){
-            if(scheduleReturn.size > 0){
-                binding.linearReturnFlight.visibility = View.VISIBLE
-                setupViewReturn(scheduleReturn,chairs)
-                returnFlight = true
-            }else{
-                binding.linearReturnFlight.visibility = View.GONE
-                binding.tvPriceReturn.visibility = View.GONE
-            }
+            binding.linearReturnFlight.visibility = View.VISIBLE
+            setupViewReturn(scheduleReturn,chairs)
+            returnFlight = true
+        }else{
+            binding.linearReturnFlight.visibility = View.GONE
+            binding.tvPriceReturn.visibility = View.GONE
         }
         MidtransConfig.setupMidTrans(this)
         setupViewPrice()
@@ -111,42 +110,40 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun setupViewReturn(scheduleReturn : MutableList<Schedule>?, chairs : MutableList<Int>?){
-        if(scheduleReturn != null && chairs != null){
+    private fun setupViewReturn(i : Schedule?, chairs : MutableList<Int>?){
+        if(i != null && chairs != null){
             binding.apply {
-                scheduleReturn.forEach { i ->
-                    ticket_id.add(i.id)
-                    Log.d("KONNTOL","$i")
-                    dropDownMenu(chairs,R.layout.dropdown_tittle_item,tvNoChairReturn)
-                    Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${i.logo}").into(imageLogoReturn)
-                    tvCodeReturn.text = i.flight_number
-                    tvFromReturn.text = i.from
-                    tvDestinationReturn.text = i.dest
-                    tvAirlaneReturn.text = i.name
-                    when(i.kelas){
-                        1 -> tvClassReturn.text = "ECONOMY"
-                        2 -> tvClassReturn.text = "BUSSINESS"
-                        else -> tvClassReturn.text = ""
-                    }
-                    val price = "Rp. ${i.price}"
-                    totalPrice.add(i.price)
-                    tvPriceReturn.text = price
-                    tvChairsReturn.text = i.no_chair.toString()
-                    val datesFrom = DatePicker.dateCalculation(i.date_air)
-                    val timeFrom =  DatePicker.timeCalculation(i.date_air)
-                    val datesDest = DatePicker.dateCalculation(i.estimated_up_dest)
-                    val timeDest =  DatePicker.timeCalculation(i.estimated_up_dest)
-                    val datesAir = """
+                ticket_id.add(i.id)
+                Log.d("KONNTOL","$i")
+                dropDownMenu(chairs,R.layout.dropdown_tittle_item,tvNoChairReturn)
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${i.logo}").into(imageLogoReturn)
+                tvCodeReturn.text = i.flight_number
+                tvFromReturn.text = i.from
+                tvDestinationReturn.text = i.dest
+                tvAirlaneReturn.text = i.name
+                when(i.kelas){
+                    1 -> tvClassReturn.text = "ECONOMY"
+                    2 -> tvClassReturn.text = "BUSSINESS"
+                    else -> tvClassReturn.text = ""
+                }
+                val price = "Rp. ${i.price}"
+                totalPrice.add(i.price)
+                tvPriceReturn.text = price
+                tvChairsReturn.text = i.no_chair.toString()
+                val datesFrom = DatePicker.dateCalculation(i.date_air)
+                val timeFrom =  DatePicker.timeCalculation(i.date_air)
+                val datesDest = DatePicker.dateCalculation(i.estimated_up_dest)
+                val timeDest =  DatePicker.timeCalculation(i.estimated_up_dest)
+                val datesAir = """
                     $datesFrom
                     $timeFrom
                 """.trimIndent()
-                    val estimatedAir = """
+                val estimatedAir = """
                     $datesDest
                     $timeDest
                 """.trimIndent()
-                    tvDateAirReturn.text = datesAir
-                    tvEstimatedReturn.text = estimatedAir
-                }
+                tvDateAirReturn.text = datesAir
+                tvEstimatedReturn.text = estimatedAir
 
             }
         }
@@ -197,10 +194,8 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
                     chairsNumber.add(binding.tvNoChairReturn.text.toString().toInt())
                 }
                 if(chairsNumber.size > 0){
-                    if(ticket_id.size > 1){
-                        ticket_id[1].trim()
-                    }
                     Log.d("TIKET ID", ticket_id.toString())
+                    Log.d("CHAIRS", chairsNumber.toString())
                     transactionsViewModel.doPostTransactions(
                         it,
                         ticket_id,
@@ -209,6 +204,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
                     showLoading(true)
                     transactionsViewModel.doPostTransactionsObserver().observe(this){ result ->
                         if(result != null){
+                            Log.d("EKSEKUSIES","$result")
                             showLoading(false)
                             getSnapToken(result.trx.token_trx)
                             Toast.makeText(this, result.trx.token_trx, Toast.LENGTH_SHORT).show()
@@ -232,7 +228,6 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
         val id = intent.getStringExtra("waitListId")
         authPreferencesViewModel.getToken().observe(this){
             if(it != null && it != "undefined"){
-                Log.d("TIKET ID",ticket_id.toString())
                 chairsNumber.add(binding.tvNoChair.text.toString().toInt())
                 if(returnFlight){
                     chairsNumber.add(binding.tvNoChairReturn.text.toString().toInt())
@@ -246,6 +241,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
                     showLoading(true)
                     transactionsViewModel.doPostTransactionsWithCartObserver().observe(this){ result ->
                         if(result != null){
+                            Log.d("EKSEKUSI","$result")
                             showLoading(false)
                             getSnapToken(result.trx.token_trx)
                             Toast.makeText(this, result.trx.token_trx, Toast.LENGTH_SHORT).show()
@@ -278,7 +274,8 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
     private fun postWaitList() {
         authPreferencesViewModel.getToken().observe(this){
             if(it != null && it != "undefined"){
-                Log.d("koonntoll","$it $ticket_id")
+                Log.d("TIKET_ID", ticket_id.toString())
+                Log.d("CHAIRS", chairsNumber.toString())
                 waitListViewModel.postWaitList(it,ticket_id)
                 waitListViewModel.postWaitListObserver().observe(this){ waitList ->
                     if(waitList != null){

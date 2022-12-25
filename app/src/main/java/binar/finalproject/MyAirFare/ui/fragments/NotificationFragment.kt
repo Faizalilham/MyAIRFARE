@@ -51,8 +51,6 @@ class NotificationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupView()
         getNotifications()
-        socket = IO.socket("https://binarfinalsocketserver-production-1a1f.up.railway.app/")
-        socket.connect()
 
     }
     private fun doLogin(){
@@ -64,28 +62,42 @@ class NotificationFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun connectSocket(id : String){
+        socket = IO.socket("https://binarfinalsocketserver-production-1a1f.up.railway.app/")
+        socket.connect()
         showLoading(true)
         socket.emit("newUser",id)
         socket.on("notify"){
             Log.d("Notification","$it")
+            var a = ""
             if(it != null){
-                showWarning(false)
-                showLoading(false)
                 for (obj in it) {
                     val strArray = obj
                     dataNotifications.add(strArray.toString())
+                    Log.d("NOTIFIKASI","$dataNotifications")
+                    a = dataNotifications.last()
                 }
-                Notifications.makeStatusNotification("",requireContext(),
-                    dataNotifications.slice(dataNotifications.size - 7 until dataNotifications.size).toMutableList())
                 activity?.runOnUiThread{
-                   setRecycler(dataNotifications)
+                    showWarning(false)
+                    showLoading(false)
+                    setRecycler(dataNotifications)
+                    Log.d("DATAS","${dataNotifications.size}")
                 }
+                if(dataNotifications.size > 10){
+                    Log.d("DATAS","${dataNotifications.slice(dataNotifications.size-1 downTo dataNotifications.size -5)}")
+                    Notifications.makeStatusNotification(a,requireContext(), dataNotifications.slice(
+                        dataNotifications.size-5 until dataNotifications.size
+                    ).toMutableList())
+                }
+
             }else{
-                showWarning(true)
-                showLoading(false)
+                activity?.runOnUiThread {
+                    showWarning(true)
+                    showLoading(false)
+                }
             }
         }
     }
+
 
     private fun showLoading(loading: Boolean){
         if(loading) binding.loading.visibility = View.VISIBLE else binding.loading.visibility = View.GONE

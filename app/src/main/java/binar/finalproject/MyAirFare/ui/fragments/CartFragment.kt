@@ -54,6 +54,7 @@ class CartFragment : Fragment() {
                 waitListViewModel.getAllWaitList(it)
                 showLoading(true)
                 waitListViewModel.getAllWaitListObserver().observe(requireActivity()){ waitList ->
+                    Log.d("WAITLIST","$waitList")
                     if(waitList != null){
                         showLoading(false)
                         if(waitList.size > 0){
