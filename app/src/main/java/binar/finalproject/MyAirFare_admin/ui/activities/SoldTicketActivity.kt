@@ -23,6 +23,7 @@ class SoldTicketActivity : AppCompatActivity() {
     private lateinit var transactionsViewModel: TransactionsViewModel
     private lateinit var transactionsAdapter: TransactionsAdapter
     private var totalSalary = 0
+    private var dataTrx  = mutableListOf<Transactions>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivitySoldTicketBinding.inflate(layoutInflater)
@@ -41,19 +42,21 @@ class SoldTicketActivity : AppCompatActivity() {
                 transactionsViewModel.doGetAllTransactionObserver().observe(this){  transactions ->
                     if(transactions != null){
                         showLoading(false)
+                        dataTrx = transactions.transaction.filter { its ->
+                            its.status == "finished"
+                        }.toMutableList()
                         Log.d("TRANSAKSI",transactions.toString())
                         transactions.transaction.forEach { trx ->
                             Log.d("STATUS",trx.status)
-                            totalSalary += trx.price
-                            val a = transactions.transaction.filter { its ->
-                                its.status == "finished"
+                            if(trx.status == "finished"){
+                                totalSalary += trx.price
                             }
-                            if(a.isNotEmpty()){
-                                setRecycler(a.toMutableList())
-                                val total = "Rp. $totalSalary"
-                                binding.totalPrice.text = total
-                                Log.d("TOTOTD","$a")
-                            }
+                        }
+                        if(dataTrx.isNotEmpty()){
+                            setRecycler(dataTrx)
+                            val total = "Rp. $totalSalary"
+                            binding.totalPrice.text = total
+                            Log.d("TOTOTD","$dataTrx")
                         }
                     }else{
                         showLoading(false)

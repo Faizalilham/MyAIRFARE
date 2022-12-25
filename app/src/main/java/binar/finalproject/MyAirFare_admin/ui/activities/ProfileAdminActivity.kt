@@ -132,7 +132,7 @@ class ProfileAdminActivity : AppCompatActivity() {
             btnLogin.visibility = View.GONE
             tvUsername.text = username
             tvEmail.text = email
-            Glide.with(this@ProfileAdminActivity).load("https://binarstudpenfinalprojectbe-production.up.railway.app$image").into(imageProfile)
+            Glide.with(this@ProfileAdminActivity).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app$image").into(imageProfile)
         }
     }
 

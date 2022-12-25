@@ -75,7 +75,7 @@ interface ApiEndPoint {
     ):Call<FilterTicketResponse>
 
 
-    @GET("api/v1/user-transactions")
+    @GET("api/v1/admin-transactions")
     fun getAllTransactions(
         @Header("x-access-token") Description : String,
     ):Call<ReadTransactionsResponse>

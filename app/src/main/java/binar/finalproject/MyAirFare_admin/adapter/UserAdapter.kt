@@ -43,7 +43,7 @@ class UserAdapter(private val listener : OnClick):RecyclerView.Adapter<UserAdapt
             val diff = differ.currentList[position]
             tvName.text = diff.username
             tvEmail.text = diff.email
-            Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${diff.photo}").into(imageUser)
+            Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${diff.photo}").into(imageUser)
             card.setOnClickListener {
                 listener.onClicked(diff)
             }

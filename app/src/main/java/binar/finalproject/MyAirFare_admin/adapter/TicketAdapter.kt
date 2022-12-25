@@ -53,7 +53,7 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
            tvKode.text = diff.flight_number
            tvNameFlight.text = diff.name
            tvNamePlane.text = diff.name
-           Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${diff.logo}").into(imageFlight)
+           Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${diff.logo}").into(imageFlight)
            card.setOnClickListener {
                listener.onDetail(diff)
            }

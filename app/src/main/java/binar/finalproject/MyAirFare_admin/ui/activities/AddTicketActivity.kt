@@ -265,12 +265,13 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                                 1 -> tvTypeTicket.setText("DEWASA")
                                 2 -> tvTypeTicket.setText("ANAK-ANAK")
                             }
+                            val flightNumber = datas.ticket.flight_number.filter { it.isDigit() }
                             etNoChair.setText(datas.ticket.no_chair.toString())
                             etPrice.setText((datas.ticket.price.toString()))
                             etEstimated.setText(datas.ticket.estimated_up_dest)
                             etDateFlight.setText(datas.ticket.date_air)
-                            etFlightNumber.setText(datas.ticket.flight_number)
-                            Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${datas.ticket.logo}").into(imageProfile)
+                            etFlightNumber.setText(flightNumber)
+                            Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app/${datas.ticket.logo}").into(imageProfile)
                         }
                     }
                 }

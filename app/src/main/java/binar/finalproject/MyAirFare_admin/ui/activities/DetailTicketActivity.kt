@@ -105,8 +105,8 @@ class DetailTicketActivity : AppCompatActivity() {
                 1 -> tvType.text = "DEWASA"
                 2 -> tvType.text = "ANAK-ANAK"
             }
-            val flightNumber = code.filter { it.isDigit() }
-            tvCode.text = flightNumber
+
+            tvCode.text = code
             tvDestination.text = dest
             tvFrom.text = from
             tvAirlane.text = airlane
@@ -115,7 +115,7 @@ class DetailTicketActivity : AppCompatActivity() {
             tvChairs.text = chairs.toString()
             val pricesIdn = "Rp. ${price.toString()}"
             tvPrice.text = pricesIdn
-            Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app$image").into(imageLogo)
+            Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app$image").into(imageLogo)
         }
     }
 

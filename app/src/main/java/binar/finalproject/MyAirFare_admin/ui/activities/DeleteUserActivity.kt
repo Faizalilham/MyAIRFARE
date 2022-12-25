@@ -11,6 +11,7 @@ import binar.finalproject.MyAirFare_admin.databinding.ActivityDeleteUserBinding
 import binar.finalproject.MyAirFare_admin.databinding.AlertDeleteUserBinding
 import binar.finalproject.MyAirFare_admin.viewmodel.auth.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare_admin.viewmodel.user.UserViewModel
+import com.bumptech.glide.Glide
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +29,7 @@ class DeleteUserActivity : AppCompatActivity() {
         val i = intent.getStringExtra("ids")
         if(i != null){
             getTicketById(i)
-            binding.btnDelete.setOnClickListener { deletedUser(i) }
+            deleteUser(i)
         }
         back()
     }
@@ -47,7 +48,8 @@ class DeleteUserActivity : AppCompatActivity() {
                             setupView(
                                 tittle[0],
                                 username,f_name,
-                                l_name,email,password
+                                l_name,email,password,
+                                "https://binarstudpenfinalprojectbe-production-77a5.up.railway.app$photo"
                             )
                         }
 
@@ -59,7 +61,7 @@ class DeleteUserActivity : AppCompatActivity() {
 
     private fun deleteUser(id : String){
         binding.btnDelete.setOnClickListener {
-            alertDelete(id )
+            alertDelete(id)
         }
     }
 
@@ -98,7 +100,7 @@ class DeleteUserActivity : AppCompatActivity() {
 
     private fun setupView(tittle : String,username : String,
                          firstname:String,lastname : String,
-                         email : String,password : String){
+                         email : String,password : String,image : String){
 
         binding.apply {
             tvTittle.setText(tittle)
@@ -107,6 +109,7 @@ class DeleteUserActivity : AppCompatActivity() {
             etLastname.setText(lastname)
             etEmail.setText(email)
             etPassword.setText(password)
+            Glide.with(root).load(image).into(imageProfile)
         }
 
     }

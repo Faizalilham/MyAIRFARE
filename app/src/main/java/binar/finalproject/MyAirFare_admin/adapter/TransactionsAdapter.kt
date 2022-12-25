@@ -45,8 +45,10 @@ class TransactionsAdapter(private val listener : OnClick):RecyclerView.Adapter<T
     override fun onBindViewHolder(holder: TransactionsViewHolder, position: Int) {
         holder.binding.apply {
             val transactions = differ.currentList[position]
-            transactions.carts.forEach {
-                Glide.with(root).load("https://binarstudpenfinalprojectbe-production.up.railway.app${it.ticket.logo}").into(imageLogo)
+            val price = "Rp. ${transactions.price}"
+            tvPrice.text = price
+                transactions.carts.forEach {
+                Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${it.ticket.logo}").into(imageLogo)
                 when(it.ticket.kelas){
                     1 ->  tvClass.text = "Economy"
                     2 ->  tvClass.text = "Bussiness"
