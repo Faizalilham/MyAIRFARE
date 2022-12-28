@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/dp10"
+    android:background="@drawable/bg_gradient"
     tools:context=".MainActivity">
 
     <TextView
@@ -12,32 +12,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/home_admin"
-        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
         android:textSize="@dimen/sp18"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/dp25"
-        android:fontFamily="@font/poppins_regular"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:fontFamily="@font/poppins_regular"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageAdmin"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="@dimen/dp15"
-        android:src="@drawable/ic_avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/tvTittle"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_avatar" />
+
+    <TextView
+        android:id="@+id/tvNm_lengkap"
+        android:layout_below="@+id/imageAdmin"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nama Lengkap"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/dp10"
+        android:fontFamily="@font/poppins_regular"/>
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_below="@+id/tvNm_lengkap"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="email"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        android:fontFamily="@font/poppins_regular"/>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingStart="@dimen/dp10"
+        android:paddingEnd="@dimen/dp10"
+        android:paddingTop="@dimen/dp30"
+        android:paddingBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/background_auth"
         android:orientation="vertical">
 
 
@@ -264,4 +286,4 @@
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
