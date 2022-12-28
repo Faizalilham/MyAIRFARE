@@ -100,6 +100,7 @@
                     app:boxBackgroundMode="outline"
                     app:endIconMode="clear_text"
                     android:layout_weight="1"
+                    app:helperText="Masukkan Inputan dengan format NamaKota(NamaBandara)"
                     android:layout_marginEnd="@dimen/dp5"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -120,6 +121,7 @@
                     app:endIconMode="clear_text"
                     android:layout_weight="1"
                     android:layout_marginStart="@dimen/dp5"
+                    app:helperText="Masukkan Inputan dengan format NamaKota(NamaBandara)"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText

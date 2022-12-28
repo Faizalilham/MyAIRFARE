@@ -49,8 +49,9 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         ticketViewModel = ViewModelProvider(this)[TicketViewModel::class.java]
         authPreferencesViewModel = ViewModelProvider(this)[AuthPreferencesViewModel::class.java]
         setContentView(binding.root)
-        binding.etDateFlight.setText(DatePicker.getCurrentDate())
-        binding.etEstimated.setText(DatePicker.getCurrentDate())
+//        binding.etDateFlight.setText(DatePicker.getCurrentDate())
+//        binding.etEstimated.setText(DatePicker.getCurrentDate())
+        datePicker()
         id = intent.getStringExtra("id")
         if(id != null){
             setupView(id!!)
@@ -144,6 +145,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun upload(){
         if(getFile != null){
             val file = ImagePost.reduceFileImage(getFile as File)
@@ -182,6 +184,9 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                 Log.d("ALL DATA","$airlane,$from,$dest,$dest_air,$price,$chair,$type,$imageMultipart,$flightNumber,$flightNumber,$kelas,$estimated")
                 val validation = PostTicketValidation.postTicketValidation(airlane,from,dest,dest_air,price.toInt(),chair.toInt(),type,flightNumber,estimated,kelas)
                 if(validation == "success"){
+                    val dateFlight = DatePicker.formatterDate(dest_air)
+                    val estimatedFlight = DatePicker.formatterDate(estimated)
+                    Log.d("DATES","$dateFlight $estimatedFlight")
                     authPreferencesViewModel.getToken().observe(this@AddTicketActivity){
                         Log.d("TOUKEN","$it $id")
                         if(it != null && it != "undefined"){
@@ -191,14 +196,14 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                                     airlane.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     from.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     dest.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                    dest_air.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    dateFlight.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     price.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     chair.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     type.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     imageMultipart,
                                     flightNumber.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     kelas.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                    estimated.toRequestBody("text/plain".toMediaTypeOrNull())
+                                    estimatedFlight.toRequestBody("text/plain".toMediaTypeOrNull())
                                 )
                                 setToast(ticketViewModel.doUpdateTicketObserver(),ticketViewModel.messageObserver(),"Update Tiket Berhasil")
                             }else{
@@ -207,14 +212,14 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                                     airlane.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     from.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     dest.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                    dest_air.toRequestBody("text/plain".toMediaTypeOrNull()),
+                                    dateFlight.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     price.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     chair.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     type.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     imageMultipart,
                                     flightNumber.toRequestBody("text/plain".toMediaTypeOrNull()),
                                     kelas.toRequestBody("text/plain".toMediaTypeOrNull()),
-                                    estimated.toRequestBody("text/plain".toMediaTypeOrNull())
+                                    estimatedFlight.toRequestBody("text/plain".toMediaTypeOrNull())
                                 )
                                 setToast(ticketViewModel.addTicketObserver(),ticketViewModel.messageObserver(),"Tambah Tiket Berhasil")
                             }
@@ -247,6 +252,7 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setupView(id : String){
         authPreferencesViewModel.getToken().observe(this){
             if(it != null && it != "undefined"){
@@ -265,11 +271,11 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
                                 1 -> tvTypeTicket.setText("DEWASA")
                                 2 -> tvTypeTicket.setText("ANAK-ANAK")
                             }
-                            val flightNumber = datas.ticket.flight_number.filter { it.isDigit() }
+                            val flightNumber = datas.ticket.flight_number.filter { its -> its.isDigit() }
                             etNoChair.setText(datas.ticket.no_chair.toString())
                             etPrice.setText((datas.ticket.price.toString()))
-                            etEstimated.setText(datas.ticket.estimated_up_dest)
-                            etDateFlight.setText(datas.ticket.date_air)
+                            etEstimated.setText(DatePicker.dateCalculation(datas.ticket.estimated_up_dest))
+                            etDateFlight.setText(DatePicker.dateCalculation(datas.ticket.date_air))
                             etFlightNumber.setText(flightNumber)
                             Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app/${datas.ticket.logo}").into(imageProfile)
                         }
@@ -279,6 +285,19 @@ class AddTicketActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
     }
 
+    private fun datePicker(){
+        binding.apply {
+            etDateFlight.setOnClickListener {
+                DatePicker.datePicker(this@AddTicketActivity,etDateFlight)
+            }
+
+            etEstimated.setOnClickListener {
+                DatePicker.datePicker(this@AddTicketActivity,etEstimated)
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun postTicket(){
         binding.btnPost.setOnClickListener {
             upload()
