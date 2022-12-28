@@ -49,10 +49,11 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
         setContentView(binding.root)
         val schedule = intent.getParcelableExtra<Schedule>("schedule")
         val scheduleReturn = intent.getParcelableExtra<Schedule>("returnFlight")
-        val chairs = intent.getIntegerArrayListExtra("chairs")?.sorted()?.toMutableList()
+        val chairs = intent.getIntegerArrayListExtra("chairs")
         val waitList = intent.getBooleanExtra("waitList",false)
         binding.btnCart.isEnabled = !waitList
         Log.d("RETURNFLIGHT","$scheduleReturn")
+        Log.d("Chairstt","$chairs")
         back()
         setupView(schedule,chairs)
         if(scheduleReturn != null){
@@ -116,7 +117,7 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
         if(i != null && chairs != null){
             binding.apply {
                 ticket_id.add(i.id)
-                Log.d("KONNTOL","$i")
+                Log.d("PPP","$i")
                 dropDownMenu(chairs,R.layout.dropdown_tittle_item,tvNoChairReturn)
                 Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${i.logo}").into(imageLogoReturn)
                 tvCodeReturn.text = i.flight_number

@@ -53,6 +53,7 @@ class NotificationFragment : Fragment() {
         getNotifications()
 
     }
+
     private fun doLogin(){
         binding.btnLogin.setOnClickListener { startActivity(
             Intent(requireActivity(),
@@ -76,10 +77,14 @@ class NotificationFragment : Fragment() {
                     Log.d("NOTIFIKASI","$dataNotifications")
                     a = dataNotifications.last()
                 }
+                var dt = listOf<String>()
+                if(dataNotifications.isNotEmpty()){
+                    dt = dataNotifications.distinct()
+                }
                 activity?.runOnUiThread{
                     showWarning(false)
                     showLoading(false)
-                    setRecycler(dataNotifications)
+                    setRecycler(dt.toMutableList())
                     Log.d("DATAS","${dataNotifications.size}")
                 }
                 if(dataNotifications.size > 10){
@@ -188,5 +193,14 @@ class NotificationFragment : Fragment() {
             btnLogin.visibility = View.GONE
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        dataNotifications.clear()
+    }
+
+
+
+
 
 }

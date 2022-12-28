@@ -79,6 +79,7 @@ class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<C
             diff.carts.forEach {
                 it.ticket.available.forEach {  its ->
                     listChairs.add(its.chair_number)
+                    Log.d("Chairsss","$its")
                 }
             }
             val schedule = mutableListOf<Schedule>()
