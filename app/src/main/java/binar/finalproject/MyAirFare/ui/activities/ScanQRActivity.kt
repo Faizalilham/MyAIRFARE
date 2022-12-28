@@ -33,6 +33,7 @@ class ScanQRActivity : AppCompatActivity() {
     private lateinit var checkInRoomViewModel : CheckInRoomViewModel
     var data : String = ""
     private val chairs = mutableListOf<Int>()
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityScanQractivityBinding.inflate(layoutInflater)
@@ -88,11 +89,11 @@ class ScanQRActivity : AppCompatActivity() {
                                     if(carts.chair_number != null){
                                         chairs.add(carts.chair_number)
                                         val chairsResult = chairs.sorted().joinToString(",")
-                                        addCheckInToRoom(trxs.order_id,carts.ticket.from,carts.ticket.dest,chairsResult,"Berhasil CheckIn")
+                                        addCheckInToRoom(trxs.order_id,carts.ticket.from,carts.ticket.dest,chairsResult,"Berhasil CheckIn",carts.ticket.date_air)
 
                                     }
                                 }else{
-                                    addCheckInToRoom(trxs.order_id,carts.ticket.from,carts.ticket.dest,carts.chair_number.toString(),"Berhasil CheckIn")
+                                    addCheckInToRoom(trxs.order_id,carts.ticket.from,carts.ticket.dest,carts.chair_number.toString(),"Berhasil CheckIn",carts.ticket.date_air)
                                 }
                             }
                         }
@@ -108,9 +109,9 @@ class ScanQRActivity : AppCompatActivity() {
     }
 
     private fun addCheckInToRoom(order_id :String,from : String,
-                                 dest : String,chair : String,status : String){
+                                 dest : String,chair : String,status : String,date : String){
         checkInRoomViewModel.insertCheckIn(CheckIn(
-            0,order_id,from,dest,chair,status
+            0,order_id,from,dest,chair,status,date
         ))
     }
 

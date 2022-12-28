@@ -61,10 +61,6 @@ class ActiveTicketFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        Navigation.findNavController(binding.root).navigate(R.id.ticketFragment)
-    }
 
 
     private fun getAllTransactions(){

@@ -77,10 +77,6 @@ class InActiveTicketFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        Navigation.findNavController(binding.root).navigate(R.id.ticketFragment)
-    }
 
     private fun setRecycler(data : MutableList<Transactions>){
         transactionsAdapter = TransactionsAdapter(object : TransactionsAdapter.OnClick{

@@ -135,6 +135,8 @@
                                    android:fontFamily="@font/poppins_regular"
                                    android:background="@drawable/background_edit_text"/>
 
+
+
                            </com.google.android.material.textfield.TextInputLayout>
 
                            <com.google.android.material.textfield.TextInputLayout

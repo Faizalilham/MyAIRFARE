@@ -83,7 +83,7 @@
                     android:layout_marginStart="@dimen/dp5"
                     android:layout_marginTop="@dimen/dp15"
                     android:layout_marginEnd="@dimen/dp5"
-                    android:layout_weight="3"
+                    android:layout_weight="2.5"
                     app:endIconMode="dropdown_menu">
 
                     <AutoCompleteTextView

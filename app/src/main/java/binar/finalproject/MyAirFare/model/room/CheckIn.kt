@@ -11,5 +11,6 @@ data class CheckIn(
     val from : String,
     val dest : String,
     val chair_number : String,
-    val status : String
+    val status : String,
+    val date_air : String = ""
 )

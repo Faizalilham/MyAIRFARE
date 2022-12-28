@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +23,8 @@ import binar.finalproject.MyAirFare.utils.DatePicker
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.ticket.TicketViewModel
 import com.google.android.material.textfield.TextInputEditText
+import com.leo.searchablespinner.SearchableSpinner
+import com.leo.searchablespinner.interfaces.OnItemSelectListener
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -35,6 +36,10 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     private lateinit var authPreferencesViewModel: AuthPreferencesViewModel
     private lateinit var ticketAdapter: TicketAdapter
     private lateinit var ticketViewModel: TicketViewModel
+    private var listFrom : ArrayList<String> = arrayListOf()
+    private var listDest : ArrayList<String> = arrayListOf()
+    private lateinit var searchableSpinnerFrom : SearchableSpinner
+    private lateinit var searchableSpinnerDest : SearchableSpinner
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +47,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
         authPreferencesViewModel = ViewModelProvider(requireActivity())[AuthPreferencesViewModel::class.java]
         ticketViewModel = ViewModelProvider(requireActivity())[TicketViewModel::class.java]
+        searchableSpinnerFrom = SearchableSpinner(requireActivity())
+        searchableSpinnerDest = SearchableSpinner(requireActivity())
         return binding.root
     }
 
@@ -53,6 +60,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
         search()
         getAllTicket()
         isReturn()
+        selectSpinner()
         val classes = resources.getStringArray(R.array.classes)
         val type = resources.getStringArray(R.array.type)
         dropDownMenu(classes,R.layout.dropdown_tittle_item,binding.tvClass)
@@ -77,6 +85,30 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
             setAdapter(adapter)
             onItemClickListener = this@HomeFragment
         }
+    }
+
+    private fun selectSpinner() {
+        binding.apply {
+            etFrom.setOnClickListener {
+                spinnerDialog(searchableSpinnerFrom,etFrom,ArrayList(listFrom.sorted()))
+            }
+
+            etDestination.setOnClickListener {
+                spinnerDialog(searchableSpinnerDest,etDestination,ArrayList(listDest.sorted()))
+            }
+        }
+    }
+
+    private fun spinnerDialog(searchableSpinner : SearchableSpinner,et : TextInputEditText,arr : ArrayList<String>){
+        searchableSpinner.windowTitle = "Cari Asal Penerbangan"
+        searchableSpinner.onItemSelectListener = object : OnItemSelectListener {
+            override fun setOnItemSelectListener(position: Int, selectedString: String) {
+                et.setText(selectedString)
+            }
+        }
+        searchableSpinner.windowTopBackgroundColor = R.color.primary
+        searchableSpinner.setSpinnerListItems(arr)
+        searchableSpinner.show()
     }
 
     override fun onItemClick(parent: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
@@ -176,6 +208,12 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
                    if(list != null){
                        showLoading(false)
                        setRecycler(list)
+                       list.forEach { from ->
+                           listFrom.add(from.from)
+                       }
+                       list.forEach { dest ->
+                           listDest.add(dest.dest)
+                       }
                    }
                 }
             }

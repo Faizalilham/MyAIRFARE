@@ -49,7 +49,9 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
         setContentView(binding.root)
         val schedule = intent.getParcelableExtra<Schedule>("schedule")
         val scheduleReturn = intent.getParcelableExtra<Schedule>("returnFlight")
-        val chairs = intent.getIntegerArrayListExtra("chairs")?.toMutableList()
+        val chairs = intent.getIntegerArrayListExtra("chairs")?.sorted()?.toMutableList()
+        val waitList = intent.getBooleanExtra("waitList",false)
+        binding.btnCart.isEnabled = !waitList
         Log.d("RETURNFLIGHT","$scheduleReturn")
         back()
         setupView(schedule,chairs)
@@ -209,9 +211,9 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
                             getSnapToken(result.trx.token_trx)
                             Toast.makeText(this, result.trx.token_trx, Toast.LENGTH_SHORT).show()
                         }else{
-                            transactionsViewModel.messageObserver().observe(this){ message ->
-                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                            }
+//                            transactionsViewModel.messageObserver().observe(this){ message ->
+//                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//                            }
                             showLoading(false)
                         }
                     }
@@ -246,9 +248,9 @@ class DetailPerjalanan : AppCompatActivity(), AdapterView.OnItemClickListener {
                             getSnapToken(result.trx.token_trx)
                             Toast.makeText(this, result.trx.token_trx, Toast.LENGTH_SHORT).show()
                         }else{
-                            transactionsViewModel.messageObserver().observe(this){ message ->
-                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                            }
+//                            transactionsViewModel.messageObserver().observe(this){ message ->
+//                                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+//                            }
                             showLoading(false)
                         }
                     }

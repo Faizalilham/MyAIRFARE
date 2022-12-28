@@ -3,6 +3,8 @@ package binar.finalproject.MyAirFare.api
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import binar.finalproject.MyAirFare.room.DaoCheckIn
 import binar.finalproject.MyAirFare.room.SetupRoom
 import dagger.Module
@@ -15,6 +17,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import binar.finalproject.MyAirFare.model.room.CheckIn
 
 
 @Module
@@ -22,6 +25,13 @@ import javax.inject.Singleton
 object AppModule {
 
     private const val BASE_URL = "https://binarstudpenfinalprojectbe-production-77a5.up.railway.app/"
+    private val migration = object : Migration(1,2){
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("ALTER TABLE CheckIn ADD COLUMN date_air TEXT DEFAULT '' NOT NULL")
+        }
+
+    }
+
 
     @Provides
     @Singleton
@@ -52,7 +62,8 @@ object AppModule {
 
     @Provides
     fun roomProvides(@ApplicationContext context : Context): SetupRoom {
-        return Room.databaseBuilder(context,SetupRoom::class.java,"DBFavorite").build()
+        return Room.databaseBuilder(context,SetupRoom::class.java,"DBFavorite")
+            .addMigrations(migration).build()
     }
 
     @Singleton

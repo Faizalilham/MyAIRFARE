@@ -236,8 +236,13 @@ class DetailTransactionsActivity : AppCompatActivity() {
     private fun doCheckIn(){
         if(dateAir.isNotEmpty()){
             if(DatePicker.dateTimeCalculation(dateAir)){
-                binding.btnScanQR.setOnClickListener {
-                    startActivity(Intent(this,ScanQRActivity::class.java))
+                if(DatePicker.checkDateIsSame(dateAir)){
+                    binding.btnScanQR.setOnClickListener {
+                        startActivity(Intent(this,ScanQRActivity::class.java))
+                    }
+                }else{
+                    binding.btnScanQR.isEnabled = false
+                    Toast.makeText(this, "CheckIn hanya bisa digunakan di hari penerbangan", Toast.LENGTH_SHORT).show()
                 }
 
             }else{

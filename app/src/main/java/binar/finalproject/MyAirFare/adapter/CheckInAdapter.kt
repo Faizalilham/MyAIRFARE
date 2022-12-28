@@ -1,12 +1,16 @@
 package binar.finalproject.MyAirFare.adapter
 
+import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.MyAirFare.databinding.ListItemCheckinBinding
 import binar.finalproject.MyAirFare.model.room.CheckIn
+import binar.finalproject.MyAirFare.utils.DatePicker
 
 class CheckInAdapter(private val listener : OnClick):RecyclerView.Adapter<CheckInAdapter.CheckInViewHolder>() {
 
@@ -36,6 +40,7 @@ class CheckInAdapter(private val listener : OnClick):RecyclerView.Adapter<CheckI
         return CheckInViewHolder(ListItemCheckinBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CheckInViewHolder, position: Int) {
        holder.binding.apply {
            val diff = differ.currentList[position]
@@ -45,9 +50,15 @@ class CheckInAdapter(private val listener : OnClick):RecyclerView.Adapter<CheckI
            flight.text = flightes
            chair.text = diff.chair_number
            status.text = diff.status
-           btnDelete.setOnClickListener {
-               listener.onDelete(diff)
-           }
+            if(DatePicker.dateTimeCalculation(diff.date_air)){
+                btnDelete.visibility = View.GONE
+            }else{
+                btnDelete.visibility = View.VISIBLE
+                btnDelete.setOnClickListener {
+                    listener.onDelete(diff)
+                }
+            }
+
        }
     }
 

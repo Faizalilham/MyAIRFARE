@@ -185,7 +185,18 @@ object DatePicker {
         val instantFirst = odtFirst.toInstant()
         val datesFirst = Date.from(instantFirst)
         return date.before(datesFirst)
+    }
 
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun checkDateIsSame(dates : String):Boolean{
+        val date = Date()
+        val formatDate = SimpleDateFormat("dd MMMM yyyy")
+        formatDate.format(date)
+        val instant = Instant.parse(dates)
+        val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+            .withZone(ZoneId.of(TimeZone.getDefault().id))
+        return formatter.format(instant).equals(formatDate.format(date))
     }
 
 
