@@ -1,7 +1,8 @@
+@file:Suppress("unused")
+
 package binar.finalproject.MyAirFare.model.wait_list
 
 import android.os.Parcelable
-import binar.finalproject.MyAirFare.model.login.Carts
 import binar.finalproject.MyAirFare.model.login.UserLoginResponse
 import binar.finalproject.MyAirFare.model.tickets.AvailableTickets
 import binar.finalproject.MyAirFare.model.tickets.Schedule

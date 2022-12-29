@@ -1,3 +1,8 @@
+@file:Suppress("unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused"
+)
+
 package binar.finalproject.MyAirFare.model.customer
 
 data class CustomerDetails(

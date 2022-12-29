@@ -1,14 +1,8 @@
 package binar.finalproject.MyAirFare.utils
 
-import android.content.Context
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
-import com.budiyev.android.codescanner.DecodeCallback
-import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
-import dagger.hilt.android.qualifiers.ApplicationContext
 
 object ScannerConfig {
 

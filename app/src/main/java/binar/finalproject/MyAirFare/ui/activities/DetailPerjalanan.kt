@@ -1,3 +1,5 @@
+@file:Suppress("PrivatePropertyName", "RedundantLambdaArrow", "MemberVisibilityCanBePrivate")
+
 package binar.finalproject.MyAirFare.ui.activities
 
 import android.content.Intent

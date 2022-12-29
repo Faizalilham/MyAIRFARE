@@ -3,8 +3,6 @@ package binar.finalproject.MyAirFare.model.checkin
 import android.os.Parcelable
 import binar.finalproject.MyAirFare.model.tickets.Passenger
 import binar.finalproject.MyAirFare.model.tickets.TicketClass
-import binar.finalproject.MyAirFare.model.transactions.CheckIn
-import binar.finalproject.MyAirFare.model.transactions.Transactions
 import binar.finalproject.MyAirFare.model.transactions.UserLoginTransactions
 import kotlinx.parcelize.Parcelize
 

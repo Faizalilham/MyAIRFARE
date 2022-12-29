@@ -2,7 +2,6 @@ package binar.finalproject.MyAirFare.model.user
 
 
 import android.os.Parcelable
-import binar.finalproject.MyAirFare.model.login.Carts
 import kotlinx.parcelize.Parcelize
 
 

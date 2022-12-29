@@ -1,9 +1,13 @@
+@file:Suppress("HasPlatformType", "ObjectPropertyName", "RedundantSemicolon",
+    "MemberVisibilityCanBePrivate", "MemberVisibilityCanBePrivate", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused"
+)
+
 package binar.finalproject.MyAirFare.socket
 
 import io.socket.client.IO
 import io.socket.client.Socket
 import java.net.URLEncoder
-import java.net.URISyntaxException
 
 object SocketHandler {
 

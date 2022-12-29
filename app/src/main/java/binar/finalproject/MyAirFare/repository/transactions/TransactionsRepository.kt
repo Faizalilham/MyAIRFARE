@@ -4,9 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.MyAirFare.api.ApiEndPoint
-import binar.finalproject.MyAirFare.model.tickets.ScheduleResponse
 import binar.finalproject.MyAirFare.model.transactions.*
-import binar.finalproject.MyAirFare.model.wait_list.WaitListDeleteResponse
 import binar.finalproject.MyAirFare.utils.ErrorValidation
 import retrofit2.Call
 import retrofit2.Callback

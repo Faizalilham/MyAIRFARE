@@ -1,3 +1,5 @@
+@file:Suppress("LocalVariableName")
+
 package binar.finalproject.MyAirFare.ui.activities
 
 

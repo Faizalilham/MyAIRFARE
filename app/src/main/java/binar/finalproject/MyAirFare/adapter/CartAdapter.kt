@@ -1,3 +1,5 @@
+@file:Suppress("RedundantLambdaArrow")
+
 package binar.finalproject.MyAirFare.adapter
 
 import android.os.Build
@@ -10,13 +12,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.MyAirFare.databinding.ListItemCartBinding
 import binar.finalproject.MyAirFare.model.tickets.Schedule
-import binar.finalproject.MyAirFare.model.wait_list.TicketWaitList
 import binar.finalproject.MyAirFare.model.wait_list.WaitList
 import binar.finalproject.MyAirFare.utils.DatePicker
 import com.bumptech.glide.Glide
-import kotlin.Boolean
-import kotlin.Int
-import kotlin.apply
 
 class CartAdapter(private val listener : OnClickListener):RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 

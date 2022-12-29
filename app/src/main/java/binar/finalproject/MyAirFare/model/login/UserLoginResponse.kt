@@ -1,8 +1,6 @@
 package binar.finalproject.MyAirFare.model.login
 
 import android.os.Parcelable
-import binar.finalproject.MyAirFare.model.tickets.Schedule
-import binar.finalproject.MyAirFare.model.tickets.Ticket
 import kotlinx.parcelize.Parcelize
 
 

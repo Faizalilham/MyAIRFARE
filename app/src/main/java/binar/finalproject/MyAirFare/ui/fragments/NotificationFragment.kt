@@ -1,3 +1,8 @@
+@file:Suppress("UnnecessaryVariable", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused"
+)
+
 package binar.finalproject.MyAirFare.ui.fragments
 
 import android.content.Intent
@@ -24,7 +29,6 @@ import io.socket.client.Socket
 import io.socket.emitter.Emitter
 import org.json.JSONException
 import org.json.JSONObject
-import java.util.*
 
 
 @AndroidEntryPoint

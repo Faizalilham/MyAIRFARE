@@ -14,7 +14,6 @@ import binar.finalproject.MyAirFare.adapter.TransactionsAdapter
 import binar.finalproject.MyAirFare.databinding.FragmentActiveTicketBinding
 import binar.finalproject.MyAirFare.model.transactions.Transactions
 import binar.finalproject.MyAirFare.ui.activities.DetailTransactionsActivity
-import binar.finalproject.MyAirFare.utils.DatePicker
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.transactions.TransactionsViewModel
 import dagger.hilt.android.AndroidEntryPoint

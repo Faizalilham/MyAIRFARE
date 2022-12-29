@@ -1,11 +1,8 @@
 package binar.finalproject.MyAirFare.ui.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import binar.finalproject.MyAirFare.databinding.ActivityVerifikasiBinding
 
 class VerificationActivity : AppCompatActivity() {

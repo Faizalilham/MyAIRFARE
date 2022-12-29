@@ -1,8 +1,11 @@
+@file:Suppress("unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused"
+)
+
 package binar.finalproject.MyAirFare.ui.activities
 
 import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -12,13 +15,7 @@ import binar.finalproject.MyAirFare.utils.DatePicker
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.CurrentUserViewModel
 import com.bumptech.glide.Glide
-import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback
 import com.midtrans.sdk.corekit.core.MidtransSDK
-import com.midtrans.sdk.corekit.core.TransactionRequest
-import com.midtrans.sdk.corekit.core.themes.CustomColorTheme
-import com.midtrans.sdk.corekit.models.CustomerDetails
-import com.midtrans.sdk.corekit.models.snap.TransactionResult
-import com.midtrans.sdk.uikit.SdkUIFlowBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 

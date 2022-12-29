@@ -15,11 +15,9 @@ import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.adapter.CartAdapter
 import binar.finalproject.MyAirFare.databinding.FragmentCartBinding
 import binar.finalproject.MyAirFare.model.tickets.Schedule
-import binar.finalproject.MyAirFare.model.wait_list.TicketWaitList
 import binar.finalproject.MyAirFare.model.wait_list.WaitList
 import binar.finalproject.MyAirFare.ui.activities.DetailPerjalanan
 import binar.finalproject.MyAirFare.ui.activities.LoginActivity
-import binar.finalproject.MyAirFare.ui.activities.MainActivity
 import binar.finalproject.MyAirFare.viewmodel.AuthPreferencesViewModel
 import binar.finalproject.MyAirFare.viewmodel.waitlist.WaitListViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,3 +1,5 @@
+@file:Suppress("SimplifiableCallChain")
+
 package binar.finalproject.MyAirFare.utils
 
 object AuthValidation {

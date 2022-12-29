@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused", "unused", "unused", "unused")
+
 package binar.finalproject.MyAirFare.viewmodel.ticket
 
 import androidx.lifecycle.ViewModel

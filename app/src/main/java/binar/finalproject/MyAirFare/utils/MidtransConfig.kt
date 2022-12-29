@@ -1,3 +1,5 @@
+@file:Suppress("RedundantSamConstructor")
+
 package binar.finalproject.MyAirFare.utils
 
 import android.content.Context

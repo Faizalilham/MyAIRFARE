@@ -1,3 +1,5 @@
+@file:Suppress("RemoveEmptyPrimaryConstructor")
+
 package binar.finalproject.MyAirFare.adapter
 
 import android.view.LayoutInflater

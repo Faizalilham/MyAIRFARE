@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused")
+
 package binar.finalproject.MyAirFare.ui.fragments.onboarding.adapter
 
 import androidx.fragment.app.Fragment

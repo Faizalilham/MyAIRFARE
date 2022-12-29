@@ -3,7 +3,6 @@ package binar.finalproject.MyAirFare.viewmodel.waitlist
 import androidx.lifecycle.ViewModel
 import binar.finalproject.MyAirFare.repository.waitlist.WaitListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import okhttp3.internal.wait
 import javax.inject.Inject
 
 

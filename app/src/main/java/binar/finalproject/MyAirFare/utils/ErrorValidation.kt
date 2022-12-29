@@ -1,3 +1,5 @@
+@file:Suppress("CascadeIf")
+
 package binar.finalproject.MyAirFare.utils
 
 object ErrorValidation {

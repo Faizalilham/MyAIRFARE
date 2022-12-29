@@ -7,7 +7,6 @@ import binar.finalproject.MyAirFare.api.ApiEndPoint
 import binar.finalproject.MyAirFare.model.checkin.CheckinAutoRequest
 import binar.finalproject.MyAirFare.model.checkin.CheckinManualRequest
 import binar.finalproject.MyAirFare.model.checkin.CheckinResponse
-import binar.finalproject.MyAirFare.model.transactions.PostTransactionsResponse
 import binar.finalproject.MyAirFare.utils.ErrorValidation
 import retrofit2.Call
 import retrofit2.Callback

@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused")
+
 package binar.finalproject.MyAirFare.viewmodel.checkin
 
 import androidx.lifecycle.ViewModel

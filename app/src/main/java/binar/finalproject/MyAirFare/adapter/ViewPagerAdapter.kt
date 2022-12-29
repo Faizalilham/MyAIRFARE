@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package binar.finalproject.MyAirFare.adapter
 
 import androidx.fragment.app.Fragment

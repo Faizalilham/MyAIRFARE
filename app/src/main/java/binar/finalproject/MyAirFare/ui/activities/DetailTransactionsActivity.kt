@@ -2,13 +2,12 @@ package binar.finalproject.MyAirFare.ui.activities
 
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.ActivityDetailTransactionsBinding

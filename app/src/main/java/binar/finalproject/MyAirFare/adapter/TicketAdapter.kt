@@ -2,7 +2,6 @@ package binar.finalproject.MyAirFare.adapter
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
@@ -13,10 +12,6 @@ import binar.finalproject.MyAirFare.databinding.ListItemHomeBinding
 import binar.finalproject.MyAirFare.model.tickets.Schedule
 import binar.finalproject.MyAirFare.utils.DatePicker
 import com.bumptech.glide.Glide
-import java.sql.Date
-import java.text.SimpleDateFormat
-import java.time.OffsetDateTime
-import java.util.*
 
 
 class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketAdapter.TicketViewHolder>(){
@@ -56,6 +51,7 @@ class TicketAdapter(private val listener : OnClick):RecyclerView.Adapter<TicketA
         return TicketViewHolder(ListItemHomeBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
         holder.binding.apply {

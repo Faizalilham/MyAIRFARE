@@ -1,3 +1,8 @@
+@file:Suppress("RedundantSamConstructor", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused", "unused",
+    "unused", "unused", "unused"
+)
+
 package binar.finalproject.MyAirFare.utils
 
 import android.annotation.SuppressLint

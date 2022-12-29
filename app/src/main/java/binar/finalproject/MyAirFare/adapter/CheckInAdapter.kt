@@ -1,3 +1,5 @@
+@file:Suppress("LocalVariableName", "LocalVariableName")
+
 package binar.finalproject.MyAirFare.adapter
 
 import android.os.Build

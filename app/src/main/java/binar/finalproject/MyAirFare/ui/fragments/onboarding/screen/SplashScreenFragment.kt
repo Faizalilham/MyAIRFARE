@@ -3,16 +3,15 @@ package binar.finalproject.MyAirFare.ui.fragments.onboarding.screen
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.MyAirFare.R
 import binar.finalproject.MyAirFare.databinding.FragmentSplashScreenBinding
 import binar.finalproject.MyAirFare.ui.activities.MainActivity
-import binar.finalproject.MyAirFare.ui.activities.SplashScreen
 import binar.finalproject.MyAirFare.viewmodel.OnBoardingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
