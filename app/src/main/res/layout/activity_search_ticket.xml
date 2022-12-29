@@ -11,105 +11,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:orientation="vertical"
         android:background="@drawable/background_search_ticket">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/bg_rounded_stroke_transparent"
-                android:paddingStart="10dp"
-                android:paddingEnd="1dp"
                 android:layout_marginStart="@dimen/dp15"
-                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@drawable/ic_back_white"
                 />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/etKeberangkatan"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pilih_tiket"
-                android:textSize="@dimen/sp20"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginStart="@dimen/dp30"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_marginEnd="50dp"
-                android:layout_marginTop="@dimen/dp15"
-                android:fontFamily="@font/poppins_regular"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ilLinear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="@dimen/dp15"
-            android:layout_marginTop="@dimen/dp15">
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ilKeberangkatan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp5"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etKeberangkatan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/dari"
-                    android:enabled="false"
-                    android:imeOptions="actionSearch"
-                    android:fontFamily="@font/poppins_regular"
-                    android:background="@drawable/background_edit_text"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:text="Malaysia"/>
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="@dimen/dp20"
-                android:src="@drawable/ic_flight"
-                android:layout_marginEnd="@dimen/dp5"
-                android:layout_marginStart="@dimen/dp5"
-                android:background="@drawable/background_circle"
-                android:padding="@dimen/dp5"
-                android:layout_weight="1.6"/>
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/dp20"
+                android:layout_marginEnd="@dimen/dp20"
+                android:src="@drawable/ic_arrows"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/ilTiba"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/etTiba"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp5"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etTiba"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/ke"
-                    android:enabled="false"
-                    android:imeOptions="actionSearch"
-                    android:fontFamily="@font/poppins_regular"
-                    android:background="@drawable/background_edit_text"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
+                android:layout_marginTop="@dimen/dp10"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"
+                android:text="Surabaya"/>
         </LinearLayout>
-
-
+        <TextView
+            android:id="@+id/tgl_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp10"
+            android:textColor="@color/white"
+            android:layout_marginStart="85dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/valid_date"/>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

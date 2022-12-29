@@ -14,7 +14,7 @@
     <string name="cgk">CGK</string>
     <string name="jakarta">Jakarta</string>
     <string name="_07_00">07:00</string>
-    <string name="_21_juni_2022_22_juni_2022">21 juni 2022 - 22 juni 2022</string>
+    <string name="_21_juni_2022_22_juni_2022">21 juni 2022 – 22 juni 2022</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="masuk">Masuk</string>
@@ -34,7 +34,7 @@
     <string name="tittle">Tittle</string>
     <string name="verifikasi_email">Verifikasi Email</string>
     <string name="user">User</string>
-    <string name="hai_cek_kotak_masuk_email_kamu_ya">Hai, cek kotak masuk email kamu ya...</string>
+    <string name="hai_cek_kotak_masuk_email_kamu_ya">Hai, cek kotak masuk email kamu ya…</string>
     <string name="verifikasi_info">Harap verifikasi email mu terlebih dahulu untuk melanjutkan pendaftaran akunmu</string>
     <string name="buka_kotak_masuk_email">Buka kotak masuk email</string>
     <string name="pilih_tiket">Pilih Tiket</string>
@@ -150,7 +150,7 @@
 
     <string-array name="classes">
         <item>Economy</item>
-        <item>Bussiness</item>
+        <item>Business</item>
     </string-array>
     <string-array name="type">
         <item>Dewasa</item>

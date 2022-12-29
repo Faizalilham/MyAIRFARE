@@ -159,8 +159,7 @@
                     android:layout_marginBottom="@dimen/dp15"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ilLinear" />
+                    app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
                     android:layout_width="match_parent"
