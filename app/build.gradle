@@ -57,6 +57,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.4.0'
     implementation 'com.google.firebase:firebase-auth-ktx:21.1.0'
     testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
@@ -116,5 +117,7 @@ dependencies {
     // Similar React Select
     implementation 'com.github.leoncydsilva:SearchableSpinner:1.0.1'
 
+    //Testing
+    testImplementation "io.mockk:mockk:1.13.1"
 
 }
