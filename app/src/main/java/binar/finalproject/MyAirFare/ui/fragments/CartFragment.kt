@@ -126,6 +126,7 @@ class CartFragment : Fragment() {
                 showWarning(true)
             }else{
                 showWarning(false)
+                showLoading(false)
             }
         }
     }

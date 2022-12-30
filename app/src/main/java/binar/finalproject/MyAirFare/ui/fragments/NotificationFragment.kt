@@ -171,6 +171,7 @@ class NotificationFragment : Fragment() {
                 nonGuest()
             }else{
                 guest()
+                showLoading(false)
             }
         }
     }

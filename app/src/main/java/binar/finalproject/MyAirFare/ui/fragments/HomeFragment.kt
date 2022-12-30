@@ -90,11 +90,11 @@ class HomeFragment : Fragment(), AdapterView.OnItemClickListener {
     private fun selectSpinner() {
         binding.apply {
             etFrom.setOnClickListener {
-                spinnerDialog(searchableSpinnerFrom,etFrom,ArrayList(listFrom.sorted()))
+                spinnerDialog(searchableSpinnerFrom,etFrom,ArrayList(listFrom.sorted().distinct()))
             }
 
             etDestination.setOnClickListener {
-                spinnerDialog(searchableSpinnerDest,etDestination,ArrayList(listDest.sorted()))
+                spinnerDialog(searchableSpinnerDest,etDestination,ArrayList(listDest.sorted().distinct()))
             }
         }
     }

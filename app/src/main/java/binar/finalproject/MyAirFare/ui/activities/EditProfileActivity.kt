@@ -91,8 +91,6 @@ class EditProfileActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                 etConfirmPassword.setText(i.user.password)
                 etVisaNumber.setText(i.user.visa_ID)
                 Glide.with(root).load("https://binarstudpenfinalprojectbe-production-77a5.up.railway.app${i.user.photo}").into(imageProfile)
-                etConfirmPassword.isEnabled = false
-                etPassword.isEnabled = false
             }
         }
     }
