@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "1012854916154",
+    "project_id": "authfinalproject-2e7c4",
+    "storage_bucket": "authfinalproject-2e7c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012854916154:android:1762365b16aa9896642103",
+        "android_client_info": {
+          "package_name": "binar.finalproject.MyAirFare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012854916154-2sgd9hh8bgt23hbd5miunapfv89gva8n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "binar.finalproject.MyAirFare",
+            "certificate_hash": "f9ae8d99b0f0de7ee47898c8dde2db998d197350"
+          }
+        },
+        {
+          "client_id": "1012854916154-lokrenkd6m9pmd514p29cmo9drdtfrfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9DzyG7IhpOJEFv8BHVEzxxXUT3EYOiVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012854916154-lokrenkd6m9pmd514p29cmo9drdtfrfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012854916154:android:5ab1a75a94044d0a642103",
+        "android_client_info": {
+          "package_name": "binar.finalproject.MyAirFare_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012854916154-lokrenkd6m9pmd514p29cmo9drdtfrfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9DzyG7IhpOJEFv8BHVEzxxXUT3EYOiVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012854916154-lokrenkd6m9pmd514p29cmo9drdtfrfm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
