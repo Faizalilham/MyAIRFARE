@@ -253,6 +253,26 @@
                 android:textAllCaps="false"
                 app:cornerRadius="@dimen/dp10" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="@string/daftar_dengan_google"
+                android:padding="@dimen/dp15"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_marginEnd="@dimen/dp5"
+                app:strokeWidth="1dp"
+                app:icon="@drawable/ic_google"
+                app:iconTint="@null"
+                app:strokeColor="@color/primary"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:fontFamily="@font/poppins_regular"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

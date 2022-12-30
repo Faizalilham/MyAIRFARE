@@ -28,9 +28,11 @@ class VerificationActivity : AppCompatActivity() {
 //            val intent = Intent(Intent.ACTION_VIEW)
 //            intent.setPackage("com.google.android.gm")
 //            startActivity(intent)
-            val intent = Intent(Intent.ACTION_MAIN)
-            intent.addCategory(Intent.CATEGORY_APP_EMAIL)
-            startActivity(intent)
+//            val intent = Intent(Intent.ACTION_MAIN)
+//            intent.addCategory(Intent.CATEGORY_APP_EMAIL)
+//            startActivity(intent)
+            val intent = packageManager.getLaunchIntentForPackage("com.google.android.gm")
+            if(intent != null){startActivity(intent)}
 
         }
     }

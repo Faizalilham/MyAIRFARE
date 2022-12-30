@@ -80,6 +80,8 @@ class LoginActivity : AppCompatActivity() {
             val account = task.result
             if(account != null){
                 setUI(account)
+            }else{
+                Toast.makeText(this, "null", Toast.LENGTH_SHORT).show()
             }
         }else{
             Toast.makeText(this, task.exception.toString(), Toast.LENGTH_SHORT).show()
