@@ -50,7 +50,7 @@ class EditProfileAdminActivity : AppCompatActivity(),AdapterView.OnItemClickList
     }
 
     private fun dropDownMenu(){
-        val data = resources.getStringArray(R.array.type)
+        val data = resources.getStringArray(R.array.tittle)
         val adapter = ArrayAdapter(this, R.layout.dropdown_type_ticket,data)
         with(binding.tvTittle){
             setAdapter(adapter)

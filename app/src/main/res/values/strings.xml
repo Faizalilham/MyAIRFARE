@@ -146,4 +146,8 @@
         <item>Dewasa</item>
         <item>Anak-Anak</item>
     </string-array>
+    <string-array name="tittle">
+        <item>Tuan</item>
+        <item>Nyonya</item>
+    </string-array>
 </resources>

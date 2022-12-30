@@ -126,7 +126,7 @@ class ProfileAdminActivity : AppCompatActivity() {
             tvUsername.visibility = View.VISIBLE
             tvEmail.visibility = View.VISIBLE
             cardDetailProfile.visibility = View.VISIBLE
-            cardPengaturan.visibility = View.VISIBLE
+            cardPengaturan.visibility = View.GONE
             cardKeluar.visibility = View.VISIBLE
             tvBeforeLogin.visibility = View.GONE
             btnLogin.visibility = View.GONE
