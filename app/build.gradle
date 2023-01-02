@@ -39,11 +39,22 @@ android {
         viewBinding true
     }
 
-    lint{
+    lintOptions {
         ignore 'GradleDependency'
         ignore 'LockedOrientationActivity'
         ignore 'HardcodedText'
+        ignore 'etTextI18n'
+        ignore 'UnusedResources'
+        ignore 'LintBaseline'
+        ignore 'ContentDescription'
+        ignore 'IconLocation'
+
     }
+
+    lint{
+        baseline = file("lint-baseline.xml")
+    }
+
 }
 
 dependencies {

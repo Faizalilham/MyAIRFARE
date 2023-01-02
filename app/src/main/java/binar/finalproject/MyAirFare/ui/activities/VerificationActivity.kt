@@ -1,6 +1,5 @@
 package binar.finalproject.MyAirFare.ui.activities
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import binar.finalproject.MyAirFare.databinding.ActivityVerifikasiBinding

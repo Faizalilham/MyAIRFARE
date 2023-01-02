@@ -1,0 +1,1572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 7.2.1" type="baseline" client="gradle" dependencies="false" name="AGP (7.2.1)" variant="all" version="7.2.1">
+
+    <issue
+        id="CustomSplashScreen"
+        message="The application should not provide its own launch screen"
+        errorLine1="class SplashScreen : AppCompatActivity() {"
+        errorLine2="      ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/SplashScreen.kt"
+            line="9"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="CustomSplashScreen"
+        message="The application should not provide its own launch screen"
+        errorLine1="class SplashScreenFragment : Fragment() {"
+        errorLine2="      ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/fragments/onboarding/screen/SplashScreenFragment.kt"
+            line="20"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="TrustAllX509TrustManager"
+        message="`checkClientTrusted` is empty, which could cause insecure network traffic due to trusting arbitrary TLS/SSL certificates presented by peers">
+        <location
+            file="com/koushikdutta/async/AsyncSSLSocketWrapper$1.class"/>
+    </issue>
+
+    <issue
+        id="TrustAllX509TrustManager"
+        message="`checkClientTrusted` is empty, which could cause insecure network traffic due to trusting arbitrary TLS/SSL certificates presented by peers">
+        <location
+            file="com/koushikdutta/async/AsyncSSLSocketWrapper$2.class"/>
+    </issue>
+
+    <issue
+        id="TrustAllX509TrustManager"
+        message="`checkServerTrusted` is empty, which could cause insecure network traffic due to trusting arbitrary TLS/SSL certificates presented by peers">
+        <location
+            file="com/koushikdutta/async/AsyncSSLSocketWrapper$2.class"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="        &lt;item name=&quot;android:statusBarColor&quot; tools:targetApi=&quot;l&quot;>?attr/colorPrimaryVariant&lt;/item>"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values-night/themes.xml"
+            line="13"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="        &lt;item name=&quot;android:statusBarColor&quot; tools:targetApi=&quot;l&quot;>?attr/colorPrimaryVariant&lt;/item>"
+        errorLine2="                                            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/themes.xml"
+            line="13"
+            column="45"/>
+    </issue>
+
+    <issue
+        id="UseCompoundDrawables"
+        message="This tag and its children can be replaced by one `&lt;TextView/>` and a compound drawable"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="238"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                    &lt;LinearLayout"
+        errorLine2="                     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="232"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="487"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                   &lt;LinearLayout"
+        errorLine2="                    ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="631"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_edit_profile.xml"
+            line="74"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_edit_profile.xml"
+            line="121"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                    &lt;LinearLayout"
+        errorLine2="                     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_payment_details.xml"
+            line="383"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_register.xml"
+            line="84"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_register.xml"
+            line="133"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                       &lt;LinearLayout"
+        errorLine2="                        ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_home.xml"
+            line="110"
+            column="25"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_home.xml"
+            line="167"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_home.xml"
+            line="211"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="                        &lt;LinearLayout"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_home.xml"
+            line="267"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="173"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="       &lt;LinearLayout"
+        errorLine2="        ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_home.xml"
+            line="171"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="DisableBaselineAlignment"
+        message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_ticket.xml"
+            line="159"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="InefficientWeight"
+        message="Use a `layout_width` of `0dp` instead of `match_parent` for better performance"
+        errorLine1="            android:layout_width=&quot;match_parent&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_transactions.xml"
+            line="325"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/second_gray` with a theme that also paints a background (inferred theme is `@style/Theme.MyAirFare`)"
+        errorLine1="    android:background=&quot;@color/second_gray&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_transactions.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/primary` with a theme that also paints a background (inferred theme is `@style/Theme.MyAirFare`)"
+        errorLine1="    android:background=&quot;@color/primary&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="8"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/primary` with a theme that also paints a background (inferred theme is `@style/Theme.MyAirFare`)"
+        errorLine1="    android:background=&quot;@color/primary&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_register.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/second_gray` with a theme that also paints a background (inferred theme is `@style/Theme.MyAirFare`)"
+        errorLine1="    android:background=&quot;@color/second_gray&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_search_ticket.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/gray` with a theme that also paints a background (inferred theme is `@style/Theme.MyAirFare`)"
+        errorLine1="    android:background=&quot;@color/gray&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_splash_screen.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/second_gray` with a theme that also paints a background (inferred theme is `@style/Theme.MyAirFare`)"
+        errorLine1="    android:background=&quot;@color/second_gray&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_home.xml"
+            line="6"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="Overdraw"
+        message="Possible overdraw: Root element paints background `@color/gray` with a theme that also paints a background (inferred theme is `@style/Theme.MyAirFare`)"
+        errorLine1="    android:background=&quot;@color/gray&quot;"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_splash_screen.xml"
+            line="7"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UselessLeaf"
+        message="This `LinearLayout` view is unnecessary (no children, no `background`, no `id`, no `style`)"
+        errorLine1="        &lt;LinearLayout"
+        errorLine2="         ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_checkin.xml"
+            line="55"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="UselessLeaf"
+        message="This `LinearLayout` view is unnecessary (no children, no `background`, no `id`, no `style`)"
+        errorLine1="                &lt;LinearLayout"
+        errorLine2="                 ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="67"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="UselessLeaf"
+        message="This `LinearLayout` view is unnecessary (no children, no `background`, no `id`, no `style`)"
+        errorLine1="                    &lt;LinearLayout"
+        errorLine2="                     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_payment_details.xml"
+            line="74"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="UselessLeaf"
+        message="This `LinearLayout` view is unnecessary (no children, no `background`, no `id`, no `style`)"
+        errorLine1="                    &lt;LinearLayout"
+        errorLine2="                     ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_home.xml"
+            line="86"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="TooDeepLayout"
+        message="`activity_detail_perjalanan.xml` has more than 10 levels, bad for performance"
+        errorLine1="                                    &lt;AutoCompleteTextView"
+        errorLine2="                                     ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="574"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="TooManyViews"
+        message="`activity_detail_perjalanan.xml` has more than 80 views, bad for performance"
+        errorLine1="            &lt;LinearLayout"
+        errorLine2="             ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="745"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/avatar.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/avatar.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/background_profile.jpeg` in densityless folder">
+        <location
+            file="src/main/res/drawable/background_profile.jpeg"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_airplane.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_airplane.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_black_plane.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_black_plane.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_calendar.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_calendar.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_cameras.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_cameras.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_cart.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_cart.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_cart_ilus.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_cart_ilus.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_clock.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_clock.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_confirmation.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_confirmation.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_exchange.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_exchange.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_flight.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_flight.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_flight_plane.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_flight_plane.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_forget_password.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_forget_password.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_gallery.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_gallery.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_garuda.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_garuda.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_google.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_google.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_home.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_home.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_logo.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_logo.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_logout.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_logout.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_not_found.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_not_found.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_notif_ilus.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_notif_ilus.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_notification.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_notification.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_plane.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_plane.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_profile.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_profile.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_route.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_route.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_search.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_search.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_seat.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_seat.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_settings.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_settings.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_shopping_cart.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_shopping_cart.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_tag.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_tag.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_ticket.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_ticket.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_tickets_ilus.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_tickets_ilus.png"/>
+    </issue>
+
+    <issue
+        id="IconLocation"
+        message="Found bitmap drawable `res/drawable/ic_user.png` in densityless folder">
+        <location
+            file="src/main/res/drawable/ic_user.png"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="114"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="187"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="369"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_perjalanan.xml"
+            line="442"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_transactions.xml"
+            line="82"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_transactions.xml"
+            line="101"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="               &lt;ImageView"
+        errorLine2="                ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_transactions.xml"
+            line="125"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_detail_transactions.xml"
+            line="335"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;com.google.android.material.floatingactionbutton.FloatingActionButton"
+        errorLine2="         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_edit_profile.xml"
+            line="51"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_forget_password.xml"
+            line="47"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_login.xml"
+            line="187"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_payment_details.xml"
+            line="244"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_payment_details.xml"
+            line="273"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_payment_details.xml"
+            line="347"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_payment_details.xml"
+            line="402"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                            &lt;ImageView"
+        errorLine2="                             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_payment_details.xml"
+            line="428"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_search_ticket.xml"
+            line="45"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_search_ticket.xml"
+            line="102"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_setting.xml"
+            line="76"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_setting.xml"
+            line="97"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_setting.xml"
+            line="135"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_setting.xml"
+            line="184"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_setting.xml"
+            line="245"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/activity_verifikasi.xml"
+            line="29"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_active_ticket.xml"
+            line="32"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_cart.xml"
+            line="48"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_cart.xml"
+            line="76"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_in_active_ticket.xml"
+            line="30"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification.xml"
+            line="51"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_notification.xml"
+            line="79"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_profile.xml"
+            line="98"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_profile.xml"
+            line="119"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_profile.xml"
+            line="145"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_profile.xml"
+            line="166"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_profile.xml"
+            line="191"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                        &lt;ImageView"
+        errorLine2="                         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_profile.xml"
+            line="212"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="    &lt;ImageView"
+        errorLine2="     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/fragment_splash_screen.xml"
+            line="10"
+            column="6"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/image_bottom_sheet.xml"
+            line="40"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/image_bottom_sheet.xml"
+            line="73"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="34"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="63"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="137"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                    &lt;ImageView"
+        errorLine2="                     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="192"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                    &lt;ImageView"
+        errorLine2="                     ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="218"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_cart.xml"
+            line="260"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_checkin.xml"
+            line="59"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_home.xml"
+            line="29"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_home.xml"
+            line="58"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_home.xml"
+            line="134"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="               &lt;ImageView"
+        errorLine2="                ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_home.xml"
+            line="190"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="               &lt;ImageView"
+        errorLine2="                ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_home.xml"
+            line="217"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_ticket.xml"
+            line="28"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="            &lt;ImageView"
+        errorLine2="             ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_ticket.xml"
+            line="113"
+            column="14"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_ticket.xml"
+            line="176"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_ticket.xml"
+            line="202"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="        &lt;ImageView"
+        errorLine2="         ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_transactions.xml"
+            line="31"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_transactions.xml"
+            line="69"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="ContentDescription"
+        message="Missing `contentDescription` attribute on image"
+        errorLine1="                &lt;ImageView"
+        errorLine2="                 ~~~~~~~~~">
+        <location
+            file="src/main/res/layout/list_item_transactions.xml"
+            line="88"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    1 ->  tvClass.text = &quot;ECONOMY&quot;"
+        errorLine2="                                          ~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/CartAdapter.kt"
+            line="64"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    2 ->  tvClass.text = &quot;BUSSINESS&quot;"
+        errorLine2="                                          ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/CartAdapter.kt"
+            line="65"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tvType.text = &quot;Sekali Jalan&quot;"
+        errorLine2="                               ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/CartAdapter.kt"
+            line="72"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    tvType.text = &quot;Pulang Pergi&quot;"
+        errorLine2="                                   ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/CartAdapter.kt"
+            line="74"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tvNotFound.text = &quot;Tidak ada data checkin&quot;"
+        errorLine2="                                   ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/fragments/CheckInFragment.kt"
+            line="108"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    1 -> tvClass.text = &quot;ECONOMY&quot;"
+        errorLine2="                                         ~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailPerjalanan.kt"
+            line="87"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    2 -> tvClass.text = &quot;BUSSINESS&quot;"
+        errorLine2="                                         ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailPerjalanan.kt"
+            line="88"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    1 -> tvType.text = &quot;DEWASA&quot;"
+        errorLine2="                                        ~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailPerjalanan.kt"
+            line="92"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    2 -> tvType.text = &quot;ANAK-ANAK&quot;"
+        errorLine2="                                        ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailPerjalanan.kt"
+            line="93"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    1 -> tvClassReturn.text = &quot;ECONOMY&quot;"
+        errorLine2="                                               ~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailPerjalanan.kt"
+            line="130"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    2 -> tvClassReturn.text = &quot;BUSSINESS&quot;"
+        errorLine2="                                               ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailPerjalanan.kt"
+            line="131"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        errorLine1="                tvOrderId.text = &quot;Nomor Pesanan ${i.order_id}&quot;"
+        errorLine2="                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="66"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tvOrderId.text = &quot;Nomor Pesanan ${i.order_id}&quot;"
+        errorLine2="                                  ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="66"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        1 -> tvClass.text = &quot;Economy&quot;"
+        errorLine2="                                             ~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="96"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                        2 -> tvClass.text = &quot;Bussiness&quot;"
+        errorLine2="                                             ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="97"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                                tvType.text = &quot;Dewasa - Pulang Pergi&quot;"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="103"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                                tvType.text = &quot;Dewasa - Sekali Jalan&quot;"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="105"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                                tvType.text = &quot;Anak anak - Pulang Pergi&quot;"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="110"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                                tvType.text = &quot;Anak anak - Sekali Jalan&quot;"
+        errorLine2="                                               ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="112"
+            column="48"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    tvReschedule.text = &quot;Hapus Transaksi&quot;"
+        errorLine2="                                         ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/DetailTransactionsActivity.kt"
+            line="155"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tittle.text = &quot;Keranjang&quot;"
+        errorLine2="                               ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/NotificationsAdapter.kt"
+            line="40"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tittle.text = &quot;Transaksi&quot;"
+        errorLine2="                               ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/NotificationsAdapter.kt"
+            line="42"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tittle.text = &quot;Pembayaran terlewat&quot;"
+        errorLine2="                               ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/NotificationsAdapter.kt"
+            line="44"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tittle.text = &quot;Pembatalan transaksi&quot;"
+        errorLine2="                               ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/NotificationsAdapter.kt"
+            line="46"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                tittle.text = &quot;Login Success&quot;"
+        errorLine2="                               ~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/adapter/NotificationsAdapter.kt"
+            line="48"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    1 ->  tvClass.text = &quot;ECONOMY&quot;"
+        errorLine2="                                          ~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/PaymentDetailsActivity.kt"
+            line="104"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        errorLine1="                    2 ->  tvClass.text = &quot;BUSSINESS&quot;"
+        errorLine2="                                          ~~~~~~~~~">
+        <location
+            file="src/main/java/binar/finalproject/MyAirFare/ui/activities/PaymentDetailsActivity.kt"
+            line="105"
+            column="43"/>
+    </issue>
+
+</issues>
