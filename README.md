@@ -1,4 +1,4 @@
-# E-ngkringan
+# MyAIRFARE
 
 adalah aplikasi pemesanan tiket pesawat secara online yang memungkinkan pengguna untuk dengan mudah memesan tiket pesawat mereka melalui platform digital. Aplikasi ini menawarkan berbagai fitur yang memudahkan pengguna dalam memesan tiket pesawat, pembayaran digital, dan checkin tiket pesawat.
 
